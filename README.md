@@ -26,21 +26,56 @@
 
 ## 📂 Project Structure
 
-```text
-eps_pay/
-├── lib/
-│   ├── main.dart
-│   ├── screens/
+lib/
+│
+├── main.dart
+│
+├── app/
+│   ├── app.dart
+│   ├── routes.dart
+│   └── theme.dart
+│
+├── core/
+│   ├── constants/
+│   │   ├── colors.dart
+│   │   ├── text_styles.dart
+│   │   └── spacing.dart
+│   │
 │   ├── widgets/
-│   ├── models/
-│   └── services/
-├── assets/
-│   ├── images/
-│   └── icons/
-├── android/
-├── ios/
-├── pubspec.yaml
-└── README.md
+│   │   ├── primary_button.dart
+│   │   ├── app_text_field.dart
+│   │   ├── account_card.dart
+│   │   ├── transaction_tile.dart
+│   │   └── quick_action_button.dart
+│
+├── features/
+│   ├── auth/
+│   │   ├── login_screen.dart
+│   │   └── biometric_widget.dart
+│   │
+│   ├── home/
+│   │   ├── home_screen.dart
+│   │   ├── balance_card.dart
+│   │   └── recent_transactions.dart
+│   │
+│   ├── accounts/
+│   │   └── accounts_screen.dart
+│   │
+│   ├── transfer/
+│   │   └── transfer_screen.dart
+│   │
+│   ├── bills/
+│   │   └── bills_screen.dart
+│   │
+│   ├── cards/
+│   │   └── cards_screen.dart
+│   │
+│   ├── transactions/
+│   │   └── transactions_screen.dart
+│   │
+│   └── profile/
+│       └── profile_screen.dart
+
 
 
 🚀 Getting Started
