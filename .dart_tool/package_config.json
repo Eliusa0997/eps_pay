@@ -45,7 +45,7 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///home/eliusa/snap/flutter/common/flutter/packages/flutter",
+      "rootUri": "file:///home/eliusa/fvm/versions/3.38.6/packages/flutter",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },
@@ -57,7 +57,7 @@
     },
     {
       "name": "flutter_test",
-      "rootUri": "file:///home/eliusa/snap/flutter/common/flutter/packages/flutter_test",
+      "rootUri": "file:///home/eliusa/fvm/versions/3.38.6/packages/flutter_test",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },
@@ -111,7 +111,7 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///home/eliusa/snap/flutter/common/flutter/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///home/eliusa/fvm/versions/3.38.6/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },
@@ -171,8 +171,8 @@
     }
   ],
   "generator": "pub",
-  "generatorVersion": "3.10.4",
-  "flutterRoot": "file:///home/eliusa/snap/flutter/common/flutter",
-  "flutterVersion": "3.38.5",
+  "generatorVersion": "3.10.7",
+  "flutterRoot": "file:///home/eliusa/fvm/versions/3.38.6",
+  "flutterVersion": "3.38.6",
   "pubCache": "file:///home/eliusa/.pub-cache"
 }
