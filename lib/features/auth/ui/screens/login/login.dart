@@ -1,4 +1,7 @@
 import 'package:eps_pay/core/theming/colors.dart';
+import 'package:eps_pay/features/auth/ui/widgets/biometric_login.dart';
+import 'package:eps_pay/features/auth/ui/widgets/footer.dart';
+import 'package:eps_pay/features/auth/ui/widgets/wellcome_back_card.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -36,51 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               // Header
-              Container(
-                decoration: const BoxDecoration(
-                  gradient: AppColors.primaryGradient,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(32),
-                    bottomRight: Radius.circular(32),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 48, 24, 80),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: const Icon(
-                          Icons.account_balance,
-                          size: 48,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        'Welcome Back',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Login to access your account',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white.withOpacity(0.8),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              const WellcomeBackCard(),
 
               // Login Form
               Transform.translate(
@@ -228,64 +187,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
 
               // Biometric Login
-              Column(
-                children: [
-                  const Text(
-                    'Or login with',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  InkWell(
-                    onTap: _handleBiometricLogin,
-                    borderRadius: BorderRadius.circular(32),
-                    child: Container(
-                      width: 64,
-                      height: 64,
-                      decoration: const BoxDecoration(
-                        gradient: AppColors.primaryGradient,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x400A5F7D),
-                            blurRadius: 16,
-                            offset: Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: const Icon(
-                        Icons.fingerprint,
-                        size: 32,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Fingerprint / Face ID',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: AppColors.textSecondary,
-                    ),
-                  ),
-                ],
-              ),
+              const BiometricLogin(),
 
               const SizedBox(height: 32),
 
-              // Footer
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Text(
-                  'By logging in, you agree to our Terms & Conditions',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 12, color: AppColors.textTertiary),
-                ),
-              ),
+              const Footer(),
 
-              const SizedBox(height: 24),
+              const SizedBox(height: 10),
             ],
           ),
         ),
