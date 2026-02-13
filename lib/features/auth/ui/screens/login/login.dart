@@ -1,3 +1,4 @@
+import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:eps_pay/features/auth/ui/widgets/biometric_login.dart';
 import 'package:eps_pay/features/auth/ui/widgets/footer.dart';
@@ -24,11 +25,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _handleLogin() {
-    Navigator.pushReplacementNamed(context, '/home');
+    Navigator.pushReplacementNamed(context, Routes.homeDashboard);
   }
 
   void _handleBiometricLogin() {
-    Navigator.pushReplacementNamed(context, '/home');
+    Navigator.pushReplacementNamed(context, Routes.homeDashboard);
   }
 
   @override

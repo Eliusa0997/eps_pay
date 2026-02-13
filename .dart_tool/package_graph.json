@@ -11,6 +11,7 @@
         "flutter"
       ],
       "devDependencies": [
+        "bloc",
         "flutter_bloc",
         "flutter_lints",
         "flutter_test"
@@ -23,6 +24,13 @@
         "bloc",
         "flutter",
         "provider"
+      ]
+    },
+    {
+      "name": "bloc",
+      "version": "9.2.0",
+      "dependencies": [
+        "meta"
       ]
     },
     {
@@ -68,6 +76,20 @@
       ]
     },
     {
+      "name": "provider",
+      "version": "6.1.5+1",
+      "dependencies": [
+        "collection",
+        "flutter",
+        "nested"
+      ]
+    },
+    {
+      "name": "meta",
+      "version": "1.17.0",
+      "dependencies": []
+    },
+    {
       "name": "lints",
       "version": "6.1.0",
       "dependencies": []
@@ -78,11 +100,6 @@
       "dependencies": [
         "async"
       ]
-    },
-    {
-      "name": "meta",
-      "version": "1.17.0",
-      "dependencies": []
     },
     {
       "name": "collection",
@@ -174,6 +191,13 @@
       "dependencies": []
     },
     {
+      "name": "nested",
+      "version": "1.0.0",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
       "name": "async",
       "version": "2.13.0",
       "dependencies": [
@@ -234,29 +258,6 @@
       "name": "vm_service",
       "version": "15.0.2",
       "dependencies": []
-    },
-    {
-      "name": "bloc",
-      "version": "9.2.0",
-      "dependencies": [
-        "meta"
-      ]
-    },
-    {
-      "name": "provider",
-      "version": "6.1.5+1",
-      "dependencies": [
-        "collection",
-        "flutter",
-        "nested"
-      ]
-    },
-    {
-      "name": "nested",
-      "version": "1.0.0",
-      "dependencies": [
-        "flutter"
-      ]
     }
   ],
   "configVersion": 1

@@ -1,12 +1,30 @@
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/features/auth/ui/screens/login/login.dart';
+import 'package:eps_pay/features/home/ui/screens/home_dashboard.dart';
+import 'package:eps_pay/features/onbording/ui/screens/onbording_screen.dart';
+import 'package:eps_pay/features/onbording/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      // splash and onbording
+      case Routes.splashScreen:
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
+      case Routes.onBordingScreen:
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+
+      // Auth
       case Routes.loginScreen:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
+
+      // home Dashbord
+
+      // Auth
+      case Routes.homeDashboard:
+        return MaterialPageRoute(builder: (_) => const HomeDashboard());
+
+      // In Case any thing gose rong
       default:
         return MaterialPageRoute(builder: (_) => const Text("data"));
     }

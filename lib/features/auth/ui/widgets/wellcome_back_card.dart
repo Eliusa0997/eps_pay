@@ -7,7 +7,7 @@ class WellcomeBackCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 420,
+      width: double.infinity,
       decoration: const BoxDecoration(
         gradient: AppColors.primaryGradient,
         borderRadius: BorderRadius.only(

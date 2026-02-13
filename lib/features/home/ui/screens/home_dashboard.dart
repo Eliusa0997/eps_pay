@@ -117,6 +117,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
             // Header
             SliverToBoxAdapter(
               child: Container(
+                height: 220,
                 decoration: const BoxDecoration(
                   gradient: AppColors.primaryGradient,
                   borderRadius: BorderRadius.only(
@@ -182,7 +183,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
             // Account Card
             SliverToBoxAdapter(
               child: Transform.translate(
-                offset: const Offset(0, -64),
+                offset: const Offset(0, -10),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Container(
