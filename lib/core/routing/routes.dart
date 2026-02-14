@@ -8,4 +8,7 @@ class Routes {
 
   // Home Screen
   static const homeDashboard = '/home-dashboard';
+
+  // Transfiring
+  static const transferMoney = '/transfer-money';
 }

@@ -1,4 +1,5 @@
 import 'package:eps_pay/core/for_test_models/transaction.dart';
+import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -325,7 +326,9 @@ class _HomeDashboardState extends State<HomeDashboard> {
                                   onTap: () {
                                     Navigator.pushNamed(
                                       context,
-                                      action['route'],
+                                      Routes.transferMoney,
+                                      // context,
+                                      // action['route'],
                                     );
                                   },
                                   borderRadius: BorderRadius.circular(16),

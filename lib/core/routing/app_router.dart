@@ -3,6 +3,7 @@ import 'package:eps_pay/features/auth/ui/screens/login/login.dart';
 import 'package:eps_pay/features/home/ui/screens/home_dashboard.dart';
 import 'package:eps_pay/features/onbording/ui/screens/onbording_screen.dart';
 import 'package:eps_pay/features/onbording/ui/screens/splash_screen.dart';
+import 'package:eps_pay/features/transfer/ui/screens/transfer_money_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -20,9 +21,12 @@ class AppRouter {
 
       // home Dashbord
 
-      // Auth
       case Routes.homeDashboard:
         return MaterialPageRoute(builder: (_) => const HomeDashboard());
+
+      // Transfering
+      case Routes.transferMoney:
+        return MaterialPageRoute(builder: (_) => const TransferMoneyScreen());
 
       // In Case any thing gose rong
       default:
