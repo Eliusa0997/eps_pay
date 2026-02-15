@@ -9,6 +9,9 @@ class Routes {
   // Home Screen
   static const homeDashboard = '/home-dashboard';
 
-  // Transfiring
+  // Money transctions
   static const transferMoney = '/transfer-money';
+  static const payBills = '/pay-bills';
+  static const recharge = '/recharge';
+  static const cards = '/cards';
 }

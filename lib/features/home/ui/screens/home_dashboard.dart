@@ -20,7 +20,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
       'gradient': const LinearGradient(
         colors: [Color(0xFF3B82F6), Color(0xFF2563EB)],
       ),
-      'route': '/transfer',
+      'route': Routes.transferMoney,
     },
     {
       'icon': Icons.receipt,
@@ -44,7 +44,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
       'gradient': const LinearGradient(
         colors: [Color(0xFFF97316), Color(0xFFEA580C)],
       ),
-      'route': '/cards',
+      'route': Routes.cards,
     },
   ];
 
@@ -326,9 +326,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
                                   onTap: () {
                                     Navigator.pushNamed(
                                       context,
-                                      Routes.transferMoney,
-                                      // context,
-                                      // action['route'],
+                                      action['route'],
                                     );
                                   },
                                   borderRadius: BorderRadius.circular(16),

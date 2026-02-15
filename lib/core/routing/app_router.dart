@@ -1,5 +1,6 @@
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/features/auth/ui/screens/login/login.dart';
+import 'package:eps_pay/features/cards/ui/screens/cards_screen.dart';
 import 'package:eps_pay/features/home/ui/screens/home_dashboard.dart';
 import 'package:eps_pay/features/onbording/ui/screens/onbording_screen.dart';
 import 'package:eps_pay/features/onbording/ui/screens/splash_screen.dart';
@@ -24,9 +25,15 @@ class AppRouter {
       case Routes.homeDashboard:
         return MaterialPageRoute(builder: (_) => const HomeDashboard());
 
-      // Transfering
+      // Money transctions
       case Routes.transferMoney:
         return MaterialPageRoute(builder: (_) => const TransferMoneyScreen());
+      case Routes.payBills:
+        return MaterialPageRoute(builder: (_) => const TransferMoneyScreen());
+      case Routes.recharge:
+        return MaterialPageRoute(builder: (_) => const TransferMoneyScreen());
+      case Routes.cards:
+        return MaterialPageRoute(builder: (_) => const CardsScreen());
 
       // In Case any thing gose rong
       default:
