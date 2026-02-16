@@ -11,7 +11,7 @@ class Routes {
 
   // Money transctions
   static const transferMoney = '/transfer-money';
-  static const payBills = '/pay-bills';
+  static const billsBayments = '/bills-payments';
   static const recharge = '/recharge';
   static const cards = '/cards';
 }

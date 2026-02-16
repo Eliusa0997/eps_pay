@@ -28,7 +28,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
       'gradient': const LinearGradient(
         colors: [Color(0xFF10B981), Color(0xFF059669)],
       ),
-      'route': '/bills',
+      'route': Routes.billsBayments,
     },
     {
       'icon': Icons.smartphone,
@@ -36,7 +36,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
       'gradient': const LinearGradient(
         colors: [Color(0xFF8B5CF6), Color(0xFF7C3AED)],
       ),
-      'route': '/bills',
+      'route': Routes.billsBayments,
     },
     {
       'icon': Icons.credit_card,
