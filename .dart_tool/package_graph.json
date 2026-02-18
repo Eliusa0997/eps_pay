@@ -20,7 +20,15 @@
         "freezed",
         "freezed_annotation",
         "json_annotation",
-        "json_serializable"
+        "json_serializable",
+        "pretty_dio_logger"
+      ]
+    },
+    {
+      "name": "pretty_dio_logger",
+      "version": "1.4.0",
+      "dependencies": [
+        "dio"
       ]
     },
     {
@@ -193,21 +201,6 @@
       "dependencies": []
     },
     {
-      "name": "source_gen",
-      "version": "4.2.0",
-      "dependencies": [
-        "analyzer",
-        "async",
-        "build",
-        "dart_style",
-        "glob",
-        "path",
-        "pub_semver",
-        "source_span",
-        "yaml"
-      ]
-    },
-    {
       "name": "pub_semver",
       "version": "2.2.0",
       "dependencies": [
@@ -222,6 +215,21 @@
         "args",
         "collection",
         "package_config",
+        "path",
+        "pub_semver",
+        "source_span",
+        "yaml"
+      ]
+    },
+    {
+      "name": "source_gen",
+      "version": "4.2.0",
+      "dependencies": [
+        "analyzer",
+        "async",
+        "build",
+        "dart_style",
+        "glob",
         "path",
         "pub_semver",
         "source_span",
