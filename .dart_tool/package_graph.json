@@ -21,7 +21,33 @@
         "freezed_annotation",
         "json_annotation",
         "json_serializable",
-        "pretty_dio_logger"
+        "pretty_dio_logger",
+        "retrofit",
+        "retrofit_generator"
+      ]
+    },
+    {
+      "name": "retrofit_generator",
+      "version": "10.2.3",
+      "dependencies": [
+        "analyzer",
+        "build",
+        "built_collection",
+        "code_builder",
+        "dart_style",
+        "dio",
+        "lean_builder",
+        "protobuf",
+        "retrofit",
+        "source_gen"
+      ]
+    },
+    {
+      "name": "retrofit",
+      "version": "4.9.2",
+      "dependencies": [
+        "dio",
+        "meta"
       ]
     },
     {
@@ -191,20 +217,27 @@
       ]
     },
     {
-      "name": "meta",
-      "version": "1.17.0",
-      "dependencies": []
-    },
-    {
-      "name": "collection",
-      "version": "1.19.1",
-      "dependencies": []
-    },
-    {
-      "name": "pub_semver",
-      "version": "2.2.0",
+      "name": "source_gen",
+      "version": "4.2.0",
       "dependencies": [
-        "collection"
+        "analyzer",
+        "async",
+        "build",
+        "dart_style",
+        "glob",
+        "path",
+        "pub_semver",
+        "source_span",
+        "yaml"
+      ]
+    },
+    {
+      "name": "protobuf",
+      "version": "6.0.0",
+      "dependencies": [
+        "collection",
+        "fixnum",
+        "meta"
       ]
     },
     {
@@ -222,29 +255,20 @@
       ]
     },
     {
-      "name": "source_gen",
-      "version": "4.2.0",
+      "name": "code_builder",
+      "version": "4.11.1",
       "dependencies": [
-        "analyzer",
-        "async",
-        "build",
-        "dart_style",
-        "glob",
-        "path",
-        "pub_semver",
-        "source_span",
-        "yaml"
+        "built_collection",
+        "built_value",
+        "collection",
+        "matcher",
+        "meta"
       ]
     },
     {
-      "name": "build_config",
-      "version": "1.2.0",
-      "dependencies": [
-        "checked_yaml",
-        "json_annotation",
-        "path",
-        "pubspec_parse"
-      ]
+      "name": "built_collection",
+      "version": "5.1.1",
+      "dependencies": []
     },
     {
       "name": "build",
@@ -274,6 +298,33 @@
         "source_span",
         "watcher",
         "yaml"
+      ]
+    },
+    {
+      "name": "meta",
+      "version": "1.17.0",
+      "dependencies": []
+    },
+    {
+      "name": "collection",
+      "version": "1.19.1",
+      "dependencies": []
+    },
+    {
+      "name": "pub_semver",
+      "version": "2.2.0",
+      "dependencies": [
+        "collection"
+      ]
+    },
+    {
+      "name": "build_config",
+      "version": "1.2.0",
+      "dependencies": [
+        "checked_yaml",
+        "json_annotation",
+        "path",
+        "pubspec_parse"
       ]
     },
     {
@@ -409,17 +460,6 @@
       ]
     },
     {
-      "name": "code_builder",
-      "version": "4.11.1",
-      "dependencies": [
-        "built_collection",
-        "built_value",
-        "collection",
-        "matcher",
-        "meta"
-      ]
-    },
-    {
       "name": "built_value",
       "version": "8.12.3",
       "dependencies": [
@@ -428,11 +468,6 @@
         "fixnum",
         "meta"
       ]
-    },
-    {
-      "name": "built_collection",
-      "version": "5.1.1",
-      "dependencies": []
     },
     {
       "name": "build_daemon",
@@ -625,13 +660,9 @@
       ]
     },
     {
-      "name": "checked_yaml",
-      "version": "2.0.4",
-      "dependencies": [
-        "json_annotation",
-        "source_span",
-        "yaml"
-      ]
+      "name": "fixnum",
+      "version": "1.1.1",
+      "dependencies": []
     },
     {
       "name": "_fe_analyzer_shared",
@@ -639,6 +670,15 @@
       "dependencies": [
         "meta",
         "source_span"
+      ]
+    },
+    {
+      "name": "checked_yaml",
+      "version": "2.0.4",
+      "dependencies": [
+        "json_annotation",
+        "source_span",
+        "yaml"
       ]
     },
     {
@@ -674,11 +714,6 @@
       "dependencies": [
         "collection"
       ]
-    },
-    {
-      "name": "fixnum",
-      "version": "1.1.1",
-      "dependencies": []
     },
     {
       "name": "uri",
@@ -753,6 +788,58 @@
     {
       "name": "vm_service",
       "version": "15.0.2",
+      "dependencies": []
+    },
+    {
+      "name": "lean_builder",
+      "version": "0.1.7",
+      "dependencies": [
+        "_fe_analyzer_shared",
+        "analyzer",
+        "ansicolor",
+        "args",
+        "collection",
+        "dart_style",
+        "frontend_server_client",
+        "glob",
+        "hotreloader",
+        "meta",
+        "path",
+        "source_span",
+        "stack_trace",
+        "watcher",
+        "xxh3",
+        "yaml"
+      ]
+    },
+    {
+      "name": "xxh3",
+      "version": "1.2.0",
+      "dependencies": []
+    },
+    {
+      "name": "hotreloader",
+      "version": "4.3.0",
+      "dependencies": [
+        "collection",
+        "logging",
+        "path",
+        "stream_transform",
+        "vm_service",
+        "watcher"
+      ]
+    },
+    {
+      "name": "frontend_server_client",
+      "version": "4.0.0",
+      "dependencies": [
+        "async",
+        "path"
+      ]
+    },
+    {
+      "name": "ansicolor",
+      "version": "2.0.3",
       "dependencies": []
     }
   ],
