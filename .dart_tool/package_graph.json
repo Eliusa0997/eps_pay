@@ -19,11 +19,21 @@
         "flutter_test",
         "freezed",
         "freezed_annotation",
+        "get_it",
         "json_annotation",
         "json_serializable",
         "pretty_dio_logger",
         "retrofit",
         "retrofit_generator"
+      ]
+    },
+    {
+      "name": "get_it",
+      "version": "9.2.0",
+      "dependencies": [
+        "async",
+        "collection",
+        "meta"
       ]
     },
     {
@@ -159,19 +169,19 @@
       ]
     },
     {
+      "name": "bloc",
+      "version": "9.2.0",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
       "name": "flutter_bloc",
       "version": "9.1.1",
       "dependencies": [
         "bloc",
         "flutter",
         "provider"
-      ]
-    },
-    {
-      "name": "bloc",
-      "version": "9.2.0",
-      "dependencies": [
-        "meta"
       ]
     },
     {
@@ -217,6 +227,24 @@
       ]
     },
     {
+      "name": "meta",
+      "version": "1.17.0",
+      "dependencies": []
+    },
+    {
+      "name": "collection",
+      "version": "1.19.1",
+      "dependencies": []
+    },
+    {
+      "name": "async",
+      "version": "2.13.0",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
+    },
+    {
       "name": "source_gen",
       "version": "4.2.0",
       "dependencies": [
@@ -238,6 +266,28 @@
         "collection",
         "fixnum",
         "meta"
+      ]
+    },
+    {
+      "name": "lean_builder",
+      "version": "0.1.7",
+      "dependencies": [
+        "_fe_analyzer_shared",
+        "analyzer",
+        "ansicolor",
+        "args",
+        "collection",
+        "dart_style",
+        "frontend_server_client",
+        "glob",
+        "hotreloader",
+        "meta",
+        "path",
+        "source_span",
+        "stack_trace",
+        "watcher",
+        "xxh3",
+        "yaml"
       ]
     },
     {
@@ -299,16 +349,6 @@
         "watcher",
         "yaml"
       ]
-    },
-    {
-      "name": "meta",
-      "version": "1.17.0",
-      "dependencies": []
-    },
-    {
-      "name": "collection",
-      "version": "1.19.1",
-      "dependencies": []
     },
     {
       "name": "pub_semver",
@@ -488,14 +528,6 @@
       ]
     },
     {
-      "name": "async",
-      "version": "2.13.0",
-      "dependencies": [
-        "collection",
-        "meta"
-      ]
-    },
-    {
       "name": "args",
       "version": "2.7.0",
       "dependencies": []
@@ -665,6 +697,36 @@
       "dependencies": []
     },
     {
+      "name": "hotreloader",
+      "version": "4.3.0",
+      "dependencies": [
+        "collection",
+        "logging",
+        "path",
+        "stream_transform",
+        "vm_service",
+        "watcher"
+      ]
+    },
+    {
+      "name": "frontend_server_client",
+      "version": "4.0.0",
+      "dependencies": [
+        "async",
+        "path"
+      ]
+    },
+    {
+      "name": "ansicolor",
+      "version": "2.0.3",
+      "dependencies": []
+    },
+    {
+      "name": "xxh3",
+      "version": "1.2.0",
+      "dependencies": []
+    },
+    {
       "name": "_fe_analyzer_shared",
       "version": "93.0.0",
       "dependencies": [
@@ -779,68 +841,16 @@
       ]
     },
     {
-      "name": "quiver",
-      "version": "3.2.2",
-      "dependencies": [
-        "matcher"
-      ]
-    },
-    {
       "name": "vm_service",
       "version": "15.0.2",
       "dependencies": []
     },
     {
-      "name": "lean_builder",
-      "version": "0.1.7",
+      "name": "quiver",
+      "version": "3.2.2",
       "dependencies": [
-        "_fe_analyzer_shared",
-        "analyzer",
-        "ansicolor",
-        "args",
-        "collection",
-        "dart_style",
-        "frontend_server_client",
-        "glob",
-        "hotreloader",
-        "meta",
-        "path",
-        "source_span",
-        "stack_trace",
-        "watcher",
-        "xxh3",
-        "yaml"
+        "matcher"
       ]
-    },
-    {
-      "name": "xxh3",
-      "version": "1.2.0",
-      "dependencies": []
-    },
-    {
-      "name": "hotreloader",
-      "version": "4.3.0",
-      "dependencies": [
-        "collection",
-        "logging",
-        "path",
-        "stream_transform",
-        "vm_service",
-        "watcher"
-      ]
-    },
-    {
-      "name": "frontend_server_client",
-      "version": "4.0.0",
-      "dependencies": [
-        "async",
-        "path"
-      ]
-    },
-    {
-      "name": "ansicolor",
-      "version": "2.0.3",
-      "dependencies": []
     }
   ],
   "configVersion": 1

@@ -8,6 +8,8 @@ class LoginRequestBody {
   final String? password;
 
   LoginRequestBody({this.userEmail, this.password});
+  // factory LoginRequestBody.fromJson(Map<String, dynamic> json) =>
+  //     _$LoginRequestBodyFromJson(json);
 
   Map<String, dynamic> toJson() => _$LoginRequestBodyToJson(this);
 }
