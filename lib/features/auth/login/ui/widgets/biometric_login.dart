@@ -1,3 +1,4 @@
+import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,10 @@ class BiometricLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _handleBiometricLogin() {
+      Navigator.pushReplacementNamed(context, Routes.homeDashboard);
+    }
+
     return Column(
       children: [
         const Text(
@@ -14,7 +19,7 @@ class BiometricLogin extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         InkWell(
-          // onTap: _handleBiometricLogin,
+          onTap: _handleBiometricLogin,
           borderRadius: BorderRadius.circular(32),
           child: Container(
             width: 64,

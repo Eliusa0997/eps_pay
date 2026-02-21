@@ -41,7 +41,8 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late LoginRequestBody _value;
     try {
-      _value = LoginRequestBody.fromJson(_result.data!);
+      _value = 'LoginRequestBody.fromJson(_result.data!)' as LoginRequestBody;
+      // _value = LoginRequestBody.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
