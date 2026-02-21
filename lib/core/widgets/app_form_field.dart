@@ -10,6 +10,7 @@ class AppFormField extends StatelessWidget {
   final String hintText;
   final Widget prefixIcon;
   final Widget? suffixIcon;
+  Function(String?)? validator;
   AppFormField({
     super.key,
     required this.controller,
@@ -19,24 +20,33 @@ class AppFormField extends StatelessWidget {
     required this.hintText,
     required this.prefixIcon,
     this.suffixIcon,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: controller,
       obscureText: isObscurePin,
       keyboardType: textInputType,
       maxLength: maxLength ?? 14,
+
       decoration: InputDecoration(
         hintText: hintText,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
+
         filled: true,
         fillColor: AppColors.background,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.error),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.info),
         ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -44,6 +54,9 @@ class AppFormField extends StatelessWidget {
         ),
         counterText: '',
       ),
+      validator: (value) {
+        return validator!(value);
+      },
     );
   }
 }
