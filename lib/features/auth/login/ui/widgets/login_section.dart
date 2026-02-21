@@ -1,9 +1,11 @@
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/widgets/app_button.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
+import 'package:eps_pay/features/auth/login/logic/cubit/login_cubit.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/forgot_pin.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginSection extends StatefulWidget {
   const LoginSection({super.key});
@@ -13,11 +15,16 @@ class LoginSection extends StatefulWidget {
 }
 
 class _LoginSectionState extends State<LoginSection> {
-  final _phoneController = TextEditingController();
-
-  final _pinController = TextEditingController();
+  late TextEditingController userNameController;
+  late TextEditingController passwordController;
 
   bool _obscurePin = true;
+  @override
+  void initState() {
+    super.initState();
+    userNameController = context.read<LoginCubit>().userNameController;
+    passwordController = context.read<LoginCubit>().passwordController;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,51 +49,64 @@ class _LoginSectionState extends State<LoginSection> {
               ),
             ],
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Phone Number
-              const FormFeildTitle(title: "Phone Number"),
-              // Phone Form Field
-              const SizedBox(height: 8),
-              AppFormField(
-                controller: _phoneController,
-                isObscurePin: false,
-                textInputType: TextInputType.phone,
-                hintText: '+249 123 656 789',
-                prefixIcon: const Icon(Icons.phone),
-              ),
-              const SizedBox(height: 20),
-              // PIN
-              const FormFeildTitle(title: "PIN"),
-              // Pin Form Field
-              const SizedBox(height: 8),
-              AppFormField(
-                textInputType: TextInputType.number,
-                controller: _pinController,
-                hintText: 'Enter your PIN',
-                maxLength: 4,
-                isObscurePin: _obscurePin,
-                prefixIcon: const Icon(Icons.lock),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    _obscurePin ? Icons.visibility_off : Icons.visibility,
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      _obscurePin = !_obscurePin;
-                    });
+          child: Form(
+            key: context.read<LoginCubit>().formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Phone Number
+                const FormFeildTitle(title: "Phone Number"),
+                // Phone Form Field
+                const SizedBox(height: 8),
+                AppFormField(
+                  controller: userNameController,
+                  isObscurePin: false,
+                  textInputType: TextInputType.phone,
+                  hintText: 'Enter your User N ame',
+                  prefixIcon: const Icon(Icons.person),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Plece Enter Valid User Name";
+                    }
                   },
                 ),
-              ),
+                const SizedBox(height: 20),
+                // PIN
+                const FormFeildTitle(title: "PIN"),
+                // Pin Form Field
+                const SizedBox(height: 8),
+                AppFormField(
+                  textInputType: TextInputType.number,
+                  controller: passwordController,
+                  hintText: 'Enter your Password',
+                  maxLength: 4,
+                  isObscurePin: _obscurePin,
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscurePin ? Icons.visibility_off : Icons.visibility,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscurePin = !_obscurePin;
+                      });
+                    },
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Plece Enter Valid Password";
+                    }
+                  },
+                ),
 
-              // Forgot PIN
-              const SizedBox(height: 12),
-              const ForgotPin(),
-              // Login Button
-              const SizedBox(height: 8),
-              AppButton(onPressed: handleLogin, buttonText: "Login"),
-            ],
+                // Forgot PIN
+                const SizedBox(height: 12),
+                const ForgotPin(),
+                // Login Button
+                const SizedBox(height: 8),
+                AppButton(onPressed: handleLogin, buttonText: "Login"),
+              ],
+            ),
           ),
         ),
       ),
