@@ -14,12 +14,3 @@ LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) =>
       userEmail: json['user_email'] as String?,
       password: json['password'] as String?,
     );
-
-Map<String, dynamic> _$LoginResponseToJson(LoginResponse instance) =>
-    <String, dynamic>{
-      'user_id': instance.userId,
-      'user_name': instance.userName,
-      'accountNumber': instance.accountNumber,
-      'user_email': instance.userEmail,
-      'password': instance.password,
-    };

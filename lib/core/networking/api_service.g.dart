@@ -12,7 +12,7 @@ part of 'api_service.dart';
 
 class _ApiService implements ApiService {
   _ApiService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'http/api';
+    baseUrl ??= 'http://5.189.155.145:1030/api/';
   }
 
   final Dio _dio;
@@ -32,7 +32,7 @@ class _ApiService implements ApiService {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/login',
+            'token/',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -41,8 +41,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
     late LoginRequestBody _value;
     try {
-      _value = 'LoginRequestBody.fromJson(_result.data!)' as LoginRequestBody;
-      // _value = LoginRequestBody.fromJson(_result.data!);
+      _value = LoginRequestBody.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
