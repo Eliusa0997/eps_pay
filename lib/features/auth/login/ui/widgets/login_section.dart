@@ -87,7 +87,7 @@ class _LoginSectionState extends State<LoginSection> {
                 AppFormField(
                   controller: userNameController,
                   isObscurePin: false,
-                  textInputType: TextInputType.phone,
+                  textInputType: TextInputType.text,
                   hintText: 'Enter your User N ame',
                   prefixIcon: const Icon(Icons.person),
                   validator: (value) {
@@ -102,7 +102,7 @@ class _LoginSectionState extends State<LoginSection> {
                 // Pin Form Field
                 const SizedBox(height: 8),
                 AppFormField(
-                  textInputType: TextInputType.number,
+                  textInputType: TextInputType.text,
                   controller: passwordController,
                   hintText: 'Enter your Password',
                   maxLength: 10,
