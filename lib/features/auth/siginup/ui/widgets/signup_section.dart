@@ -1,5 +1,4 @@
 import 'package:eps_pay/core/helpers/app_regex.dart';
-import 'package:eps_pay/core/routing/app_router.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/widgets/app_button.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
@@ -8,18 +7,21 @@ import 'package:eps_pay/core/widgets/forgot_password_and_goto_screen.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/login_bloc_listener.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/password_validations.dart';
+import 'package:eps_pay/features/auth/siginup/data/model/signup_request_body.dart';
+import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
+import 'package:eps_pay/features/auth/siginup/ui/widgets/signup_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
 
-class LoginSection extends StatefulWidget {
-  const LoginSection({super.key});
+class signupSection extends StatefulWidget {
+  const signupSection({super.key});
 
   @override
-  State<LoginSection> createState() => _LoginSectionState();
+  State<signupSection> createState() => _signupSectionState();
 }
 
-class _LoginSectionState extends State<LoginSection> {
+class _signupSectionState extends State<signupSection> {
   late TextEditingController userNameController;
   late TextEditingController passwordController;
 
@@ -34,8 +36,8 @@ class _LoginSectionState extends State<LoginSection> {
   @override
   void initState() {
     super.initState();
-    userNameController = context.read<LoginCubit>().userNameController;
-    passwordController = context.read<LoginCubit>().passwordController;
+    userNameController = context.read<SignupCubit>().userNameController;
+    passwordController = context.read<SignupCubit>().passwordController;
     setUpPasswordControllerListener();
   }
 
@@ -77,7 +79,7 @@ class _LoginSectionState extends State<LoginSection> {
             ],
           ),
           child: Form(
-            key: context.read<LoginCubit>().formKey,
+            key: context.read<SignupCubit>().formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -126,12 +128,11 @@ class _LoginSectionState extends State<LoginSection> {
                   },
                 ),
 
-                // Forgot PIN
                 const SizedBox(height: 12),
                 forgetPassordAndGoToSomeScreen(
-                  text: 'I dont have account',
+                  text: 'I have a account',
                   goToScreen: () {
-                    Navigator.pushNamed(context, Routes.signupScreen);
+                    Navigator.pushNamed(context, Routes.loginScreen);
                   },
                 ),
 
@@ -146,12 +147,12 @@ class _LoginSectionState extends State<LoginSection> {
                 const SizedBox(height: 8),
                 AppButton(
                   onPressed: () {
-                    validateThenDoLogin(context);
+                    validateThenDoSignup(context);
                     // handleLogin;
                   },
                   buttonText: "Login",
                 ),
-                const LoginBlocListener(),
+                const SignupBlocListener(),
               ],
             ),
           ),
@@ -160,13 +161,12 @@ class _LoginSectionState extends State<LoginSection> {
     );
   }
 
-  void validateThenDoLogin(BuildContext context) {
-    print('login');
-    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLoginState(
-        LoginRequestBody(
-          userName: context.read<LoginCubit>().userNameController.text,
-          password: context.read<LoginCubit>().passwordController.text,
+  void validateThenDoSignup(BuildContext context) {
+    if (context.read<SignupCubit>().formKey.currentState!.validate()) {
+      context.read<SignupCubit>().emitSignupState(
+        SignupRequestBody(
+          userName: context.read<SignupCubit>().userNameController.text,
+          password: context.read<SignupCubit>().passwordController.text,
         ),
       );
     }

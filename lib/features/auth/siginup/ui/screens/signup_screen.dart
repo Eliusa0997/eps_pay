@@ -1,17 +1,17 @@
-import 'package:eps_pay/features/auth/login/ui/widgets/biometric_login.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/footer.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/login_section.dart';
 import 'package:eps_pay/core/widgets/wellcome_card.dart';
+import 'package:eps_pay/features/auth/siginup/ui/widgets/signup_section.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,15 +20,15 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               // Header
-              wellcomeCard(
-                title: 'Welcome Back',
-                subTitle: 'Login to access your account',
-              ),
-              // Login Section
-              LoginSection(),
+              wellcomeCard(title: 'Wellcome', subTitle: 'Create new account'),
 
-              // Biometric Login
-              const BiometricLogin(),
+              // Login Section
+              signupSection(),
+
+              const SizedBox(height: 32),
+
+              // Footer
+              const Footer(),
 
               const SizedBox(height: 10),
             ],
