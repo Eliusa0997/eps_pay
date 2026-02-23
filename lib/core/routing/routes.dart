@@ -5,6 +5,7 @@ class Routes {
 
   // Auth Routes
   static const loginScreen = '/login-screen';
+  static const signupScreen = '/sigup-screen';
 
   // Home Screen
   static const homeDashboard = '/home-dashboard';
