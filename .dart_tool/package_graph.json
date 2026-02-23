@@ -130,13 +130,6 @@
       ]
     },
     {
-      "name": "json_annotation",
-      "version": "4.10.0",
-      "dependencies": [
-        "meta"
-      ]
-    },
-    {
       "name": "json_serializable",
       "version": "6.12.0",
       "dependencies": [
@@ -153,6 +146,13 @@
         "pubspec_parse",
         "source_gen",
         "source_helper"
+      ]
+    },
+    {
+      "name": "json_annotation",
+      "version": "4.10.0",
+      "dependencies": [
+        "meta"
       ]
     },
     {
