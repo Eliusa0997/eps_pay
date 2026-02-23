@@ -1,6 +1,5 @@
-import 'package:eps_pay/features/auth/login/ui/widgets/footer.dart';
-import 'package:eps_pay/features/auth/login/ui/widgets/login_section.dart';
 import 'package:eps_pay/core/widgets/wellcome_card.dart';
+import 'package:eps_pay/features/auth/siginup/ui/widgets/footer.dart';
 import 'package:eps_pay/features/auth/siginup/ui/widgets/signup_section.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +21,7 @@ class _SignupScreenState extends State<SignupScreen> {
               // Header
               wellcomeCard(title: 'Wellcome', subTitle: 'Create new account'),
 
-              // Login Section
+              // Signup Section
               signupSection(),
 
               const SizedBox(height: 32),

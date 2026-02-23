@@ -55,10 +55,6 @@ class _LoginSectionState extends State<LoginSection> {
 
   @override
   Widget build(BuildContext context) {
-    void handleLogin() {
-      Navigator.pushReplacementNamed(context, Routes.homeDashboard);
-    }
-
     return Transform.translate(
       offset: const Offset(0, -48),
       child: Padding(
@@ -81,15 +77,14 @@ class _LoginSectionState extends State<LoginSection> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Phone Number
-                const FormFeildTitle(title: "Phone Number"),
-                // Phone Form Field
+                // User Name Section
+                const FormFeildTitle(title: "User Name"),
                 const SizedBox(height: 8),
                 AppFormField(
                   controller: userNameController,
                   isObscurePin: false,
                   textInputType: TextInputType.text,
-                  hintText: 'Enter your User N ame',
+                  hintText: 'Enter User Name',
                   prefixIcon: const Icon(Icons.person),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -98,9 +93,9 @@ class _LoginSectionState extends State<LoginSection> {
                   },
                 ),
                 const SizedBox(height: 20),
-                // PIN
-                const FormFeildTitle(title: "PIN"),
-                // Pin Form Field
+
+                // Password Section
+                const FormFeildTitle(title: "Password"),
                 const SizedBox(height: 8),
                 AppFormField(
                   textInputType: TextInputType.text,
@@ -161,7 +156,6 @@ class _LoginSectionState extends State<LoginSection> {
   }
 
   void validateThenDoLogin(BuildContext context) {
-    print('login');
     if (context.read<LoginCubit>().formKey.currentState!.validate()) {
       context.read<LoginCubit>().emitLoginState(
         LoginRequestBody(
