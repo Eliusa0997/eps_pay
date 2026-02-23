@@ -1,7 +1,9 @@
 import 'package:eps_pay/core/di/dependency_injection.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/features/auth/login/logic/cubit/login_cubit.dart';
-import 'package:eps_pay/features/auth/login/ui/screens/login/login_screen.dart';
+import 'package:eps_pay/features/auth/login/ui/screens/login_screen.dart';
+import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
+import 'package:eps_pay/features/auth/siginup/ui/screens/signup_screen.dart';
 import 'package:eps_pay/features/bills_payment/ui/screens/bills_payments.dart';
 import 'package:eps_pay/features/cards/ui/screens/cards_screen.dart';
 import 'package:eps_pay/features/home/ui/screens/home_dashboard.dart';
@@ -26,6 +28,13 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) => getIt<LoginCubit>(),
             child: const LoginScreen(),
+          ),
+        );
+      case Routes.signupScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<SignupCubit>(),
+            child: const SignupScreen(),
           ),
         );
 

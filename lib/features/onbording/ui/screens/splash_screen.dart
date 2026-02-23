@@ -123,7 +123,7 @@ class _SplashScreenState extends State<SplashScreen>
 
                     // App name
                     const Text(
-                      'Bankak',
+                      'EpsPay',
                       style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,

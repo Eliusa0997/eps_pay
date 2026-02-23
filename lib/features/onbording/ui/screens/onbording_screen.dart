@@ -16,7 +16,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<OnboardingPage> _pages = [
     OnboardingPage(
-      title: 'Welcome to Bankak',
+      title: 'Welcome to EpsPay',
       description:
           'Your trusted banking partner in Sudan. Manage your finances securely and conveniently from your mobile device.',
       icon: Icons.account_balance,

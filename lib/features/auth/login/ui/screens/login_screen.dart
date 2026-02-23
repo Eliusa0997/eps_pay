@@ -1,7 +1,6 @@
 import 'package:eps_pay/features/auth/login/ui/widgets/biometric_login.dart';
-import 'package:eps_pay/features/auth/login/ui/widgets/footer.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/login_section.dart';
-import 'package:eps_pay/features/auth/login/ui/widgets/wellcome_back_card.dart';
+import 'package:eps_pay/core/widgets/wellcome_card.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -20,18 +19,15 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               // Header
-              const WellcomeBackCard(),
-
+              wellcomeCard(
+                title: 'Welcome Back',
+                subTitle: 'Login to access your account',
+              ),
               // Login Section
               LoginSection(),
 
               // Biometric Login
               const BiometricLogin(),
-
-              const SizedBox(height: 32),
-
-              // Footer
-              const Footer(),
 
               const SizedBox(height: 10),
             ],
