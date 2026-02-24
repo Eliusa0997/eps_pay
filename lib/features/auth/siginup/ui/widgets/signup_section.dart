@@ -65,7 +65,7 @@ class _signupSectionState extends State<signupSection> {
             ],
           ),
           child: Form(
-            key: context.read<SignupCubit>().formSignupKey,
+            key: context.read<SignupCubit>().formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -163,7 +163,7 @@ class _signupSectionState extends State<signupSection> {
   }
 
   void validateThenDoSignup(BuildContext context) {
-    if (context.read<SignupCubit>().formSignupKey.currentState!.validate()) {
+    if (context.read<SignupCubit>().formKey.currentState!.validate()) {
       context.read<SignupCubit>().emitSignupState(
         SignupRequestBody(
           userName: context.read<SignupCubit>().userNameController.text,

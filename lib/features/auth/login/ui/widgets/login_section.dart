@@ -40,7 +40,7 @@ class _LoginSectionState extends State<LoginSection> {
             ],
           ),
           child: Form(
-            key: context.read<LoginCubit>().formLoginKey,
+            key: context.read<LoginCubit>().formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -115,7 +115,7 @@ class _LoginSectionState extends State<LoginSection> {
   }
 
   void validateThenDoLogin(BuildContext context) {
-    if (context.read<LoginCubit>().formLoginKey.currentState!.validate()) {
+    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
       context.read<LoginCubit>().emitLoginState(
         LoginRequestBody(
           userName: context.read<LoginCubit>().userNameController.text,
