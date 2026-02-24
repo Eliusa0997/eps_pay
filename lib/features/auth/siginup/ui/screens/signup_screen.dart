@@ -18,18 +18,11 @@ class _SignupScreenState extends State<SignupScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header
               wellcomeCard(title: 'Wellcome', subTitle: 'Create new account'),
 
-              // Signup Section
-              signupSection(),
+              SignupSection(),
 
-              const SizedBox(height: 32),
-
-              // Footer
               const Footer(),
-
-              const SizedBox(height: 10),
             ],
           ),
         ),

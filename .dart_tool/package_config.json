@@ -182,6 +182,12 @@
       "languageVersion": "3.8"
     },
     {
+      "name": "flutter_screenutil",
+      "rootUri": "file:///home/eliusa/.pub-cache/hosted/pub.dev/flutter_screenutil-5.9.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///home/eliusa/fvm/versions/3.38.6/packages/flutter_test",
       "packageUri": "lib/",

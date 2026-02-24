@@ -16,6 +16,7 @@
         "dio",
         "flutter_bloc",
         "flutter_lints",
+        "flutter_screenutil",
         "flutter_test",
         "freezed",
         "freezed_annotation",
@@ -25,6 +26,13 @@
         "pretty_dio_logger",
         "retrofit",
         "retrofit_generator"
+      ]
+    },
+    {
+      "name": "flutter_screenutil",
+      "version": "5.9.3",
+      "dependencies": [
+        "flutter"
       ]
     },
     {

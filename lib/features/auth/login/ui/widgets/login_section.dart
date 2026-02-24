@@ -9,6 +9,7 @@ import 'package:eps_pay/features/auth/login/ui/widgets/login_bloc_listener.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginSection extends StatefulWidget {
   const LoginSection({super.key});
@@ -25,16 +26,16 @@ class _LoginSectionState extends State<LoginSection> {
     return Transform.translate(
       offset: const Offset(0, -48),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Container(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(15.r),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.08),
-                blurRadius: 16,
+                color: Colors.black.withValues(alpha: 0.5),
+                blurRadius: 16.r,
                 offset: const Offset(0, 4),
               ),
             ],
@@ -46,7 +47,7 @@ class _LoginSectionState extends State<LoginSection> {
               children: [
                 // User Name Section
                 const FormFeildTitle(title: "User Name"),
-                const SizedBox(height: 8),
+                SizedBox(height: 6.h),
                 AppFormField(
                   controller: context.read<LoginCubit>().userNameController,
                   isObscurePin: false,
@@ -59,11 +60,11 @@ class _LoginSectionState extends State<LoginSection> {
                     }
                   },
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 15.h),
 
                 // Password Section
                 const FormFeildTitle(title: "Password"),
-                const SizedBox(height: 8),
+                SizedBox(height: 6.h),
                 AppFormField(
                   textInputType: TextInputType.text,
                   controller: context.read<LoginCubit>().passwordController,
@@ -89,7 +90,7 @@ class _LoginSectionState extends State<LoginSection> {
                 ),
 
                 // Forgot PIN
-                const SizedBox(height: 12),
+                SizedBox(height: 10.h),
                 forgetPassordAndGoToSomeScreen(
                   text: 'I dont have account',
                   goToScreen: () {
@@ -98,7 +99,7 @@ class _LoginSectionState extends State<LoginSection> {
                 ),
 
                 // Login Button
-                const SizedBox(height: 8),
+                SizedBox(height: 6.h),
                 AppButton(
                   onPressed: () {
                     validateThenDoLogin(context);

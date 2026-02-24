@@ -11,15 +11,16 @@ import 'package:eps_pay/features/auth/siginup/ui/widgets/password_validations.da
 import 'package:eps_pay/features/auth/siginup/ui/widgets/signup_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class signupSection extends StatefulWidget {
-  const signupSection({super.key});
+class SignupSection extends StatefulWidget {
+  const SignupSection({super.key});
 
   @override
-  State<signupSection> createState() => _signupSectionState();
+  State<SignupSection> createState() => _SignupSectionState();
 }
 
-class _signupSectionState extends State<signupSection> {
+class _SignupSectionState extends State<SignupSection> {
   late TextEditingController passwordController;
 
   // Password validation variable
@@ -50,15 +51,15 @@ class _signupSectionState extends State<signupSection> {
     return Transform.translate(
       offset: const Offset(0, -48),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Container(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(20.r),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.08),
+                color: Colors.black.withValues(alpha: 0.5),
                 blurRadius: 16,
                 offset: const Offset(0, 4),
               ),
@@ -71,7 +72,7 @@ class _signupSectionState extends State<signupSection> {
               children: [
                 // User Name Section
                 const FormFeildTitle(title: "User Name"),
-                const SizedBox(height: 8),
+                SizedBox(height: 6.h),
                 AppFormField(
                   controller: context.read<SignupCubit>().userNameController,
                   isObscurePin: false,
@@ -79,17 +80,19 @@ class _signupSectionState extends State<signupSection> {
                   hintText: 'Enter User Name',
                   prefixIcon: const Icon(Icons.person),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        !AppRegex.hasMinUserNameLength(value)) {
                       return "Plece Enter Valid User Name";
                     }
                   },
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 15.h),
 
                 // Email Section
                 const FormFeildTitle(title: "Email"),
-                const SizedBox(height: 8),
+                SizedBox(height: 6.h),
                 AppFormField(
                   controller: context.read<SignupCubit>().emailController,
                   isObscurePin: false,
@@ -97,16 +100,18 @@ class _signupSectionState extends State<signupSection> {
                   hintText: 'Enter Your Email',
                   prefixIcon: const Icon(Icons.email),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        !AppRegex.isEmailValid(value)) {
                       return "Plece Enter Valid User Email";
                     }
                   },
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: 15.h),
 
                 // Password Form Field
                 const FormFeildTitle(title: " Password"),
-                const SizedBox(height: 8),
+                SizedBox(height: 6.h),
                 AppFormField(
                   textInputType: TextInputType.text,
                   controller: passwordController,
@@ -125,13 +130,16 @@ class _signupSectionState extends State<signupSection> {
                     },
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Plece Enter Valid Password";
+                    if (value == null ||
+                        value.isEmpty ||
+                        !AppRegex.hasMinLength(value)) {
+                      return "Password Must Be More Than 5 Length";
                     }
                   },
                 ),
 
-                const SizedBox(height: 12),
+                // Navigation Row for Forget Password and login and signup
+                SizedBox(height: 10.h),
                 forgetPassordAndGoToSomeScreen(
                   text: 'I have a account',
                   goToScreen: () {
@@ -139,6 +147,7 @@ class _signupSectionState extends State<signupSection> {
                   },
                 ),
 
+                // Regx Validation
                 PasswordValidations(
                   hasLowerCase: hasLowerCase,
                   hasNumber: hasNumber,
@@ -149,10 +158,11 @@ class _signupSectionState extends State<signupSection> {
                 AppButton(
                   onPressed: () {
                     validateThenDoSignup(context);
-                    // handleLogin;
                   },
                   buttonText: "Sign up",
                 ),
+
+                // Signup Bloc Listener
                 const SignupBlocListener(),
               ],
             ),
