@@ -57,6 +57,7 @@ dev_dependencies:
   retrofit: ^4.9.2
   retrofit_generator: ^10.2.3
   get_it: ^9.2.0
+  flutter_screenutil: ^5.9.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

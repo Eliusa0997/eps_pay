@@ -25,11 +25,8 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               // Login Section
               LoginSection(),
-
               // Biometric Login
               const BiometricLogin(),
-
-              const SizedBox(height: 10),
             ],
           ),
         ),
