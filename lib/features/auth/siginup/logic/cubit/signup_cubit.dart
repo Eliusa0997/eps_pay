@@ -14,7 +14,7 @@ class SignupCubit extends Cubit<SignupState> {
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
   //  Global Key
-  final formSignupKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   void emitSignupState(SignupRequestBody signupRequestBody) async {
     emit(SignupState.loading());
