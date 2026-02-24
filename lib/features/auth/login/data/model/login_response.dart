@@ -4,7 +4,7 @@ part 'login_response.g.dart';
 @JsonSerializable()
 class LoginResponse {
   @JsonKey(name: "refresh")
-  final int? refreshToken;
+  final String? refreshToken;
   @JsonKey(name: "access")
   final String? accessToken;
 

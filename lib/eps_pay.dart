@@ -1,4 +1,6 @@
 import 'package:eps_pay/core/routing/app_router.dart';
+import 'package:eps_pay/core/routing/routes.dart';
+import 'package:eps_pay/features/auth/login/ui/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class EpsPay extends StatelessWidget {
@@ -12,8 +14,9 @@ class EpsPay extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+
       onGenerateRoute: appRouter.generateRoute,
-      // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home:  Navigator.pushNamed(context, Routes.homeDashboard),
     );
   }
 }
