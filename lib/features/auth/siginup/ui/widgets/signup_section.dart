@@ -1,12 +1,13 @@
 import 'package:eps_pay/core/helpers/app_regex.dart';
+import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/widgets/app_button.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
 import 'package:eps_pay/core/widgets/forgot_password_and_goto_screen.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
-import 'package:eps_pay/features/auth/login/ui/widgets/password_validations.dart';
 import 'package:eps_pay/features/auth/siginup/data/model/signup_request_body.dart';
 import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
+import 'package:eps_pay/features/auth/siginup/ui/widgets/password_validations.dart';
 import 'package:eps_pay/features/auth/siginup/ui/widgets/signup_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,8 +24,6 @@ class _signupSectionState extends State<signupSection> {
 
   // Password validation variable
   bool hasLowerCase = false;
-  bool hasUpperCase = false;
-  bool hasSpecialCharacters = false;
   bool hasNumber = false;
   bool hasMinLength = false;
 
@@ -40,10 +39,6 @@ class _signupSectionState extends State<signupSection> {
     passwordController.addListener(() {
       setState(() {
         hasLowerCase = AppRegex.hasLowerCase(passwordController.text);
-        hasUpperCase = AppRegex.hasUpperCase(passwordController.text);
-        hasSpecialCharacters = AppRegex.hasSpecialCharacters(
-          passwordController.text,
-        );
         hasNumber = AppRegex.hasNumber(passwordController.text);
         hasMinLength = AppRegex.hasMinLength(passwordController.text);
       });
@@ -70,7 +65,7 @@ class _signupSectionState extends State<signupSection> {
             ],
           ),
           child: Form(
-            key: context.read<SignupCubit>().formKey,
+            key: context.read<SignupCubit>().formSignupKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -140,14 +135,12 @@ class _signupSectionState extends State<signupSection> {
                 forgetPassordAndGoToSomeScreen(
                   text: 'I have a account',
                   goToScreen: () {
-                    Navigator.pushNamed(context, Routes.loginScreen);
+                    context.pushReplacementNamed(Routes.loginScreen);
                   },
                 ),
 
                 PasswordValidations(
                   hasLowerCase: hasLowerCase,
-                  hasUpperCase: hasUpperCase,
-                  hasSpecialCharacters: hasSpecialCharacters,
                   hasNumber: hasNumber,
                   hasMinLength: hasMinLength,
                 ),
@@ -170,7 +163,7 @@ class _signupSectionState extends State<signupSection> {
   }
 
   void validateThenDoSignup(BuildContext context) {
-    if (context.read<SignupCubit>().formKey.currentState!.validate()) {
+    if (context.read<SignupCubit>().formSignupKey.currentState!.validate()) {
       context.read<SignupCubit>().emitSignupState(
         SignupRequestBody(
           userName: context.read<SignupCubit>().userNameController.text,
@@ -183,7 +176,7 @@ class _signupSectionState extends State<signupSection> {
 
   @override
   void dispose() {
-    passwordController.dispose();
+    // passwordController.dispose();
     super.dispose();
   }
 }

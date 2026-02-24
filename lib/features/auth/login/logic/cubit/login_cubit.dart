@@ -13,7 +13,7 @@ class LoginCubit extends Cubit<LoginState> {
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
   //  Global Key
-  final formKey = GlobalKey<FormState>();
+  final formLoginKey = GlobalKey<FormState>();
 
   void emitLoginState(LoginRequestBody loginRequestBody) async {
     emit(LoginState.loading());

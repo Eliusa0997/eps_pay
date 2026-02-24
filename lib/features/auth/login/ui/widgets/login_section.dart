@@ -1,4 +1,4 @@
-import 'package:eps_pay/core/helpers/app_regex.dart';
+import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/widgets/app_button.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
@@ -6,7 +6,6 @@ import 'package:eps_pay/features/auth/login/logic/cubit/login_cubit.dart';
 import 'package:eps_pay/core/widgets/forgot_password_and_goto_screen.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/login_bloc_listener.dart';
-import 'package:eps_pay/features/auth/login/ui/widgets/password_validations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
@@ -19,36 +18,7 @@ class LoginSection extends StatefulWidget {
 }
 
 class _LoginSectionState extends State<LoginSection> {
-  late TextEditingController passwordController;
-
-  // Password validation variable
-  bool hasLowerCase = false;
-  bool hasUpperCase = false;
-  bool hasSpecialCharacters = false;
-  bool hasNumber = false;
-  bool hasMinLength = false;
-
   bool _obscurePin = true;
-  @override
-  void initState() {
-    super.initState();
-    passwordController = context.read<LoginCubit>().passwordController;
-    setUpPasswordControllerListener();
-  }
-
-  void setUpPasswordControllerListener() {
-    passwordController.addListener(() {
-      setState(() {
-        hasLowerCase = AppRegex.hasLowerCase(passwordController.text);
-        hasUpperCase = AppRegex.hasUpperCase(passwordController.text);
-        hasSpecialCharacters = AppRegex.hasSpecialCharacters(
-          passwordController.text,
-        );
-        hasNumber = AppRegex.hasNumber(passwordController.text);
-        hasMinLength = AppRegex.hasMinLength(passwordController.text);
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +40,7 @@ class _LoginSectionState extends State<LoginSection> {
             ],
           ),
           child: Form(
-            key: context.read<LoginCubit>().formKey,
+            key: context.read<LoginCubit>().formLoginKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -96,7 +66,7 @@ class _LoginSectionState extends State<LoginSection> {
                 const SizedBox(height: 8),
                 AppFormField(
                   textInputType: TextInputType.text,
-                  controller: passwordController,
+                  controller: context.read<LoginCubit>().passwordController,
                   hintText: 'Enter your Password',
                   maxLength: 10,
                   isObscurePin: _obscurePin,
@@ -123,17 +93,8 @@ class _LoginSectionState extends State<LoginSection> {
                 forgetPassordAndGoToSomeScreen(
                   text: 'I dont have account',
                   goToScreen: () {
-                    Navigator.pushNamed(context, Routes.signupScreen);
+                    context.pushReplacementNamed(Routes.signupScreen);
                   },
-                ),
-
-                // Password validations with Regx
-                PasswordValidations(
-                  hasLowerCase: hasLowerCase,
-                  hasUpperCase: hasUpperCase,
-                  hasSpecialCharacters: hasSpecialCharacters,
-                  hasNumber: hasNumber,
-                  hasMinLength: hasMinLength,
                 ),
 
                 // Login Button
@@ -154,7 +115,7 @@ class _LoginSectionState extends State<LoginSection> {
   }
 
   void validateThenDoLogin(BuildContext context) {
-    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
+    if (context.read<LoginCubit>().formLoginKey.currentState!.validate()) {
       context.read<LoginCubit>().emitLoginState(
         LoginRequestBody(
           userName: context.read<LoginCubit>().userNameController.text,
@@ -162,11 +123,5 @@ class _LoginSectionState extends State<LoginSection> {
         ),
       );
     }
-  }
-
-  @override
-  void dispose() {
-    passwordController.dispose();
-    super.dispose();
   }
 }
