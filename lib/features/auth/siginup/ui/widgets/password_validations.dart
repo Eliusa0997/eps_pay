@@ -4,15 +4,11 @@ import 'package:flutter/widgets.dart';
 
 class PasswordValidations extends StatelessWidget {
   final bool hasLowerCase;
-  final bool hasUpperCase;
-  final bool hasSpecialCharacters;
   final bool hasNumber;
   final bool hasMinLength;
   const PasswordValidations({
     super.key,
     required this.hasLowerCase,
-    required this.hasUpperCase,
-    required this.hasSpecialCharacters,
     required this.hasNumber,
     required this.hasMinLength,
   });
@@ -22,8 +18,6 @@ class PasswordValidations extends StatelessWidget {
     return Column(
       children: [
         buidValidationRow('At least 1 lowercase', hasLowerCase),
-        buidValidationRow('At least 1 uppercase', hasUpperCase),
-        buidValidationRow('At least 1 special character', hasSpecialCharacters),
         buidValidationRow('At least 1 number', hasNumber),
         buidValidationRow('At least 8 letter length', hasMinLength),
       ],
