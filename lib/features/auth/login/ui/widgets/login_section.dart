@@ -1,5 +1,4 @@
 import 'package:eps_pay/core/helpers/app_regex.dart';
-import 'package:eps_pay/core/routing/app_router.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/widgets/app_button.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
@@ -20,7 +19,6 @@ class LoginSection extends StatefulWidget {
 }
 
 class _LoginSectionState extends State<LoginSection> {
-  late TextEditingController userNameController;
   late TextEditingController passwordController;
 
   // Password validation variable
@@ -34,7 +32,6 @@ class _LoginSectionState extends State<LoginSection> {
   @override
   void initState() {
     super.initState();
-    userNameController = context.read<LoginCubit>().userNameController;
     passwordController = context.read<LoginCubit>().passwordController;
     setUpPasswordControllerListener();
   }
@@ -81,7 +78,7 @@ class _LoginSectionState extends State<LoginSection> {
                 const FormFeildTitle(title: "User Name"),
                 const SizedBox(height: 8),
                 AppFormField(
-                  controller: userNameController,
+                  controller: context.read<LoginCubit>().userNameController,
                   isObscurePin: false,
                   textInputType: TextInputType.text,
                   hintText: 'Enter User Name',
@@ -130,6 +127,7 @@ class _LoginSectionState extends State<LoginSection> {
                   },
                 ),
 
+                // Password validations with Regx
                 PasswordValidations(
                   hasLowerCase: hasLowerCase,
                   hasUpperCase: hasUpperCase,
@@ -137,12 +135,12 @@ class _LoginSectionState extends State<LoginSection> {
                   hasNumber: hasNumber,
                   hasMinLength: hasMinLength,
                 ),
+
                 // Login Button
                 const SizedBox(height: 8),
                 AppButton(
                   onPressed: () {
                     validateThenDoLogin(context);
-                    // handleLogin;
                   },
                   buttonText: "Login",
                 ),

@@ -8,7 +8,7 @@ part of 'login_response.dart';
 
 LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) =>
     LoginResponse(
-      refreshToken: (json['refresh'] as num?)?.toInt(),
+      refreshToken: json['refresh'] as String?,
       accessToken: json['access'] as String?,
     );
 

@@ -2,17 +2,14 @@ import 'package:eps_pay/core/helpers/app_regex.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/widgets/app_button.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
-import 'package:eps_pay/features/auth/login/logic/cubit/login_cubit.dart';
 import 'package:eps_pay/core/widgets/forgot_password_and_goto_screen.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
-import 'package:eps_pay/features/auth/login/ui/widgets/login_bloc_listener.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/password_validations.dart';
 import 'package:eps_pay/features/auth/siginup/data/model/signup_request_body.dart';
 import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
 import 'package:eps_pay/features/auth/siginup/ui/widgets/signup_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
 
 class signupSection extends StatefulWidget {
   const signupSection({super.key});
@@ -22,8 +19,6 @@ class signupSection extends StatefulWidget {
 }
 
 class _signupSectionState extends State<signupSection> {
-  late TextEditingController userNameController;
-  late TextEditingController emailController;
   late TextEditingController passwordController;
 
   // Password validation variable
@@ -37,8 +32,6 @@ class _signupSectionState extends State<signupSection> {
   @override
   void initState() {
     super.initState();
-    userNameController = context.read<SignupCubit>().userNameController;
-    emailController = context.read<SignupCubit>().emailController;
     passwordController = context.read<SignupCubit>().passwordController;
     setUpPasswordControllerListener();
   }
@@ -85,7 +78,7 @@ class _signupSectionState extends State<signupSection> {
                 const FormFeildTitle(title: "User Name"),
                 const SizedBox(height: 8),
                 AppFormField(
-                  controller: userNameController,
+                  controller: context.read<SignupCubit>().userNameController,
                   isObscurePin: false,
                   textInputType: TextInputType.text,
                   hintText: 'Enter User Name',
@@ -103,7 +96,7 @@ class _signupSectionState extends State<signupSection> {
                 const FormFeildTitle(title: "Email"),
                 const SizedBox(height: 8),
                 AppFormField(
-                  controller: emailController,
+                  controller: context.read<SignupCubit>().emailController,
                   isObscurePin: false,
                   textInputType: TextInputType.text,
                   hintText: 'Enter Your Email',
