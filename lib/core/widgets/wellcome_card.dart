@@ -1,3 +1,4 @@
+import 'package:eps_pay/core/theming/app_fonts.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,22 +36,9 @@ class wellcomeCard extends StatelessWidget {
               ),
             ),
             SizedBox(height: 15.h),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 28.sp,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
+            Text(title, style: AppFonts.font28WhiteBold),
             SizedBox(height: 4.h),
-            Text(
-              subTitle,
-              style: TextStyle(
-                fontSize: 14.sp,
-                color: Colors.white.withValues(alpha: 0.8),
-              ),
-            ),
+            Text(subTitle, style: AppFonts.font14White),
           ],
         ),
       ),

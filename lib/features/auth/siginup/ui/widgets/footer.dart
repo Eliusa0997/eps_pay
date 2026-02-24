@@ -1,4 +1,4 @@
-import 'package:eps_pay/core/theming/colors.dart';
+import 'package:eps_pay/core/theming/app_fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,7 +13,7 @@ class Footer extends StatelessWidget {
       child: Text(
         'By logging in, you agree to our Terms & Conditions',
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 10.sp, color: AppColors.textTertiary),
+        style: AppFonts.font10extTertiary,
       ),
     );
   }
