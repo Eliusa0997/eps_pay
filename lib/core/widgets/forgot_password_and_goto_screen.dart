@@ -1,11 +1,13 @@
 import 'package:eps_pay/core/routing/routes.dart';
+import 'package:eps_pay/core/theming/app_fonts.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class forgetPassordAndGoToSomeScreen extends StatelessWidget {
+class ForgetPassordAndGoToSomeScreen extends StatelessWidget {
   void Function()? goToScreen;
   final String text;
-  forgetPassordAndGoToSomeScreen({
+  ForgetPassordAndGoToSomeScreen({
     super.key,
     required this.text,
     this.goToScreen,
@@ -18,26 +20,14 @@ class forgetPassordAndGoToSomeScreen extends StatelessWidget {
       children: [
         TextButton(
           onPressed: goToScreen,
-          child: Text(
-            text,
-            style: TextStyle(
-              color: AppColors.primary,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          child: Text(text, style: AppFonts.font13W600Primary),
         ),
 
         TextButton(
           onPressed: () {
             //  Navigator.pushNamed(context, Routes.signupScreen);
           },
-          child: const Text(
-            'Forgot Password?',
-            style: TextStyle(
-              color: AppColors.primary,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          child: Text('Forgot Password?', style: AppFonts.font13W600Primary),
         ),
       ],
     );

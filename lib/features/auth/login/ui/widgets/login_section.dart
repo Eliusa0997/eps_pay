@@ -91,7 +91,7 @@ class _LoginSectionState extends State<LoginSection> {
 
                 // Forgot PIN
                 SizedBox(height: 10.h),
-                forgetPassordAndGoToSomeScreen(
+                ForgetPassordAndGoToSomeScreen(
                   text: 'I dont have account',
                   goToScreen: () {
                     context.pushReplacementNamed(Routes.signupScreen);
