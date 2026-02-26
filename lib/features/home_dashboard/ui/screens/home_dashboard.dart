@@ -1,6 +1,7 @@
 import 'package:eps_pay/core/for_test_models/transaction.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
+import 'package:eps_pay/features/home_dashboard/ui/widgets/header.dart';
 import 'package:flutter/material.dart';
 
 class HomeDashboard extends StatefulWidget {
@@ -91,13 +92,6 @@ class _HomeDashboardState extends State<HomeDashboard> {
     ),
   ];
 
-  String _getGreeting() {
-    final hour = DateTime.now().hour;
-    if (hour < 12) return 'Good Morning';
-    if (hour < 17) return 'Good Afternoon';
-    return 'Good Evening';
-  }
-
   String _formatDate(DateTime date) {
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
@@ -116,71 +110,7 @@ class _HomeDashboardState extends State<HomeDashboard> {
         child: CustomScrollView(
           slivers: [
             // Header
-            SliverToBoxAdapter(
-              child: Container(
-                height: 220,
-                decoration: const BoxDecoration(
-                  gradient: AppColors.primaryGradient,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(32),
-                    bottomRight: Radius.circular(32),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 24, 24, 96),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            _getGreeting(),
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.white.withOpacity(0.8),
-                            ),
-                          ),
-                          const SizedBox(height: 4),
-                          const Text(
-                            'Mohamed Ali',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.notifications_outlined),
-                            color: Colors.white,
-                            style: IconButton.styleFrom(
-                              backgroundColor: Colors.white.withOpacity(0.1),
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          IconButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/profile');
-                            },
-                            icon: const Icon(Icons.person_outline),
-                            color: Colors.white,
-                            style: IconButton.styleFrom(
-                              backgroundColor: Colors.white.withOpacity(0.1),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-
+            Header(),
             // Account Card
             SliverToBoxAdapter(
               child: Transform.translate(

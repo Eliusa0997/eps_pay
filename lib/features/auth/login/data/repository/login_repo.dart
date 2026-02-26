@@ -4,6 +4,8 @@ import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
 import 'package:eps_pay/features/auth/login/data/model/login_response.dart';
 
 class LoginRepo {
+  // Create storage
+
   final ApiService _apiService;
   LoginRepo(this._apiService);
 
@@ -12,6 +14,7 @@ class LoginRepo {
   ) async {
     try {
       final response = await _apiService.login(loginRequestBody);
+
       return ApiResult.success(response);
     } catch (error) {
       return ApiResult.failure(error.toString());
