@@ -140,7 +140,7 @@ class _SignupSectionState extends State<SignupSection> {
 
                 // Navigation Row for Forget Password and login and signup
                 SizedBox(height: 10.h),
-                forgetPassordAndGoToSomeScreen(
+                ForgetPassordAndGoToSomeScreen(
                   text: 'I have a account',
                   goToScreen: () {
                     context.pushReplacementNamed(Routes.loginScreen);
@@ -154,7 +154,7 @@ class _SignupSectionState extends State<SignupSection> {
                   hasMinLength: hasMinLength,
                 ),
                 // Login Button
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 AppButton(
                   onPressed: () {
                     validateThenDoSignup(context);
