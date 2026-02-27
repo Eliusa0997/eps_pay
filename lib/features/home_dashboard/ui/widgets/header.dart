@@ -1,17 +1,14 @@
+import 'package:eps_pay/core/helpers/extensions.dart';
+import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
-import 'package:eps_pay/features/home_dashboard/data/model/profile_model.dart';
 import 'package:eps_pay/features/home_dashboard/logic/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Header extends StatefulWidget {
-  const Header({super.key});
+class Header extends StatelessWidget {
+  final String userName;
+  const Header({super.key, required this.userName});
 
-  @override
-  State<Header> createState() => _HeaderState();
-}
-
-class _HeaderState extends State<Header> {
   String _getGreeting() {
     final hour = DateTime.now().hour;
     if (hour < 12) return 'Good Morning';
@@ -19,14 +16,11 @@ class _HeaderState extends State<Header> {
     return 'Good Evening';
   }
 
-  @override
-  void initState() {
-    super.initState();
-    context.read<HomeCubit>().emitHomeState();
-    print("========================= initState ==============================");
-    // print(context.read<HomeCubit>().userdata.accountNumber);
-    print("========================= initState ==============================");
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   context.read<HomeCubit>().emitHomeState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +51,6 @@ class _HeaderState extends State<Header> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    // 'name',
                     context.read<HomeCubit>().userName.toString(),
                     style: TextStyle(
                       fontSize: 24,
@@ -80,7 +73,7 @@ class _HeaderState extends State<Header> {
                   const SizedBox(width: 8),
                   IconButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/profile');
+                      context.pushNamed(Routes.profileSettingsScreen);
                     },
                     icon: const Icon(Icons.person_outline),
                     color: Colors.white,
