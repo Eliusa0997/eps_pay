@@ -6,7 +6,8 @@ import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
 import 'package:eps_pay/features/auth/siginup/ui/screens/signup_screen.dart';
 import 'package:eps_pay/features/bills_payment/ui/screens/bills_payments.dart';
 import 'package:eps_pay/features/cards/ui/screens/cards_screen.dart';
-import 'package:eps_pay/features/home/ui/screens/home_dashboard.dart';
+import 'package:eps_pay/features/home_dashboard/logic/cubit/home_cubit.dart';
+import 'package:eps_pay/features/home_dashboard/ui/screens/home_dashboard.dart';
 import 'package:eps_pay/features/onbording/ui/screens/onbording_screen.dart';
 import 'package:eps_pay/features/onbording/ui/screens/splash_screen.dart';
 import 'package:eps_pay/features/transfer/ui/screens/transfer_money_screen.dart';
@@ -41,7 +42,12 @@ class AppRouter {
       // home Dashbord
 
       case Routes.homeDashboard:
-        return MaterialPageRoute(builder: (_) => const HomeDashboard());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<HomeCubit>(),
+            child: const HomeDashboard(),
+          ),
+        );
 
       // Money transctions
       case Routes.transferMoney:
