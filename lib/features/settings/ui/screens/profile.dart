@@ -1,5 +1,5 @@
+import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
-import '../constants/colors.dart';
 
 class ProfileSettingsScreen extends StatefulWidget {
   const ProfileSettingsScreen({super.key});

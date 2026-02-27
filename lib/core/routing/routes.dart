@@ -9,6 +9,7 @@ class Routes {
 
   // Home Screen
   static const homeDashboard = '/home-dashboard';
+  static const profileSettingsScreen = '/profiles-settings-screen';
 
   // Money transctions
   static const transferMoney = '/transfer-money';
