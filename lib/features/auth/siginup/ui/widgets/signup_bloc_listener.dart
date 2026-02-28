@@ -29,7 +29,28 @@ class SignupBlocListener extends StatelessWidget {
           },
           success: (signupResponse) {
             context.pop();
-            context.pushReplacementNamed(Routes.homeDashboard);
+            context.pushReplacementNamed(Routes.loginScreen);
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  icon: const Icon(
+                    Icons.error,
+                    color: AppColors.error,
+                    size: 32,
+                  ),
+                  content: Text('You are Signup Successfully Login Now'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        context.pop();
+                      },
+                      child: Text("ok"),
+                    ),
+                  ],
+                );
+              },
+            );
           },
           error: (error) {
             setupErrorState(context, error);
