@@ -16,6 +16,7 @@ class AccountNumberPhoneNumber extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final transferCubit = context.read<TransferCubit>();
     return Transform.translate(
       offset: const Offset(0, -20),
       child: Padding(
@@ -34,7 +35,7 @@ class AccountNumberPhoneNumber extends StatelessWidget {
             ],
           ),
           child: Form(
-            key: context.read<TransferCubit>().formKey,
+            key: transferCubit.formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

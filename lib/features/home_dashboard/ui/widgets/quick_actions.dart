@@ -14,7 +14,7 @@ class QuickActions extends StatelessWidget {
         'gradient': const LinearGradient(
           colors: [Color(0xFF3B82F6), Color(0xFF2563EB)],
         ),
-        'route': Routes.transferMoney,
+        'route': Routes.reciverData,
       },
       {
         'icon': Icons.receipt,

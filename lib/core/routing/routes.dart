@@ -16,4 +16,5 @@ class Routes {
   static const billsBayments = '/bills-payments';
   static const recharge = '/recharge';
   static const cards = '/cards';
+  static const reciverData = '/reciver-data';
 }

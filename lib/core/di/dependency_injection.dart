@@ -6,7 +6,9 @@ import 'package:eps_pay/features/auth/siginup/data/repository/signup_repo.dart';
 import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
 import 'package:eps_pay/features/home_dashboard/data/repository/home_repo.dart';
 import 'package:eps_pay/features/home_dashboard/logic/cubit/home_cubit.dart';
+import 'package:eps_pay/features/transfer/data/repository/reciver_repo.dart';
 import 'package:eps_pay/features/transfer/data/repository/transfer_repo.dart';
+import 'package:eps_pay/features/transfer/logic/cubit/resiver_cubit.dart';
 import 'package:eps_pay/features/transfer/logic/cubit/transfer_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
@@ -32,4 +34,7 @@ setupGetIt() {
   //  Transfer Money
   getIt.registerLazySingleton<TransferRepo>(() => TransferRepo(getIt()));
   getIt.registerLazySingleton<TransferCubit>(() => TransferCubit(getIt()));
+  //  Reciver Data
+  getIt.registerLazySingleton<ReciverRepo>(() => ReciverRepo(getIt()));
+  getIt.registerLazySingleton<ReciverCubit>(() => ReciverCubit(getIt()));
 }

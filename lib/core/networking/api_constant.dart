@@ -4,4 +4,5 @@ class ApiConstant {
   static const String signup = "register/";
   static const String getProfileData = "profile/";
   static const String Transfer = "transfer/";
+  static const String getReciverData = "reciverdata/";
 }
