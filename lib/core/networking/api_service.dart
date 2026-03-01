@@ -5,6 +5,8 @@ import 'package:eps_pay/features/auth/login/data/model/login_response.dart';
 import 'package:eps_pay/features/auth/siginup/data/model/signup_request_body.dart';
 import 'package:eps_pay/features/auth/siginup/data/model/signup_response.dart';
 import 'package:eps_pay/features/home_dashboard/data/model/profile_model.dart';
+import 'package:eps_pay/features/transfer/data/model/transfer_request_body.dart';
+import 'package:eps_pay/features/transfer/data/model/transfer_response.dart';
 import 'package:retrofit/retrofit.dart';
 part 'api_service.g.dart';
 
@@ -17,6 +19,11 @@ abstract class ApiService {
 
   @POST(ApiConstant.signup)
   Future<SignupResponse> signup(@Body() SignupRequestBody signupRequestBody);
+
+  @POST(ApiConstant.Transfer)
+  Future<TransferRespone> transfer(
+    @Body() TransferRequestBody transferRequestBody,
+  );
 
   @GET(ApiConstant.getProfileData)
   Future<ProfileModel> getProfileData();

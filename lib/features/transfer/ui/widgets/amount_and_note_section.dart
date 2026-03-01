@@ -6,7 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AmountAndNoteSection extends StatelessWidget {
-  const AmountAndNoteSection({super.key});
+  TextEditingController amountController = TextEditingController();
+  TextEditingController noteNumberController = TextEditingController();
+  void Function()? transfer;
+
+  AmountAndNoteSection({
+    super.key,
+    required this.amountController,
+    required this.noteNumberController,
+    required this.transfer,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +46,14 @@ class AmountAndNoteSection extends StatelessWidget {
           // User Name Section
           const FormFeildTitle(title: "Amount"),
           AppFormField(
-            controller: context.read<TransferCubit>().accountNumber,
+            controller: amountController,
             isObscurePin: false,
             textInputType: TextInputType.text,
             hintText: 'Enter account number',
             prefixIcon: const Icon(Icons.person),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "Plece Enter Valid account number";
+                return "Plece Enter Valid amount";
               }
             },
           ),
@@ -77,23 +86,18 @@ class AmountAndNoteSection extends StatelessWidget {
           // User Name Section
           const FormFeildTitle(title: "Add a note"),
           AppFormField(
-            controller: context.read<TransferCubit>().accountNumber,
+            controller: noteNumberController,
             isObscurePin: false,
             textInputType: TextInputType.text,
             hintText: 'Enter account number',
             prefixIcon: const Icon(Icons.person),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return "Plece Enter Valid account number";
-              }
-            },
           ),
           const SizedBox(height: 16),
           SizedBox(
             width: double.infinity,
             height: 56,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: transfer,
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
