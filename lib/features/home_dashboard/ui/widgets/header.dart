@@ -16,12 +16,6 @@ class Header extends StatelessWidget {
     return 'Good Evening';
   }
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   context.read<HomeCubit>().emitHomeState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(

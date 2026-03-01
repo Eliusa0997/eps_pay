@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginSection extends StatefulWidget {
   const LoginSection({super.key});
@@ -20,6 +21,11 @@ class LoginSection extends StatefulWidget {
 
 class _LoginSectionState extends State<LoginSection> {
   bool _obscurePin = true;
+  @override
+  void initState() {
+    super.initState();
+    context.read<LoginCubit>().getSavedUserName();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +75,7 @@ class _LoginSectionState extends State<LoginSection> {
                   textInputType: TextInputType.text,
                   controller: context.read<LoginCubit>().passwordController,
                   hintText: 'Enter your Password',
-                  maxLength: 10,
+                  maxLength: 30,
                   isObscurePin: _obscurePin,
                   prefixIcon: const Icon(Icons.lock),
                   suffixIcon: IconButton(
@@ -94,7 +100,7 @@ class _LoginSectionState extends State<LoginSection> {
                 ForgetPassordAndGoToSomeScreen(
                   text: 'I dont have account',
                   goToScreen: () {
-                    context.pushReplacementNamed(Routes.signupScreen);
+                    context.pushNamed(Routes.signupScreen);
                   },
                 ),
 
@@ -122,6 +128,7 @@ class _LoginSectionState extends State<LoginSection> {
           userName: context.read<LoginCubit>().userNameController.text,
           password: context.read<LoginCubit>().passwordController.text,
         ),
+        context.read<LoginCubit>().userNameController.text,
       );
     }
   }
