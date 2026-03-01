@@ -11,18 +11,16 @@ class HomeCubit extends Cubit<HomeState> {
   String? totalBalance;
   int? accountNumber;
   HomeCubit(this._homeRepo) : super(HomeState.initial());
+
   void emitHomeState() async {
     emit(HomeState.loading());
     final response = await _homeRepo.getProileData();
     response.when(
       success: (homeResponse) {
-        print("================= from sucess============");
         emit(HomeState.success(homeResponse));
         userName = homeResponse.userName;
         totalBalance = homeResponse.balance;
         accountNumber = homeResponse.accountNumber;
-        print(homeResponse.accountNumber);
-        print("================= after sucess============");
       },
       failure: (failure) {
         emit(HomeState.error(message: failure.toString()));

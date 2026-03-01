@@ -12,12 +12,17 @@ class LoginCubit extends Cubit<LoginState> {
   LoginCubit(this._loginRepo) : super(LoginState.initial());
 
   // Form Controllers
-  final userNameController = TextEditingController();
+
   final passwordController = TextEditingController();
+  final userNameController = TextEditingController();
+  final FlutterSecureStorage _userNameStorage = FlutterSecureStorage();
   //  Global Key
   final formKey = GlobalKey<FormState>();
 
-  void emitLoginState(LoginRequestBody loginRequestBody) async {
+  void emitLoginState(
+    LoginRequestBody loginRequestBody,
+    String storedUserName,
+  ) async {
     emit(LoginState.loading());
     final response = await _loginRepo.login(loginRequestBody);
     response.when(
@@ -26,12 +31,30 @@ class LoginCubit extends Cubit<LoginState> {
           loginResponse.accessToken.toString(),
           loginResponse.refreshToken.toString(),
         );
+        saveUserName(storedUserName);
+
         emit(LoginState.success(loginResponse));
       },
       failure: (failure) {
         emit(LoginState.error(message: failure.toString()));
       },
     );
+  }
+
+  void saveUserName(String storedUserName) async {
+    await _userNameStorage.write(
+      key: 'stored_user_name',
+      value: storedUserName,
+    );
+  }
+
+  void getSavedUserName() async {
+    String? storedUserName = await _userNameStorage.read(
+      key: 'stored_user_name',
+    );
+    storedUserName!.isNotEmpty
+        ? userNameController.text = storedUserName
+        : userNameController.text;
   }
 
   Future<void> saveTokens(String access, String refresh) async {

@@ -8,18 +8,14 @@ part of 'signup_response.dart';
 
 SignupResponse _$SignupResponseFromJson(Map<String, dynamic> json) =>
     SignupResponse(
-      userId: (json['user_id'] as num?)?.toInt(),
-      userName: json['user_name'] as String?,
-      accountNumber: (json['accountNumber'] as num?)?.toInt(),
-      userEmail: json['user_email'] as String?,
+      userName: json['username'] as String?,
+      email: json['email'] as String?,
       password: json['password'] as String?,
     );
 
 Map<String, dynamic> _$SignupResponseToJson(SignupResponse instance) =>
     <String, dynamic>{
-      'user_id': instance.userId,
-      'user_name': instance.userName,
-      'accountNumber': instance.accountNumber,
-      'user_email': instance.userEmail,
+      'username': instance.userName,
+      'email': instance.email,
       'password': instance.password,
     };

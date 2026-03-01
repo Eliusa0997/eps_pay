@@ -96,6 +96,7 @@ class _SignupSectionState extends State<SignupSection> {
                 AppFormField(
                   controller: context.read<SignupCubit>().emailController,
                   isObscurePin: false,
+                  maxLength: 30,
                   textInputType: TextInputType.text,
                   hintText: 'Enter Your Email',
                   prefixIcon: const Icon(Icons.email),
@@ -143,7 +144,7 @@ class _SignupSectionState extends State<SignupSection> {
                 ForgetPassordAndGoToSomeScreen(
                   text: 'I have a account',
                   goToScreen: () {
-                    context.pushReplacementNamed(Routes.loginScreen);
+                    context.pushNamed(Routes.loginScreen);
                   },
                 ),
 
@@ -180,6 +181,7 @@ class _SignupSectionState extends State<SignupSection> {
           email: context.read<SignupCubit>().emailController.text,
           password: context.read<SignupCubit>().passwordController.text,
         ),
+        context.read<SignupCubit>().userNameController.text,
       );
     }
   }
