@@ -6,7 +6,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AccountNumberPhoneNumber extends StatelessWidget {
-  const AccountNumberPhoneNumber({super.key});
+  TextEditingController accountNumberController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  AccountNumberPhoneNumber({
+    super.key,
+    required this.accountNumberController,
+    required this.phoneNumberController,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class AccountNumberPhoneNumber extends StatelessWidget {
                 const FormFeildTitle(title: "Account Number"),
                 SizedBox(height: 6.h),
                 AppFormField(
-                  controller: context.read<TransferCubit>().accountNumber,
+                  controller: accountNumberController,
                   isObscurePin: false,
                   textInputType: TextInputType.text,
                   hintText: 'Enter account number',
@@ -53,7 +59,7 @@ class AccountNumberPhoneNumber extends StatelessWidget {
                 const FormFeildTitle(title: "Phone Namber"),
                 SizedBox(height: 6.h),
                 AppFormField(
-                  controller: context.read<TransferCubit>().phoneNumber,
+                  controller: phoneNumberController,
                   isObscurePin: false,
                   textInputType: TextInputType.text,
                   hintText: 'Enter phone namber',
