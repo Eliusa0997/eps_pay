@@ -11,7 +11,9 @@ import 'package:eps_pay/features/home_dashboard/ui/screens/home_dashboard.dart';
 import 'package:eps_pay/features/settings/ui/screens/onbording_screen.dart';
 import 'package:eps_pay/features/settings/ui/screens/profile.dart';
 import 'package:eps_pay/features/settings/ui/screens/splash_screen.dart';
+import 'package:eps_pay/features/transfer/logic/cubit/resiver_cubit.dart';
 import 'package:eps_pay/features/transfer/logic/cubit/transfer_cubit.dart';
+import 'package:eps_pay/features/transfer/ui/screens/check_reciver_screen.dart';
 import 'package:eps_pay/features/transfer/ui/screens/transfer_money_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,6 +63,14 @@ class AppRouter {
           builder: (_) => BlocProvider(
             create: (context) => getIt<TransferCubit>(),
             child: const TransferMoneyScreen(),
+          ),
+        );
+      // Rciver Data
+      case Routes.reciverData:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<ReciverCubit>(),
+            child: const CheckReciverScreen(),
           ),
         );
       case Routes.billsBayments:
