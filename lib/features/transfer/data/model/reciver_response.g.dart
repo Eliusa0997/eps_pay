@@ -7,7 +7,7 @@ part of 'reciver_response.dart';
 // **************************************************************************
 
 ReciverResponse _$ReciverResponseFromJson(Map<String, dynamic> json) =>
-    ReciverResponse(resiverName: json['user_name'] as String?);
+    ReciverResponse(reciverName: json['username'] as String?);
 
 Map<String, dynamic> _$ReciverResponseToJson(ReciverResponse instance) =>
-    <String, dynamic>{'user_name': instance.resiverName};
+    <String, dynamic>{'username': instance.reciverName};

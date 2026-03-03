@@ -108,7 +108,7 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<ReciverResponse> getReciverData(
+  Future<ReciverResponse> getReciver(
     ReciverRequestBody reciverRequestBody,
   ) async {
     final _extra = <String, dynamic>{};
@@ -117,10 +117,10 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(reciverRequestBody.toJson());
     final _options = _setStreamType<ReciverResponse>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
+      Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'reciverdata/',
+            'receiver/',
             queryParameters: queryParameters,
             data: _data,
           )
