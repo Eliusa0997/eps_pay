@@ -27,6 +27,17 @@ abstract class ApiService {
   Future<TransferRespone> transfer(
     @Body() TransferRequestBody transferRequestBody,
   );
+  // Deposit
+  @POST(ApiConstant.deposit)
+  Future<TransferRespone> deposit(
+    @Body() TransferRequestBody transferRequestBody,
+  );
+
+  // Withdraw
+  @POST(ApiConstant.withdraw)
+  Future<TransferRespone> withdraw(
+    @Body() TransferRequestBody transferRequestBody,
+  );
 
   @POST(ApiConstant.getReciverData)
   Future<ReciverResponse> getReciver(

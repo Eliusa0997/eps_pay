@@ -5,7 +5,10 @@ import 'package:eps_pay/features/auth/login/ui/screens/login_screen.dart';
 import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
 import 'package:eps_pay/features/auth/siginup/ui/screens/signup_screen.dart';
 import 'package:eps_pay/features/bills_payment/ui/screens/bills_payments.dart';
-import 'package:eps_pay/features/cards/ui/screens/cards_screen.dart';
+import 'package:eps_pay/features/transfer/logic/cubit/deposit_cubit.dart';
+import 'package:eps_pay/features/transfer/logic/cubit/withdraw_cubit.dart';
+import 'package:eps_pay/features/transfer/ui/screens/deposit_screen.dart';
+import 'package:eps_pay/features/transfer/ui/screens/withdraw_screen.dart';
 import 'package:eps_pay/features/home_dashboard/logic/cubit/home_cubit.dart';
 import 'package:eps_pay/features/home_dashboard/ui/screens/home_dashboard.dart';
 import 'package:eps_pay/features/settings/ui/screens/onbording_screen.dart';
@@ -75,10 +78,20 @@ class AppRouter {
         );
       case Routes.billsBayments:
         return MaterialPageRoute(builder: (_) => const BillsPaymentsScreen());
-      // case Routes.recharge:
-      //   return MaterialPageRoute(builder: (_) => const TransferMoneyScreen());
-      case Routes.cards:
-        return MaterialPageRoute(builder: (_) => const CardsScreen());
+      case Routes.deposit:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<DepositCubit>(),
+            child: const DepositScreen(),
+          ),
+        );
+      case Routes.withdraw:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<WithdrawCubit>(),
+            child: const WithdrawScreen(),
+          ),
+        );
 
       // In Case any thing gose rong
       default:
