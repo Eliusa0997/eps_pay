@@ -3,6 +3,6 @@ class ApiConstant {
   static const String login = "token/";
   static const String signup = "register/";
   static const String getProfileData = "profile/";
-  static const String Transfer = "transfer/";
-  static const String getReciverData = "reciverdata/";
+  static const String transfer = "transfer/";
+  static const String getReciverData = "receiver/";
 }

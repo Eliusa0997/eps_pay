@@ -23,12 +23,13 @@ abstract class ApiService {
   Future<SignupResponse> signup(@Body() SignupRequestBody signupRequestBody);
 
   // Transfer
-  @POST(ApiConstant.Transfer)
+  @POST(ApiConstant.transfer)
   Future<TransferRespone> transfer(
     @Body() TransferRequestBody transferRequestBody,
   );
-  @GET(ApiConstant.getReciverData)
-  Future<ReciverResponse> getReciverData(
+
+  @POST(ApiConstant.getReciverData)
+  Future<ReciverResponse> getReciver(
     @Body() ReciverRequestBody reciverRequestBody,
   );
 

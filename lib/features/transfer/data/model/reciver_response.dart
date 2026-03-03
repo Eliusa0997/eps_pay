@@ -3,10 +3,10 @@ part 'reciver_response.g.dart';
 
 @JsonSerializable()
 class ReciverResponse {
-  @JsonKey(name: "user_name")
-  final String? resiverName;
+  @JsonKey(name: "username")
+  final String? reciverName;
 
-  ReciverResponse({this.resiverName});
+  ReciverResponse({this.reciverName});
   factory ReciverResponse.fromJson(Map<String, dynamic> json) =>
       _$ReciverResponseFromJson(json);
   Map<String, dynamic> toJson() => _$ReciverResponseToJson(this);
