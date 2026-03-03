@@ -22,9 +22,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      // splash and onbording
-      case Routes.splashScreen:
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
+      // Onbording
       case Routes.onBordingScreen:
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
 

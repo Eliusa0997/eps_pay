@@ -1,7 +1,6 @@
 class Routes {
   // Splash and onbording
-  static const splashScreen = '/';
-  static const onBordingScreen = '/onbording-screen';
+  static const onBordingScreen = '/';
 
   // Auth Routes
   static const loginScreen = '/login-screen';
