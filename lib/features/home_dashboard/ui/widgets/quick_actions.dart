@@ -26,19 +26,19 @@ class QuickActions extends StatelessWidget {
       },
       {
         'icon': Icons.smartphone,
-        'label': 'Recharge',
+        'label': 'Deposit',
         'gradient': const LinearGradient(
           colors: [Color(0xFF8B5CF6), Color(0xFF7C3AED)],
         ),
-        'route': Routes.billsBayments,
+        'route': Routes.deposit,
       },
       {
         'icon': Icons.credit_card,
-        'label': 'Cards',
+        'label': 'Withdraw',
         'gradient': const LinearGradient(
           colors: [Color(0xFFF97316), Color(0xFFEA580C)],
         ),
-        'route': Routes.cards,
+        'route': Routes.withdraw,
       },
     ];
     return SliverToBoxAdapter(

@@ -4,5 +4,7 @@ class ApiConstant {
   static const String signup = "register/";
   static const String getProfileData = "profile/";
   static const String transfer = "transfer/";
+  static const String deposit = "deposit/";
+  static const String withdraw = "withdraw/";
   static const String getReciverData = "receiver/";
 }

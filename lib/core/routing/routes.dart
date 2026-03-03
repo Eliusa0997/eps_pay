@@ -13,7 +13,7 @@ class Routes {
   // Money transctions
   static const transferMoney = '/transfer-money';
   static const billsBayments = '/bills-payments';
-  static const recharge = '/recharge';
-  static const cards = '/cards';
+  static const deposit = '/deposit';
+  static const withdraw = '/withdraw';
   static const reciverData = '/reciver-data';
 }
