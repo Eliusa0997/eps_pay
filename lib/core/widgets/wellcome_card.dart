@@ -6,14 +6,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class wellcomeCard extends StatelessWidget {
   final String title;
   final String subTitle;
-  const wellcomeCard({super.key, required this.title, required this.subTitle});
+  IconData? headerIcon;
+  LinearGradient? headerGradientColor;
+  wellcomeCard({
+    super.key,
+    required this.title,
+    required this.subTitle,
+    this.headerIcon,
+    this.headerGradientColor,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        gradient: AppColors.primaryGradient,
+        gradient: headerGradientColor ?? AppColors.primaryGradient,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(32.r),
           bottomRight: Radius.circular(32.r),
@@ -30,7 +38,7 @@ class wellcomeCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16.r),
               ),
               child: Icon(
-                Icons.account_balance,
+                headerIcon ?? Icons.account_balance,
                 size: 48.sp,
                 color: Colors.white,
               ),
