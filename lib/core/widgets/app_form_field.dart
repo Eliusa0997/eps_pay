@@ -36,18 +36,20 @@ class AppFormField extends StatelessWidget {
         hintText: hintText,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
-
+        hintStyle: TextStyle(fontSize: 15, color: Colors.grey),
         filled: true,
-        fillColor: AppColors.background,
+        fillColor: AppColors.myGery,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15.r),
           borderSide: BorderSide.none,
         ),
         errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.error),
+          borderRadius: BorderRadius.circular(15.r),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.info),
+          borderRadius: BorderRadius.circular(15.r),
         ),
         contentPadding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 13.h),
         counterText: '',

@@ -4,6 +4,14 @@ import 'package:eps_pay/features/auth/login/data/repository/login_repo.dart';
 import 'package:eps_pay/features/auth/login/logic/cubit/login_cubit.dart';
 import 'package:eps_pay/features/auth/siginup/data/repository/signup_repo.dart';
 import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
+import 'package:eps_pay/features/bills_payment/data/repository/electricity_repo.dart';
+import 'package:eps_pay/features/bills_payment/data/repository/internet_repo.dart';
+import 'package:eps_pay/features/bills_payment/data/repository/mobile_recharge_repo.dart';
+import 'package:eps_pay/features/bills_payment/data/repository/water_repo.dart';
+import 'package:eps_pay/features/bills_payment/logic/cubit/electricity_cubit.dart';
+import 'package:eps_pay/features/bills_payment/logic/cubit/internet_cubit.dart';
+import 'package:eps_pay/features/bills_payment/logic/cubit/mobile_recharge_cubit.dart';
+import 'package:eps_pay/features/bills_payment/logic/cubit/water_cubit.dart';
 import 'package:eps_pay/features/home_dashboard/data/repository/home_repo.dart';
 import 'package:eps_pay/features/home_dashboard/logic/cubit/home_cubit.dart';
 import 'package:eps_pay/features/transfer/data/repository/deposit_repo.dart';
@@ -40,12 +48,27 @@ setupGetIt() {
   //  Transfer Money
   getIt.registerLazySingleton<TransferRepo>(() => TransferRepo(getIt()));
   getIt.registerLazySingleton<TransferCubit>(() => TransferCubit(getIt()));
-  //  Deposit
+  //  Deposit & Withdraw
   getIt.registerLazySingleton<DepositRepo>(() => DepositRepo(getIt()));
   getIt.registerLazySingleton<DepositCubit>(() => DepositCubit(getIt()));
-  //  Withdraw
   getIt.registerLazySingleton<WithdrawRepo>(() => WithdrawRepo(getIt()));
   getIt.registerLazySingleton<WithdrawCubit>(() => WithdrawCubit(getIt()));
+
+  // Bills & Payment
+  getIt.registerLazySingleton<ElectricityCubit>(
+    () => ElectricityCubit(getIt()),
+  );
+  getIt.registerLazySingleton<ElectricityRepo>(() => ElectricityRepo(getIt()));
+  getIt.registerLazySingleton<WaterCubit>(() => WaterCubit(getIt()));
+  getIt.registerLazySingleton<WaterRepo>(() => WaterRepo(getIt()));
+  getIt.registerLazySingleton<InternetCubit>(() => InternetCubit(getIt()));
+  getIt.registerLazySingleton<InternetRepo>(() => InternetRepo(getIt()));
+  getIt.registerLazySingleton<MobileRechargeCubit>(
+    () => MobileRechargeCubit(getIt()),
+  );
+  getIt.registerLazySingleton<MobileRechargeRepo>(
+    () => MobileRechargeRepo(getIt()),
+  );
 
   //  Reciver Data
   getIt.registerLazySingleton<ReciverRepo>(() => ReciverRepo(getIt()));

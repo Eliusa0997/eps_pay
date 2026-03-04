@@ -12,8 +12,14 @@ class Routes {
 
   // Money transctions
   static const transferMoney = '/transfer-money';
-  static const billsBayments = '/bills-payments';
   static const deposit = '/deposit';
   static const withdraw = '/withdraw';
   static const reciverData = '/reciver-data';
+
+  // Bills & Payment  
+  static const billsBayments = '/bills-payments';
+  static const electricityScreen = '/electricity-screen';
+  static const waterScreen = '/water-screen';
+  static const internetScreen = '/internet-screen';
+  static const mobileRechargeScreen = '/mobile-recharge-screen';  
 }

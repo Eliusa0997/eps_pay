@@ -48,7 +48,7 @@ class AmountAndNoteSection extends StatelessWidget {
           AppFormField(
             controller: amountController,
             isObscurePin: false,
-            textInputType: TextInputType.text,
+            textInputType: TextInputType.number,
             hintText: 'Enter amount',
             prefixIcon: const Icon(Icons.person),
             validator: (value) {
@@ -89,7 +89,7 @@ class AmountAndNoteSection extends StatelessWidget {
           AppFormField(
             controller: phoneNumberController,
             isObscurePin: false,
-            textInputType: TextInputType.text,
+            textInputType: TextInputType.number,
             hintText: 'Enter phone namber',
             prefixIcon: const Icon(Icons.person),
             validator: (value) {
@@ -105,7 +105,7 @@ class AmountAndNoteSection extends StatelessWidget {
           AppFormField(
             controller: noteNumberController,
             isObscurePin: false,
-            textInputType: TextInputType.text,
+            textInputType: TextInputType.number,
             hintText: 'Enter account number',
             prefixIcon: const Icon(Icons.person),
           ),

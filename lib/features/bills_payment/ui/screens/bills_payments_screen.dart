@@ -1,3 +1,5 @@
+import 'package:eps_pay/core/helpers/extensions.dart';
+import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,7 @@ class BillsPaymentsScreen extends StatelessWidget {
           colors: [Color(0xFFFBBF24), Color(0xFFF59E0B)],
         ),
         'providers': 2,
+        'route': Routes.electricityScreen,
       },
       {
         'icon': Icons.water_drop,
@@ -22,6 +25,7 @@ class BillsPaymentsScreen extends StatelessWidget {
           colors: [Color(0xFF60A5FA), Color(0xFF3B82F6)],
         ),
         'providers': 2,
+        'route': Routes.waterScreen,
       },
       {
         'icon': Icons.wifi,
@@ -30,6 +34,7 @@ class BillsPaymentsScreen extends StatelessWidget {
           colors: [Color(0xFFA78BFA), Color(0xFF8B5CF6)],
         ),
         'providers': 3,
+        'route': Routes.internetScreen,
       },
       {
         'icon': Icons.smartphone,
@@ -38,6 +43,7 @@ class BillsPaymentsScreen extends StatelessWidget {
           colors: [Color(0xFF34D399), Color(0xFF10B981)],
         ),
         'providers': 3,
+        'route': Routes.mobileRechargeScreen,
       },
       {
         'icon': Icons.description,
@@ -46,6 +52,7 @@ class BillsPaymentsScreen extends StatelessWidget {
           colors: [Color(0xFFF87171), Color(0xFFEF4444)],
         ),
         'providers': 3,
+        'route': Routes.internetScreen,
       },
       {
         'icon': Icons.business,
@@ -54,6 +61,7 @@ class BillsPaymentsScreen extends StatelessWidget {
           colors: [Color(0xFF9CA3AF), Color(0xFF6B7280)],
         ),
         'providers': 3,
+        'route': Routes.waterScreen,
       },
     ];
 
@@ -113,7 +121,9 @@ class BillsPaymentsScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () =>
+                            context.pushNamed(Routes.homeDashboard),
+
                         icon: const Icon(Icons.arrow_back),
                         color: Colors.white,
                         style: IconButton.styleFrom(
@@ -148,7 +158,9 @@ class BillsPaymentsScreen extends StatelessWidget {
                 delegate: SliverChildBuilderDelegate((context, index) {
                   final category = categories[index];
                   return InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(category['route'].toString());
+                    },
                     borderRadius: BorderRadius.circular(16),
                     child: Container(
                       padding: const EdgeInsets.all(20),

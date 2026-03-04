@@ -4,6 +4,8 @@ import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
 import 'package:eps_pay/features/auth/login/data/model/login_response.dart';
 import 'package:eps_pay/features/auth/siginup/data/model/signup_request_body.dart';
 import 'package:eps_pay/features/auth/siginup/data/model/signup_response.dart';
+import 'package:eps_pay/features/bills_payment/data/model/bills_request_body.dart';
+import 'package:eps_pay/features/bills_payment/data/model/bills_response.dart';
 import 'package:eps_pay/features/home_dashboard/data/model/profile_model.dart';
 import 'package:eps_pay/features/transfer/data/model/reciver_request_body.dart';
 import 'package:eps_pay/features/transfer/data/model/reciver_response.dart';
@@ -37,6 +39,24 @@ abstract class ApiService {
   @POST(ApiConstant.withdraw)
   Future<TransferRespone> withdraw(
     @Body() TransferRequestBody transferRequestBody,
+  );
+
+  // Electricity
+  @POST(ApiConstant.electricity)
+  Future<BillsResponse> electricity(@Body() BillsRequestBody billsRequestBody);
+
+  // Water
+  @POST(ApiConstant.water)
+  Future<BillsResponse> water(@Body() BillsRequestBody billsRequestBody);
+
+  // Internet
+  @POST(ApiConstant.internet)
+  Future<BillsResponse> internet(@Body() BillsRequestBody billsRequestBody);
+
+  // Mobile Recharge
+  @POST(ApiConstant.mobileRecharge)
+  Future<BillsResponse> mobileRecharge(
+    @Body() BillsRequestBody billsRequestBody,
   );
 
   @POST(ApiConstant.getReciverData)
