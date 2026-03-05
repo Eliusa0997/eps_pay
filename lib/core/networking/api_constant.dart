@@ -11,4 +11,5 @@ class ApiConstant {
   static const String water = "water/";
   static const String internet = "internet/";
   static const String mobileRecharge = "mobile-recharge/";
+  static const String transactionsHistory = "transaction-history/";
 }

@@ -36,34 +36,42 @@ setupGetIt() {
   // ========= Auth ===========
   //  login
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
-  getIt.registerLazySingleton<LoginCubit>(() => LoginCubit(getIt()));
+  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
   //  signup
   getIt.registerLazySingleton<SignupRepo>(() => SignupRepo(getIt()));
-  getIt.registerLazySingleton<SignupCubit>(() => SignupCubit(getIt()));
+  getIt.registerFactory<SignupCubit>(() => SignupCubit(getIt()));
 
   //  home
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(getIt()));
-  getIt.registerLazySingleton<HomeCubit>(() => HomeCubit(getIt()));
+  getIt.registerFactory<HomeCubit>(() => HomeCubit(getIt()));
 
   //  Transfer Money
   getIt.registerLazySingleton<TransferRepo>(() => TransferRepo(getIt()));
-  getIt.registerLazySingleton<TransferCubit>(() => TransferCubit(getIt()));
+  getIt.registerFactory<TransferCubit>(() => TransferCubit(getIt()));
   //  Deposit & Withdraw
   getIt.registerLazySingleton<DepositRepo>(() => DepositRepo(getIt()));
-  getIt.registerLazySingleton<DepositCubit>(() => DepositCubit(getIt()));
+  getIt.registerFactory<DepositCubit>(() => DepositCubit(getIt()));
   getIt.registerLazySingleton<WithdrawRepo>(() => WithdrawRepo(getIt()));
-  getIt.registerLazySingleton<WithdrawCubit>(() => WithdrawCubit(getIt()));
+  getIt.registerFactory<WithdrawCubit>(() => WithdrawCubit(getIt()));
+
+// transactions history
+getIt.registerLazySingleton<TransactionsHistoryRepo>(
+  () => TransactionsHistoryRepo(getIt()),
+);
+getIt.registerFactory<TransactionsHistoryCubit>(
+  () => TransactionsHistoryCubit(getIt()),
+);  
 
   // Bills & Payment
-  getIt.registerLazySingleton<ElectricityCubit>(
+  getIt.registerFactory<ElectricityCubit>(
     () => ElectricityCubit(getIt()),
   );
   getIt.registerLazySingleton<ElectricityRepo>(() => ElectricityRepo(getIt()));
-  getIt.registerLazySingleton<WaterCubit>(() => WaterCubit(getIt()));
+  getIt.registerFactory<WaterCubit>(() => WaterCubit(getIt()));
   getIt.registerLazySingleton<WaterRepo>(() => WaterRepo(getIt()));
-  getIt.registerLazySingleton<InternetCubit>(() => InternetCubit(getIt()));
+  getIt.registerFactory<InternetCubit>(() => InternetCubit(getIt()));
   getIt.registerLazySingleton<InternetRepo>(() => InternetRepo(getIt()));
-  getIt.registerLazySingleton<MobileRechargeCubit>(
+  getIt.registerFactory<MobileRechargeCubit>(
     () => MobileRechargeCubit(getIt()),
   );
   getIt.registerLazySingleton<MobileRechargeRepo>(
@@ -72,5 +80,5 @@ setupGetIt() {
 
   //  Reciver Data
   getIt.registerLazySingleton<ReciverRepo>(() => ReciverRepo(getIt()));
-  getIt.registerLazySingleton<ReciverCubit>(() => ReciverCubit(getIt()));
+  getIt.registerFactory<ReciverCubit>(() => ReciverCubit(getIt()));
 }
