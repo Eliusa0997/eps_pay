@@ -45,7 +45,7 @@ class TransferBlocListener extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         context.pop();
-                        context.pushNamed(Routes.homeDashboard);
+                        context.pushNamed(Routes.homeDashboardScreen);
                       },
                       child: Text("ok"),
                     ),

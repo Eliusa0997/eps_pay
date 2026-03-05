@@ -122,7 +122,7 @@ class BillsPaymentsScreen extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () =>
-                            context.pushNamed(Routes.homeDashboard),
+                            context.pushNamed(Routes.homeDashboardScreen),
 
                         icon: const Icon(Icons.arrow_back),
                         color: Colors.white,

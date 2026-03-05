@@ -13,7 +13,9 @@ import 'package:eps_pay/features/bills_payment/logic/cubit/internet_cubit.dart';
 import 'package:eps_pay/features/bills_payment/logic/cubit/mobile_recharge_cubit.dart';
 import 'package:eps_pay/features/bills_payment/logic/cubit/water_cubit.dart';
 import 'package:eps_pay/features/home_dashboard/data/repository/home_repo.dart';
+import 'package:eps_pay/features/home_dashboard/data/repository/transactions_history_repo.dart';
 import 'package:eps_pay/features/home_dashboard/logic/cubit/home_cubit.dart';
+import 'package:eps_pay/features/home_dashboard/logic/cubit/transactions_history_cubit.dart';
 import 'package:eps_pay/features/transfer/data/repository/deposit_repo.dart';
 import 'package:eps_pay/features/transfer/data/repository/reciver_repo.dart';
 import 'package:eps_pay/features/transfer/data/repository/transfer_repo.dart';
@@ -54,18 +56,16 @@ setupGetIt() {
   getIt.registerLazySingleton<WithdrawRepo>(() => WithdrawRepo(getIt()));
   getIt.registerFactory<WithdrawCubit>(() => WithdrawCubit(getIt()));
 
-// transactions history
-getIt.registerLazySingleton<TransactionsHistoryRepo>(
-  () => TransactionsHistoryRepo(getIt()),
-);
-getIt.registerFactory<TransactionsHistoryCubit>(
-  () => TransactionsHistoryCubit(getIt()),
-);  
+  // transactions history
+  getIt.registerLazySingleton<TransactionsHistoryRepo>(
+    () => TransactionsHistoryRepo(getIt()),
+  );
+  getIt.registerFactory<TransactionsHistoryCubit>(
+    () => TransactionsHistoryCubit(getIt()),
+  );
 
   // Bills & Payment
-  getIt.registerFactory<ElectricityCubit>(
-    () => ElectricityCubit(getIt()),
-  );
+  getIt.registerFactory<ElectricityCubit>(() => ElectricityCubit(getIt()));
   getIt.registerLazySingleton<ElectricityRepo>(() => ElectricityRepo(getIt()));
   getIt.registerFactory<WaterCubit>(() => WaterCubit(getIt()));
   getIt.registerLazySingleton<WaterRepo>(() => WaterRepo(getIt()));

@@ -5,7 +5,8 @@ import 'package:eps_pay/features/home_dashboard/data/model/transactions_history_
 class TransactionsHistoryRepo {
   final ApiService _apiService;
   TransactionsHistoryRepo(this._apiService);
-  Future<ApiResult<TransactionHistoryModel>> getTransactionsHistory() async {
+  Future<ApiResult<List<TransactionHistoryModel>>>
+  getTransactionsHistory() async {
     try {
       final response = await _apiService.getTransactionsHistory();
       return ApiResult.success(response);

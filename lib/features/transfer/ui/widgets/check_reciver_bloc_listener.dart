@@ -29,7 +29,10 @@ class CheckReciverBlocListener extends StatelessWidget {
           },
           success: (reciverResponse) {
             // String reciverName = reciverResponse.reciverName;
-            context.pushNamed(Routes.transferMoney, arguments: reciverResponse);
+            context.pushNamed(
+              Routes.transferMoneyScreen,
+              arguments: reciverResponse,
+            );
           },
           error: (error) {
             // (context, error);

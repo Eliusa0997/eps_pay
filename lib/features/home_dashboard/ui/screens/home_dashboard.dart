@@ -8,6 +8,9 @@ import 'package:eps_pay/features/home_dashboard/ui/widgets/quick_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/helpers/extensions.dart';
+import '../../../../core/routing/routes.dart';
+
 class HomeDashboard extends StatefulWidget {
   const HomeDashboard({super.key});
 
@@ -78,7 +81,6 @@ class _HomeDashboardState extends State<HomeDashboard> {
       body: SafeArea(
         child: BlocBuilder<HomeCubit, HomeState>(
           builder: (context, state) {
-            // context.read<HomeCubit>().emitHomeState();
             if (state is Loading) {
               return Center(child: CircularProgressIndicator());
             }
@@ -121,7 +123,9 @@ class _HomeDashboardState extends State<HomeDashboard> {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/transactions');
+                              context.pushNamed(
+                                Routes.transactionsHistoryScreen,
+                              );
                             },
                             child: const Text('See All'),
                           ),
