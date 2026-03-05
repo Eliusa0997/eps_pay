@@ -1,6 +1,11 @@
+import 'package:eps_pay/features/home_dashboard/logic/cubit/transactions_history_cubit.dart';
 import 'package:flutter/material.dart';
-import '../constants/colors.dart';
-import '../models/transaction.dart';
+
+import '../../../../core/for_test_models/transaction.dart';
+import '../../../../core/theming/colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../logic/cubit/transactions_history_state.dart';
 
 class TransactionHistoryScreen extends StatefulWidget {
   const TransactionHistoryScreen({super.key});
@@ -119,18 +124,18 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
 
   List<Transaction> get _filteredTransactions {
     return _allTransactions.where((transaction) {
-      final matchesSearch = transaction.recipient
-          .toLowerCase()
-          .contains(_searchController.text.toLowerCase());
-      final matchesFilter = _selectedFilter == 'all' ||
+      final matchesSearch = transaction.recipient.toLowerCase().contains(
+        _searchController.text.toLowerCase(),
+      );
+      final matchesFilter =
+          _selectedFilter == 'all' ||
           transaction.type == _selectedFilter ||
           (_selectedFilter == 'bills' && transaction.category == 'Bills');
       return matchesSearch && matchesFilter;
     }).toList();
   }
 
-  Map<String, List<Transaction>> _groupByDate(
-      List<Transaction> transactions) {
+  Map<String, List<Transaction>> _groupByDate(List<Transaction> transactions) {
     final Map<String, List<Transaction>> groups = {};
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
@@ -175,7 +180,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
       'Sep',
       'Oct',
       'Nov',
-      'Dec'
+      'Dec',
     ];
     return months[month - 1];
   }
@@ -192,235 +197,294 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
 
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            // Header
-            Container(
-              decoration: const BoxDecoration(
-                gradient: AppColors.primaryGradient,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(32),
-                  bottomRight: Radius.circular(32),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () => Navigator.pop(context),
-                          icon: const Icon(Icons.arrow_back),
-                          color: Colors.white,
-                          style: IconButton.styleFrom(
-                            backgroundColor: Colors.white.withOpacity(0.1),
-                          ),
-                        ),
-                        const Text(
-                          'Transaction History',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.calendar_today),
-                          color: Colors.white,
-                          style: IconButton.styleFrom(
-                            backgroundColor: Colors.white.withOpacity(0.1),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 24),
-                    // Search
-                    TextField(
-                      controller: _searchController,
-                      onChanged: (value) => setState(() {}),
-                      decoration: InputDecoration(
-                        hintText: 'Search transactions...',
-                        prefixIcon: const Icon(Icons.search),
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide.none,
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 16,
-                        ),
+        child: BlocBuilder<TransactionsHistoryCubit, TransactionsHistoryState>(
+          builder: (context, state) {
+            if (state is Loading) {
+              return Center(child: CircularProgressIndicator());
+            }
+            if (state is Success) {
+              return Column(
+                children: [
+                  // Header
+                  Container(
+                    decoration: const BoxDecoration(
+                      gradient: AppColors.primaryGradient,
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(32),
+                        bottomRight: Radius.circular(32),
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-
-            // Filters
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    const Icon(Icons.filter_list,
-                        color: AppColors.textSecondary, size: 20),
-                    const SizedBox(width: 12),
-                    _buildFilterChip('All', 'all'),
-                    const SizedBox(width: 8),
-                    _buildFilterChip('Sent', 'sent'),
-                    const SizedBox(width: 8),
-                    _buildFilterChip('Received', 'received'),
-                    const SizedBox(width: 8),
-                    _buildFilterChip('Bills', 'bills'),
-                  ],
-                ),
-              ),
-            ),
-
-            // Transactions List
-            Expanded(
-              child: groupedTransactions.isEmpty
-                  ? Center(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            width: 64,
-                            height: 64,
-                            decoration: BoxDecoration(
-                              color: AppColors.background,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(
-                              Icons.search,
-                              size: 32,
-                              color: AppColors.textSecondary,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                onPressed: () => Navigator.pop(context),
+                                icon: const Icon(Icons.arrow_back),
+                                color: Colors.white,
+                                style: IconButton.styleFrom(
+                                  backgroundColor: Colors.white.withOpacity(
+                                    0.1,
+                                  ),
+                                ),
+                              ),
+                              const Text(
+                                'Transaction History',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Icon(Icons.calendar_today),
+                                color: Colors.white,
+                                style: IconButton.styleFrom(
+                                  backgroundColor: Colors.white.withOpacity(
+                                    0.1,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 16),
-                          const Text(
-                            'No transactions found',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.textSecondary,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            'Try adjusting your search or filters',
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: AppColors.textTertiary,
+                          const SizedBox(height: 24),
+                          // Search
+                          TextField(
+                            controller: _searchController,
+                            onChanged: (value) => setState(() {}),
+                            decoration: InputDecoration(
+                              hintText: 'Search transactions...',
+                              prefixIcon: const Icon(Icons.search),
+                              filled: true,
+                              fillColor: Colors.white,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(12),
+                                borderSide: BorderSide.none,
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 16,
+                              ),
                             ),
                           ),
                         ],
                       ),
-                    )
-                  : ListView.builder(
-                      padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
-                      itemCount: groupedTransactions.length,
-                      itemBuilder: (context, index) {
-                        final dateLabel =
-                            groupedTransactions.keys.elementAt(index);
-                        final transactions = groupedTransactions[dateLabel]!;
+                    ),
+                  ),
 
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 8, bottom: 12, top: 12),
-                              child: Text(
-                                dateLabel,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600,
-                                  color: AppColors.textSecondary,
+                  // Filters
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.filter_list,
+                            color: AppColors.textSecondary,
+                            size: 20,
+                          ),
+                          const SizedBox(width: 12),
+                          _buildFilterChip('All', 'all'),
+                          const SizedBox(width: 8),
+                          _buildFilterChip('Sent', 'sent'),
+                          const SizedBox(width: 8),
+                          _buildFilterChip('Received', 'received'),
+                          const SizedBox(width: 8),
+                          _buildFilterChip('Bills', 'bills'),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  // Transactions List
+                  Expanded(
+                    child: groupedTransactions.isEmpty
+                        ? Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 64,
+                                  height: 64,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.background,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Icon(
+                                    Icons.search,
+                                    size: 32,
+                                    color: AppColors.textSecondary,
+                                  ),
                                 ),
-                              ),
+                                const SizedBox(height: 16),
+                                const Text(
+                                  'No transactions found',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                    color: AppColors.textSecondary,
+                                  ),
+                                ),
+                                const SizedBox(height: 8),
+                                const Text(
+                                  'Try adjusting your search or filters',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: AppColors.textTertiary,
+                                  ),
+                                ),
+                              ],
                             ),
-                            ...transactions.map((transaction) {
-                              return Container(
-                                margin: const EdgeInsets.only(bottom: 8),
-                                padding: const EdgeInsets.all(16),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(color: AppColors.border),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Container(
-                                          width: 40,
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                            color: transaction.isReceived
-                                                ? AppColors.success
-                                                    .withOpacity(0.1)
-                                                : AppColors.error
-                                                    .withOpacity(0.1),
-                                            shape: BoxShape.circle,
-                                          ),
-                                          child: Icon(
-                                            transaction.isReceived
-                                                ? Icons.arrow_downward
-                                                : Icons.arrow_upward,
-                                            color: transaction.isReceived
-                                                ? AppColors.success
-                                                : AppColors.error,
-                                            size: 20,
-                                          ),
+                          )
+                        : ListView.builder(
+                            padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
+                            itemCount: groupedTransactions.length,
+                            itemBuilder: (context, index) {
+                              final dateLabel = groupedTransactions.keys
+                                  .elementAt(index);
+                              final transactions =
+                                  groupedTransactions[dateLabel]!;
+
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 8,
+                                      bottom: 12,
+                                      top: 12,
+                                    ),
+                                    child: Text(
+                                      dateLabel,
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColors.textSecondary,
+                                      ),
+                                    ),
+                                  ),
+                                  ...transactions.map((transaction) {
+                                    return Container(
+                                      margin: const EdgeInsets.only(bottom: 8),
+                                      padding: const EdgeInsets.all(16),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(
+                                          color: AppColors.border,
                                         ),
-                                        const SizedBox(width: 12),
-                                        Expanded(
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Row(
                                             children: [
-                                              Text(
-                                                transaction.recipient,
-                                                style: const TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColors.textPrimary,
+                                              Container(
+                                                width: 40,
+                                                height: 40,
+                                                decoration: BoxDecoration(
+                                                  color: transaction.isReceived
+                                                      ? AppColors.success
+                                                            .withOpacity(0.1)
+                                                      : AppColors.error
+                                                            .withOpacity(0.1),
+                                                  shape: BoxShape.circle,
                                                 ),
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
+                                                child: Icon(
+                                                  transaction.isReceived
+                                                      ? Icons.arrow_downward
+                                                      : Icons.arrow_upward,
+                                                  color: transaction.isReceived
+                                                      ? AppColors.success
+                                                      : AppColors.error,
+                                                  size: 20,
+                                                ),
                                               ),
-                                              const SizedBox(height: 4),
-                                              Row(
+                                              const SizedBox(width: 12),
+                                              Expanded(
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      transaction.recipient,
+                                                      style: const TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: AppColors
+                                                            .textPrimary,
+                                                      ),
+                                                      maxLines: 1,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
+                                                    const SizedBox(height: 4),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          transaction.time,
+                                                          style: const TextStyle(
+                                                            fontSize: 12,
+                                                            color: AppColors
+                                                                .textSecondary,
+                                                          ),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 8,
+                                                        ),
+                                                        Container(
+                                                          width: 4,
+                                                          height: 4,
+                                                          decoration:
+                                                              const BoxDecoration(
+                                                                color: AppColors
+                                                                    .textTertiary,
+                                                                shape: BoxShape
+                                                                    .circle,
+                                                              ),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 8,
+                                                        ),
+                                                        Text(
+                                                          transaction.category,
+                                                          style: const TextStyle(
+                                                            fontSize: 12,
+                                                            color: AppColors
+                                                                .textSecondary,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
                                                 children: [
                                                   Text(
-                                                    transaction.time,
-                                                    style: const TextStyle(
-                                                      fontSize: 12,
-                                                      color: AppColors
-                                                          .textSecondary,
+                                                    '${transaction.isReceived ? '+' : '-'}${transaction.amount.toStringAsFixed(2)}',
+                                                    style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color:
+                                                          transaction.isReceived
+                                                          ? AppColors.success
+                                                          : AppColors
+                                                                .textPrimary,
                                                     ),
                                                   ),
-                                                  const SizedBox(width: 8),
-                                                  Container(
-                                                    width: 4,
-                                                    height: 4,
-                                                    decoration: const BoxDecoration(
-                                                      color: AppColors
-                                                          .textTertiary,
-                                                      shape: BoxShape.circle,
-                                                    ),
-                                                  ),
-                                                  const SizedBox(width: 8),
-                                                  Text(
-                                                    transaction.category,
-                                                    style: const TextStyle(
+                                                  const SizedBox(height: 2),
+                                                  const Text(
+                                                    'SDG',
+                                                    style: TextStyle(
                                                       fontSize: 12,
                                                       color: AppColors
                                                           .textSecondary,
@@ -430,94 +494,76 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                               ),
                                             ],
                                           ),
-                                        ),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                              '${transaction.isReceived ? '+' : '-'}${transaction.amount.toStringAsFixed(2)}',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                                color: transaction.isReceived
-                                                    ? AppColors.success
-                                                    : AppColors.textPrimary,
-                                              ),
-                                            ),
-                                            const SizedBox(height: 2),
-                                            const Text(
-                                              'SDG',
-                                              style: TextStyle(
-                                                fontSize: 12,
-                                                color: AppColors.textSecondary,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 12),
-                                    const Divider(height: 1),
-                                    const SizedBox(height: 12),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 8,
-                                            vertical: 4,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: AppColors.success
-                                                .withOpacity(0.1),
-                                            borderRadius:
-                                                BorderRadius.circular(6),
-                                          ),
-                                          child: Row(
+                                          const SizedBox(height: 12),
+                                          const Divider(height: 1),
+                                          const SizedBox(height: 12),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Icon(
-                                                Icons.check_circle,
-                                                size: 14,
-                                                color: AppColors.success,
+                                              Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                      horizontal: 8,
+                                                      vertical: 4,
+                                                    ),
+                                                decoration: BoxDecoration(
+                                                  color: AppColors.success
+                                                      .withOpacity(0.1),
+                                                  borderRadius:
+                                                      BorderRadius.circular(6),
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    Icon(
+                                                      Icons.check_circle,
+                                                      size: 14,
+                                                      color: AppColors.success,
+                                                    ),
+                                                    const SizedBox(width: 4),
+                                                    Text(
+                                                      transaction.status ==
+                                                              'completed'
+                                                          ? 'Completed'
+                                                          : transaction.status,
+                                                      style: const TextStyle(
+                                                        fontSize: 11,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            AppColors.success,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
-                                              const SizedBox(width: 4),
-                                              Text(
-                                                transaction.status == 'completed'
-                                                    ? 'Completed'
-                                                    : transaction.status,
-                                                style: const TextStyle(
-                                                  fontSize: 11,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColors.success,
+                                              TextButton(
+                                                onPressed: () {},
+                                                child: const Text(
+                                                  'View Details',
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
                                                 ),
                                               ),
                                             ],
                                           ),
-                                        ),
-                                        TextButton(
-                                          onPressed: () {},
-                                          child: const Text(
-                                            'View Details',
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
+                                        ],
+                                      ),
+                                    );
+                                  }),
+                                ],
                               );
-                            }),
-                          ],
-                        );
-                      },
-                    ),
-            ),
-          ],
+                            },
+                          ),
+                  ),
+                ],
+              );
+            } else {
+              return Text("error");
+            }
+          },
         ),
       ),
     );

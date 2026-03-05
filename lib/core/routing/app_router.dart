@@ -29,6 +29,9 @@ import 'package:eps_pay/features/transfer/ui/screens/transfer_money_screen.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/home_dashboard/logic/cubit/transactions_history_cubit.dart';
+import '../../features/home_dashboard/ui/screens/transactions_history_screen.dart';
+
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -53,11 +56,22 @@ class AppRouter {
         );
 
       // home Dashbord
-      case Routes.homeDashboard:
+      case Routes.homeDashboardScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => getIt<HomeCubit>()..emitHomeState(),
             child: const HomeDashboard(),
+          ),
+        );
+
+      // Transactions History
+      case Routes.transactionsHistoryScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                getIt<TransactionsHistoryCubit>()
+                  ..emitTransactionsHistoryState(),
+            child: const TransactionHistoryScreen(),
           ),
         );
 
@@ -66,7 +80,7 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const ProfileSettingsScreen());
 
       // Money transctions
-      case Routes.transferMoney:
+      case Routes.transferMoneyScreen:
         final receiverData = settings.arguments as ReciverResponse;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
@@ -75,7 +89,7 @@ class AppRouter {
           ),
         );
       // Rciver Data
-      case Routes.reciverData:
+      case Routes.reciverDataScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => getIt<ReciverCubit>(),
@@ -84,7 +98,7 @@ class AppRouter {
         );
 
       // Bills & Payment
-      case Routes.billsBayments:
+      case Routes.billsBaymentsScreen:
         return MaterialPageRoute(builder: (_) => const BillsPaymentsScreen());
 
       case Routes.electricityScreen:
@@ -120,14 +134,14 @@ class AppRouter {
         );
 
       // Money transctions
-      case Routes.deposit:
+      case Routes.depositScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => getIt<DepositCubit>(),
             child: const DepositScreen(),
           ),
         );
-      case Routes.withdraw:
+      case Routes.withdrawScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => getIt<WithdrawCubit>(),

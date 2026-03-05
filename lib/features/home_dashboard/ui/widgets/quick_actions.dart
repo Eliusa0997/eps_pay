@@ -14,7 +14,7 @@ class QuickActions extends StatelessWidget {
         'gradient': const LinearGradient(
           colors: [Color(0xFF3B82F6), Color(0xFF2563EB)],
         ),
-        'route': Routes.reciverData,
+        'route': Routes.reciverDataScreen,
       },
       {
         'icon': Icons.receipt,
@@ -22,7 +22,7 @@ class QuickActions extends StatelessWidget {
         'gradient': const LinearGradient(
           colors: [Color(0xFF10B981), Color(0xFF059669)],
         ),
-        'route': Routes.billsBayments,
+        'route': Routes.billsBaymentsScreen,
       },
       {
         'icon': Icons.smartphone,
@@ -30,7 +30,7 @@ class QuickActions extends StatelessWidget {
         'gradient': const LinearGradient(
           colors: [Color(0xFF8B5CF6), Color(0xFF7C3AED)],
         ),
-        'route': Routes.deposit,
+        'route': Routes.depositScreen,
       },
       {
         'icon': Icons.credit_card,
@@ -38,7 +38,7 @@ class QuickActions extends StatelessWidget {
         'gradient': const LinearGradient(
           colors: [Color(0xFFF97316), Color(0xFFEA580C)],
         ),
-        'route': Routes.withdraw,
+        'route': Routes.withdrawScreen,
       },
     ];
     return SliverToBoxAdapter(

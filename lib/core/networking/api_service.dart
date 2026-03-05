@@ -12,6 +12,8 @@ import 'package:eps_pay/features/transfer/data/model/reciver_response.dart';
 import 'package:eps_pay/features/transfer/data/model/transfer_request_body.dart';
 import 'package:eps_pay/features/transfer/data/model/transfer_response.dart';
 import 'package:retrofit/retrofit.dart';
+
+import '../../features/home_dashboard/data/model/transactions_history_model.dart';
 part 'api_service.g.dart';
 
 @RestApi(baseUrl: ApiConstant.baseUrl)
@@ -61,7 +63,7 @@ abstract class ApiService {
 
   // Transactions History
   @GET(ApiConstant.transactionsHistory)
-  Future<TransactionHistoryModel> getTransactionsHistory();  
+  Future<List<TransactionHistoryModel>> getTransactionsHistory();
 
   @POST(ApiConstant.getReciverData)
   Future<ReciverResponse> getReciver(

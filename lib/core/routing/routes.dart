@@ -7,19 +7,20 @@ class Routes {
   static const signupScreen = '/sigup-screen';
 
   // Home Screen
-  static const homeDashboard = '/home-dashboard';
+  static const homeDashboardScreen = '/home-dashboard-screen';
   static const profileSettingsScreen = '/profiles-settings-screen';
+  static const transactionsHistoryScreen = '/transaction-history-screen';
 
   // Money transctions
-  static const transferMoney = '/transfer-money';
-  static const deposit = '/deposit';
-  static const withdraw = '/withdraw';
-  static const reciverData = '/reciver-data';
+  static const transferMoneyScreen = '/transfer-money-screen';
+  static const depositScreen = '/deposit-screen';
+  static const withdrawScreen = '/withdraw-screen';
+  static const reciverDataScreen = '/reciver-data-screen';
 
-  // Bills & Payment  
-  static const billsBayments = '/bills-payments';
+  // Bills & Payment
+  static const billsBaymentsScreen = '/bills-payments-screen';
   static const electricityScreen = '/electricity-screen';
   static const waterScreen = '/water-screen';
   static const internetScreen = '/internet-screen';
-  static const mobileRechargeScreen = '/mobile-recharge-screen';  
+  static const mobileRechargeScreen = '/mobile-recharge-screen';
 }

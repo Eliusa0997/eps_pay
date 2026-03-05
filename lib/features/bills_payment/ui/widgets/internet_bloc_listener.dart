@@ -45,7 +45,7 @@ class InternetBlocListener extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         context.pop();
-                        context.pushNamed(Routes.billsBayments);
+                        context.pushNamed(Routes.billsBaymentsScreen);
                       },
                       child: Text("ok"),
                     ),
@@ -62,4 +62,4 @@ class InternetBlocListener extends StatelessWidget {
       child: const SizedBox.shrink(),
     );
   }
-}       
+}
