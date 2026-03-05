@@ -59,6 +59,10 @@ abstract class ApiService {
     @Body() BillsRequestBody billsRequestBody,
   );
 
+  // Transactions History
+  @GET(ApiConstant.transactionsHistory)
+  Future<TransactionHistoryModel> getTransactionsHistory();  
+
   @POST(ApiConstant.getReciverData)
   Future<ReciverResponse> getReciver(
     @Body() ReciverRequestBody reciverRequestBody,
