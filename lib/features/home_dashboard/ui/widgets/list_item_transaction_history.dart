@@ -46,7 +46,11 @@ class ListItemTransactionHistory extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Ahmed Hassan',
+                      // "transaction.receiverName",
+                      transaction.receiverName == null
+                          ? "Bills Payment"
+                          : transaction.receiverName!,
+
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,

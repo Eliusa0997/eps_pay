@@ -10,14 +10,18 @@ class TransactionHistoryModel {
   final String amount;
   @JsonKey(name: "timestamp")
   final DateTime date;
-  final int profile;
+  @JsonKey(name: "sender_full_name")
+  final String? senderFullName;
+  @JsonKey(name: "receiver_full_name")
+  final String? receiverName;
 
   TransactionHistoryModel({
     required this.id,
     required this.transactionType,
     required this.amount,
     required this.date,
-    required this.profile,
+    this.receiverName,
+    this.senderFullName,
   });
 
   factory TransactionHistoryModel.fromJson(Map<String, dynamic> json) =>
