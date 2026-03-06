@@ -110,6 +110,46 @@ class _SignupSectionState extends State<SignupSection> {
                 ),
                 SizedBox(height: 15.h),
 
+                // User first name Section
+                const FormFeildTitle(title: "Firs Name"),
+                SizedBox(height: 6.h),
+                AppFormField(
+                  controller: context.read<SignupCubit>().firstNameController,
+                  isObscurePin: false,
+                  textInputType: TextInputType.text,
+                  hintText: 'Enter your first name',
+                  prefixIcon: const Icon(Icons.person),
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        !AppRegex.hasMinUserNameLength(value)) {
+                      return "Plece Enter Valid first name";
+                    }
+                  },
+                ),
+
+                SizedBox(height: 15.h),
+
+                // User last name Section
+                const FormFeildTitle(title: "Last Name"),
+                SizedBox(height: 6.h),
+                AppFormField(
+                  controller: context.read<SignupCubit>().lastNameController,
+                  isObscurePin: false,
+                  textInputType: TextInputType.text,
+                  hintText: 'Enter your last name',
+                  prefixIcon: const Icon(Icons.person),
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        !AppRegex.hasMinUserNameLength(value)) {
+                      return "Plece Enter Valid last name";
+                    }
+                  },
+                ),
+
+                SizedBox(height: 15.h),
+
                 // Password Form Field
                 const FormFeildTitle(title: " Password"),
                 SizedBox(height: 6.h),
@@ -176,11 +216,6 @@ class _SignupSectionState extends State<SignupSection> {
   void validateThenDoSignup(BuildContext context) {
     if (context.read<SignupCubit>().formKey.currentState!.validate()) {
       context.read<SignupCubit>().emitSignupState(
-        SignupRequestBody(
-          userName: context.read<SignupCubit>().userNameController.text,
-          email: context.read<SignupCubit>().emailController.text,
-          password: context.read<SignupCubit>().passwordController.text,
-        ),
         context.read<SignupCubit>().userNameController.text,
       );
     }

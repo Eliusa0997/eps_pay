@@ -13,7 +13,8 @@ TransactionHistoryModel _$TransactionHistoryModelFromJson(
   transactionType: json['transaction_type'] as String,
   amount: json['amount'] as String,
   date: DateTime.parse(json['timestamp'] as String),
-  profile: (json['profile'] as num).toInt(),
+  receiverName: json['receiver_full_name'] as String?,
+  senderFullName: json['sender_full_name'] as String?,
 );
 
 Map<String, dynamic> _$TransactionHistoryModelToJson(
@@ -23,5 +24,6 @@ Map<String, dynamic> _$TransactionHistoryModelToJson(
   'transaction_type': instance.transactionType,
   'amount': instance.amount,
   'timestamp': instance.date.toIso8601String(),
-  'profile': instance.profile,
+  'sender_full_name': instance.senderFullName,
+  'receiver_full_name': instance.receiverName,
 };

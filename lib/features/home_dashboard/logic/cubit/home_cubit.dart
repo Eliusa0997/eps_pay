@@ -8,8 +8,10 @@ class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo;
   ProfileModel? userdata;
   String? userName;
+  String? fullName;
   String? totalBalance;
   int? accountNumber;
+  List<RecentTransactions>? transactions;
   HomeCubit(this._homeRepo) : super(HomeState.initial());
 
   void emitHomeState() async {
@@ -18,14 +20,16 @@ class HomeCubit extends Cubit<HomeState> {
     response.when(
       success: (homeResponse) {
         emit(HomeState.success(homeResponse));
+        // userdata = homeResponse;
         userName = homeResponse.userName;
+        fullName = homeResponse.fullName;
         totalBalance = homeResponse.balance;
         accountNumber = homeResponse.accountNumber;
+        transactions = homeResponse.recentTransactions;
       },
       failure: (failure) {
         emit(HomeState.error(message: failure.toString()));
       },
     );
   }
-
 }
