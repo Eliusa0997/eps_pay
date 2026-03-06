@@ -20,6 +20,7 @@ class TransactionsHistoryCubit extends Cubit<TransactionsHistoryState> {
       success: (transactionsHistoryResponse) {
         print("✅ Success: ${transactionsHistoryResponse.length}");
         allTransactions = transactionsHistoryResponse;
+        print("✅ Success my list: ${allTransactions.length}");
         emit(TransactionsHistoryState.success(transactionsHistoryResponse));
       },
       failure: (failure) {

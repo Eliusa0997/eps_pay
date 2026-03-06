@@ -12,7 +12,7 @@ TransactionHistoryModel _$TransactionHistoryModelFromJson(
   id: (json['id'] as num).toInt(),
   transactionType: json['transaction_type'] as String,
   amount: json['amount'] as String,
-  transactionDate: json['timestamp'] as String,
+  date: DateTime.parse(json['timestamp'] as String),
   profile: (json['profile'] as num).toInt(),
 );
 
@@ -22,6 +22,6 @@ Map<String, dynamic> _$TransactionHistoryModelToJson(
   'id': instance.id,
   'transaction_type': instance.transactionType,
   'amount': instance.amount,
-  'timestamp': instance.transactionDate,
+  'timestamp': instance.date.toIso8601String(),
   'profile': instance.profile,
 };

@@ -5,6 +5,7 @@ import '../../../../core/for_test_models/transaction.dart';
 import '../../../../core/theming/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../data/model/transactions_history_model.dart';
 import '../../logic/cubit/transactions_history_state.dart';
 
 class TransactionHistoryScreen extends StatefulWidget {
@@ -18,172 +19,7 @@ class TransactionHistoryScreen extends StatefulWidget {
 class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   String _selectedFilter = 'all';
   final _searchController = TextEditingController();
-
-  final List<Transaction> _allTransactions = [
-    Transaction(
-      id: '1',
-      type: 'sent',
-      recipient: 'Ahmed Hassan',
-      amount: 500,
-      date: DateTime(2026, 2, 10),
-      time: '10:30 AM',
-      category: 'Transfer',
-      status: 'completed',
-    ),
-    Transaction(
-      id: '2',
-      type: 'received',
-      recipient: 'Salary Payment',
-      amount: 15000,
-      date: DateTime(2026, 2, 9),
-      time: '9:00 AM',
-      category: 'Income',
-      status: 'completed',
-    ),
-    Transaction(
-      id: '3',
-      type: 'sent',
-      recipient: 'Electricity Bill',
-      amount: 250,
-      date: DateTime(2026, 2, 8),
-      time: '2:15 PM',
-      category: 'Bills',
-      status: 'completed',
-    ),
-    Transaction(
-      id: '4',
-      type: 'sent',
-      recipient: 'Mobile Recharge',
-      amount: 100,
-      date: DateTime(2026, 2, 7),
-      time: '11:45 AM',
-      category: 'Recharge',
-      status: 'completed',
-    ),
-    Transaction(
-      id: '5',
-      type: 'sent',
-      recipient: 'Water Bill',
-      amount: 180,
-      date: DateTime(2026, 2, 7),
-      time: '9:20 AM',
-      category: 'Bills',
-      status: 'completed',
-    ),
-    Transaction(
-      id: '6',
-      type: 'received',
-      recipient: 'Refund - Online Purchase',
-      amount: 450,
-      date: DateTime(2026, 2, 6),
-      time: '4:30 PM',
-      category: 'Refund',
-      status: 'completed',
-    ),
-    Transaction(
-      id: '7',
-      type: 'sent',
-      recipient: 'Fatima Mohamed',
-      amount: 1200,
-      date: DateTime(2026, 2, 5),
-      time: '1:10 PM',
-      category: 'Transfer',
-      status: 'completed',
-    ),
-    Transaction(
-      id: '8',
-      type: 'sent',
-      recipient: 'Internet Bill',
-      amount: 350,
-      date: DateTime(2026, 2, 1),
-      time: '3:00 PM',
-      category: 'Bills',
-      status: 'completed',
-    ),
-    Transaction(
-      id: '9',
-      type: 'received',
-      recipient: 'Freelance Payment',
-      amount: 5000,
-      date: DateTime(2026, 1, 30),
-      time: '11:00 AM',
-      category: 'Income',
-      status: 'completed',
-    ),
-    Transaction(
-      id: '10',
-      type: 'sent',
-      recipient: 'Restaurant Payment',
-      amount: 280,
-      date: DateTime(2026, 1, 28),
-      time: '8:30 PM',
-      category: 'Shopping',
-      status: 'completed',
-    ),
-  ];
-
-  List<Transaction> get _filteredTransactions {
-    return _allTransactions.where((transaction) {
-      final matchesSearch = transaction.recipient.toLowerCase().contains(
-        _searchController.text.toLowerCase(),
-      );
-      final matchesFilter =
-          _selectedFilter == 'all' ||
-          transaction.type == _selectedFilter ||
-          (_selectedFilter == 'bills' && transaction.category == 'Bills');
-      return matchesSearch && matchesFilter;
-    }).toList();
-  }
-
-  Map<String, List<Transaction>> _groupByDate(List<Transaction> transactions) {
-    final Map<String, List<Transaction>> groups = {};
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final yesterday = DateTime(now.year, now.month, now.day - 1);
-
-    for (var transaction in transactions) {
-      final date = DateTime(
-        transaction.date.year,
-        transaction.date.month,
-        transaction.date.day,
-      );
-
-      String label;
-      if (date == today) {
-        label = 'Today';
-      } else if (date == yesterday) {
-        label = 'Yesterday';
-      } else {
-        label =
-            '${_monthName(transaction.date.month)} ${transaction.date.day}, ${transaction.date.year}';
-      }
-
-      if (!groups.containsKey(label)) {
-        groups[label] = [];
-      }
-      groups[label]!.add(transaction);
-    }
-
-    return groups;
-  }
-
-  String _monthName(int month) {
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-    return months[month - 1];
-  }
+  List<TransactionHistoryModel> allTransactions = [];
 
   @override
   void dispose() {
@@ -203,6 +39,13 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
               return Center(child: CircularProgressIndicator());
             }
             if (state is Success) {
+              allTransactions = context
+                  .read<TransactionsHistoryCubit>()
+                  .allTransactions;
+
+              print("========== bloc =======================");
+              print(allTransactions.length);
+
               return Column(
                 children: [
                   // Header
@@ -387,20 +230,21 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                                 width: 40,
                                                 height: 40,
                                                 decoration: BoxDecoration(
-                                                  color: transaction.isReceived
-                                                      ? AppColors.success
-                                                            .withOpacity(0.1)
-                                                      : AppColors.error
-                                                            .withOpacity(0.1),
+                                                  color:
+                                                      // transaction.isReceived
+                                                      AppColors.success
+                                                          .withOpacity(0.1)
+                                                          // : AppColors.error
+                                                          .withOpacity(0.1),
                                                   shape: BoxShape.circle,
                                                 ),
                                                 child: Icon(
-                                                  transaction.isReceived
-                                                      ? Icons.arrow_downward
-                                                      : Icons.arrow_upward,
-                                                  color: transaction.isReceived
-                                                      ? AppColors.success
-                                                      : AppColors.error,
+                                                  // transaction.transactionType ="transfer",
+                                                  // ? Icons.arrow_downward
+                                                  Icons.arrow_upward,
+                                                  // color: transaction.isReceived
+                                                  color: AppColors.success,
+                                                  // : AppColors.error,
                                                   size: 20,
                                                 ),
                                               ),
@@ -411,7 +255,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      transaction.recipient,
+                                                      'Ahmed Hassan',
                                                       style: const TextStyle(
                                                         fontSize: 14,
                                                         fontWeight:
@@ -427,7 +271,9 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                                     Row(
                                                       children: [
                                                         Text(
-                                                          transaction.time,
+                                                          transaction.date
+                                                              .toString(),
+
                                                           style: const TextStyle(
                                                             fontSize: 12,
                                                             color: AppColors
@@ -452,7 +298,8 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                                           width: 8,
                                                         ),
                                                         Text(
-                                                          transaction.category,
+                                                          transaction
+                                                              .transactionType,
                                                           style: const TextStyle(
                                                             fontSize: 12,
                                                             color: AppColors
@@ -469,16 +316,17 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                                     CrossAxisAlignment.end,
                                                 children: [
                                                   Text(
-                                                    '${transaction.isReceived ? '+' : '-'}${transaction.amount.toStringAsFixed(2)}',
+                                                    '+',
+                                                    // '${transaction.isReceived ? '+' : '-'}${transaction.amount.toStringAsFixed(2)}',
                                                     style: TextStyle(
                                                       fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       color:
-                                                          transaction.isReceived
-                                                          ? AppColors.success
-                                                          : AppColors
-                                                                .textPrimary,
+                                                          // transaction.isReceived
+                                                          AppColors.success,
+                                                      // : AppColors
+                                                      // .textPrimary,
                                                     ),
                                                   ),
                                                   const SizedBox(height: 2),
@@ -522,10 +370,10 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                                     ),
                                                     const SizedBox(width: 4),
                                                     Text(
-                                                      transaction.status ==
-                                                              'completed'
-                                                          ? 'Completed'
-                                                          : transaction.status,
+                                                      // transaction.status ==
+                                                      'completed',
+                                                      // ? 'Completed'
+                                                      // : transaction.status,
                                                       style: const TextStyle(
                                                         fontSize: 11,
                                                         fontWeight:
@@ -607,5 +455,71 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         ),
       ),
     );
+  }
+
+  List<TransactionHistoryModel> get _filteredTransactions {
+    return allTransactions.where((transaction) {
+      final matchesSearch = transaction.transactionType.toLowerCase().contains(
+        _searchController.text.toLowerCase(),
+      );
+      final matchesFilter =
+          _selectedFilter == 'all' ||
+          transaction.transactionType == _selectedFilter ||
+          (_selectedFilter == 'bills' &&
+              transaction.transactionType == 'Bills');
+      return matchesSearch && matchesFilter;
+    }).toList();
+  }
+
+  Map<String, List<TransactionHistoryModel>> _groupByDate(
+    List<TransactionHistoryModel> transactions,
+  ) {
+    final Map<String, List<TransactionHistoryModel>> groups = {};
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final yesterday = DateTime(now.year, now.month, now.day - 1);
+
+    for (var transaction in transactions) {
+      final date = DateTime(
+        transaction.date.year,
+        transaction.date.month,
+        transaction.date.day,
+      );
+
+      String label;
+      if (date == today) {
+        label = 'Today';
+      } else if (date == yesterday) {
+        label = 'Yesterday';
+      } else {
+        label =
+            '${_monthName(transaction.date.month)} ${transaction.date.day}, ${transaction.date.year}';
+      }
+
+      if (!groups.containsKey(label)) {
+        groups[label] = [];
+      }
+      groups[label]!.add(transaction);
+    }
+
+    return groups;
+  }
+
+  String _monthName(int month) {
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    return months[month - 1];
   }
 }
