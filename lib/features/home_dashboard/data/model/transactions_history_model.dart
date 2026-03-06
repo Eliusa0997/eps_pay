@@ -9,14 +9,14 @@ class TransactionHistoryModel {
   final String transactionType;
   final String amount;
   @JsonKey(name: "timestamp")
-  final String transactionDate;
+  final DateTime date;
   final int profile;
 
   TransactionHistoryModel({
     required this.id,
     required this.transactionType,
     required this.amount,
-    required this.transactionDate,
+    required this.date,
     required this.profile,
   });
 
