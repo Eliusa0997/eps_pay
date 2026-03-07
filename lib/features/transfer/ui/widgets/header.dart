@@ -1,6 +1,9 @@
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/helpers/extensions.dart';
+import '../../../../core/routing/routes.dart';
+
 class Header extends StatelessWidget {
   const Header({super.key});
 
@@ -15,12 +18,13 @@ class Header extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
+        padding: const EdgeInsets.fromLTRB(24, 40, 24, 100),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () =>
+                  context.pushReplacementNamed(Routes.homeDashboardScreen),
               icon: const Icon(Icons.arrow_back),
               color: Colors.white,
               style: IconButton.styleFrom(

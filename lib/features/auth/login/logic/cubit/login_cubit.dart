@@ -19,26 +19,30 @@ class LoginCubit extends Cubit<LoginState> {
   //  Global Key
   final formKey = GlobalKey<FormState>();
 
-  void emitLoginState(
-    LoginRequestBody loginRequestBody,
-    String storedUserName,
-  ) async {
-    emit(LoginState.loading());
-    final response = await _loginRepo.login(loginRequestBody);
-    response.when(
-      success: (loginResponse) {
-        saveTokens(
-          loginResponse.accessToken.toString(),
-          loginResponse.refreshToken.toString(),
-        );
-        saveUserName(storedUserName);
+  void emitLoginState() async {
+    if (formKey.currentState!.validate()) {
+      emit(LoginState.loading());
+      final response = await _loginRepo.login(
+        LoginRequestBody(
+          userName: userNameController.text,
+          password: passwordController.text,
+        ),
+      );
+      response.when(
+        success: (loginResponse) {
+          saveTokens(
+            loginResponse.accessToken.toString(),
+            loginResponse.refreshToken.toString(),
+          );
+          saveUserName(userNameController.text);
 
-        emit(LoginState.success(loginResponse));
-      },
-      failure: (failure) {
-        emit(LoginState.error(message: failure.toString()));
-      },
-    );
+          emit(LoginState.success(loginResponse));
+        },
+        failure: (failure) {
+          emit(LoginState.error(message: failure.toString()));
+        },
+      );
+    }
   }
 
   void saveUserName(String storedUserName) async {
@@ -60,6 +64,5 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> saveTokens(String access, String refresh) async {
     await storage.write(key: 'access_token', value: access);
     await storage.write(key: 'refresh_token', value: refresh);
-    print("==================== done ============================");
   }
 }

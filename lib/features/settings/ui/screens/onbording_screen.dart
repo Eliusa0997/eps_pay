@@ -2,6 +2,7 @@ import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:eps_pay/features/settings/logic/onbording_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -19,9 +20,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       title: 'Welcome to EpsPay',
       description:
           'Your trusted banking partner in Sudan. Manage your finances securely and conveniently from your mobile device.',
-      icon: Icons.account_balance,
+      // image: Image.asset("assets/images/splash.png"),
+      // icon: Icons.account_balance,
       gradient: const LinearGradient(
-        colors: [Color(0xFF0A5F7D), Color(0xFF0D8BB3)],
+        colors: [
+          Color.fromARGB(255, 255, 255, 255),
+          Color.fromARGB(255, 216, 216, 216),
+        ],
       ),
     ),
     OnboardingPage(
@@ -306,7 +311,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ],
                   ),
                   child: Center(
-                    child: Icon(page.icon, size: 80, color: Colors.white),
+                    child: index != 0
+                        ? Icon(page.icon, size: 80, color: Colors.white)
+                        : Image.asset(
+                            "assets/images/logo.png",
+                            height: 140.h,
+                            width: 140.w,
+                          ),
                   ),
                 ),
               );
@@ -418,13 +429,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 class OnboardingPage {
   final String title;
   final String description;
-  final IconData icon;
+  IconData? icon;
+  Image? image;
   final LinearGradient gradient;
 
   OnboardingPage({
     required this.title,
     required this.description,
-    required this.icon,
+    this.icon,
+    this.image,
     required this.gradient,
   });
 }
