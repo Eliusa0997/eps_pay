@@ -40,10 +40,14 @@ class AppFormField extends StatelessWidget {
         filled: true,
         fillColor: AppColors.myGery,
         border: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.info),
           borderRadius: BorderRadius.circular(15.r),
-          borderSide: BorderSide.none,
         ),
         errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.error),
+          borderRadius: BorderRadius.circular(15.r),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.error),
           borderRadius: BorderRadius.circular(15.r),
         ),
