@@ -1,6 +1,6 @@
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
-import 'package:eps_pay/features/onbording/logic/onbording_helper.dart';
+import 'package:eps_pay/features/settings/logic/onbording_helper.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -123,7 +123,7 @@ class _SplashScreenState extends State<SplashScreen>
 
                     // App name
                     const Text(
-                      'Bankak',
+                      'EpsPay',
                       style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,

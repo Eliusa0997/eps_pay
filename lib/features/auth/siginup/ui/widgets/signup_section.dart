@@ -1,34 +1,30 @@
 import 'package:eps_pay/core/helpers/app_regex.dart';
+import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/widgets/app_button.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
-import 'package:eps_pay/features/auth/login/logic/cubit/login_cubit.dart';
 import 'package:eps_pay/core/widgets/forgot_password_and_goto_screen.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
-import 'package:eps_pay/features/auth/login/ui/widgets/login_bloc_listener.dart';
-import 'package:eps_pay/features/auth/login/ui/widgets/password_validations.dart';
 import 'package:eps_pay/features/auth/siginup/data/model/signup_request_body.dart';
 import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
+import 'package:eps_pay/features/auth/siginup/ui/widgets/password_validations.dart';
 import 'package:eps_pay/features/auth/siginup/ui/widgets/signup_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class signupSection extends StatefulWidget {
-  const signupSection({super.key});
+class SignupSection extends StatefulWidget {
+  const SignupSection({super.key});
 
   @override
-  State<signupSection> createState() => _signupSectionState();
+  State<SignupSection> createState() => _SignupSectionState();
 }
 
-class _signupSectionState extends State<signupSection> {
-  late TextEditingController userNameController;
+class _SignupSectionState extends State<SignupSection> {
   late TextEditingController passwordController;
 
   // Password validation variable
   bool hasLowerCase = false;
-  bool hasUpperCase = false;
-  bool hasSpecialCharacters = false;
   bool hasNumber = false;
   bool hasMinLength = false;
 
@@ -36,7 +32,6 @@ class _signupSectionState extends State<signupSection> {
   @override
   void initState() {
     super.initState();
-    userNameController = context.read<SignupCubit>().userNameController;
     passwordController = context.read<SignupCubit>().passwordController;
     setUpPasswordControllerListener();
   }
@@ -45,10 +40,6 @@ class _signupSectionState extends State<signupSection> {
     passwordController.addListener(() {
       setState(() {
         hasLowerCase = AppRegex.hasLowerCase(passwordController.text);
-        hasUpperCase = AppRegex.hasUpperCase(passwordController.text);
-        hasSpecialCharacters = AppRegex.hasSpecialCharacters(
-          passwordController.text,
-        );
         hasNumber = AppRegex.hasNumber(passwordController.text);
         hasMinLength = AppRegex.hasMinLength(passwordController.text);
       });
@@ -57,22 +48,18 @@ class _signupSectionState extends State<signupSection> {
 
   @override
   Widget build(BuildContext context) {
-    void handleLogin() {
-      Navigator.pushReplacementNamed(context, Routes.homeDashboard);
-    }
-
     return Transform.translate(
       offset: const Offset(0, -48),
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Container(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(20.r),
           decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.08),
+                color: Colors.black.withValues(alpha: 0.5),
                 blurRadius: 16,
                 offset: const Offset(0, 4),
               ),
@@ -83,27 +70,49 @@ class _signupSectionState extends State<signupSection> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Phone Number
-                const FormFeildTitle(title: "Phone Number"),
-                // Phone Form Field
-                const SizedBox(height: 8),
+                // User Name Section
+                const FormFeildTitle(title: "User Name"),
+                SizedBox(height: 6.h),
                 AppFormField(
-                  controller: userNameController,
+                  controller: context.read<SignupCubit>().userNameController,
                   isObscurePin: false,
                   textInputType: TextInputType.text,
-                  hintText: 'Enter your User N ame',
+                  hintText: 'Enter User Name',
                   prefixIcon: const Icon(Icons.person),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        !AppRegex.hasMinUserNameLength(value)) {
                       return "Plece Enter Valid User Name";
                     }
                   },
                 ),
-                const SizedBox(height: 20),
-                // PIN
-                const FormFeildTitle(title: "PIN"),
-                // Pin Form Field
-                const SizedBox(height: 8),
+
+                SizedBox(height: 15.h),
+
+                // Email Section
+                const FormFeildTitle(title: "Email"),
+                SizedBox(height: 6.h),
+                AppFormField(
+                  controller: context.read<SignupCubit>().emailController,
+                  isObscurePin: false,
+                  maxLength: 30,
+                  textInputType: TextInputType.text,
+                  hintText: 'Enter Your Email',
+                  prefixIcon: const Icon(Icons.email),
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        !AppRegex.isEmailValid(value)) {
+                      return "Plece Enter Valid User Email";
+                    }
+                  },
+                ),
+                SizedBox(height: 15.h),
+
+                // Password Form Field
+                const FormFeildTitle(title: " Password"),
+                SizedBox(height: 6.h),
                 AppFormField(
                   textInputType: TextInputType.text,
                   controller: passwordController,
@@ -122,36 +131,39 @@ class _signupSectionState extends State<signupSection> {
                     },
                   ),
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Plece Enter Valid Password";
+                    if (value == null ||
+                        value.isEmpty ||
+                        !AppRegex.hasMinLength(value)) {
+                      return "Password Must Be More Than 5 Length";
                     }
                   },
                 ),
 
-                const SizedBox(height: 12),
-                forgetPassordAndGoToSomeScreen(
+                // Navigation Row for Forget Password and login and signup
+                SizedBox(height: 10.h),
+                ForgetPassordAndGoToSomeScreen(
                   text: 'I have a account',
                   goToScreen: () {
-                    Navigator.pushNamed(context, Routes.loginScreen);
+                    context.pushNamed(Routes.loginScreen);
                   },
                 ),
 
+                // Regx Validation
                 PasswordValidations(
                   hasLowerCase: hasLowerCase,
-                  hasUpperCase: hasUpperCase,
-                  hasSpecialCharacters: hasSpecialCharacters,
                   hasNumber: hasNumber,
                   hasMinLength: hasMinLength,
                 ),
                 // Login Button
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
                 AppButton(
                   onPressed: () {
                     validateThenDoSignup(context);
-                    // handleLogin;
                   },
-                  buttonText: "Login",
+                  buttonText: "Sign up",
                 ),
+
+                // Signup Bloc Listener
                 const SignupBlocListener(),
               ],
             ),
@@ -166,15 +178,17 @@ class _signupSectionState extends State<signupSection> {
       context.read<SignupCubit>().emitSignupState(
         SignupRequestBody(
           userName: context.read<SignupCubit>().userNameController.text,
+          email: context.read<SignupCubit>().emailController.text,
           password: context.read<SignupCubit>().passwordController.text,
         ),
+        context.read<SignupCubit>().userNameController.text,
       );
     }
   }
 
   @override
   void dispose() {
-    passwordController.dispose();
+    // passwordController.dispose();
     super.dispose();
   }
 }

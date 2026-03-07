@@ -1,4 +1,7 @@
+import 'package:eps_pay/core/functions/setup_auth_error_state.dart';
+import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
+import 'package:eps_pay/core/theming/app_fonts.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
 import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_state.dart';
@@ -16,17 +19,45 @@ class SignupBlocListener extends StatelessWidget {
       listener: (context, state) {
         state.whenOrNull(
           loading: () {
-            Dialog(
-              child: CircularProgressIndicator(color: AppColors.secondary),
+            showDialog(
+              context: context,
+              builder: (context) {
+                return Center(
+                  child: CircularProgressIndicator(color: AppColors.secondary),
+                );
+              },
             );
           },
           success: (signupResponse) {
-            // context.pop();
-            Navigator.of(context).pop();
-            Navigator.pushNamed(context, Routes.homeDashboard);
+            context.pop();
+            context.pushNamed(Routes.loginScreen);
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  icon: const Icon(
+                    Icons.error,
+                    color: AppColors.error,
+                    size: 32,
+                  ),
+                  content: Text(
+                    'You are Signup Successfully Login Now',
+                    style: AppFonts.font14W600textPrimary,
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        context.pop();
+                      },
+                      child: Text("ok"),
+                    ),
+                  ],
+                );
+              },
+            );
           },
           error: (error) {
-            Dialog(child: Text(error));
+            setupErrorState(context, error);
           },
         );
       },

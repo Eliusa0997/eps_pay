@@ -1,6 +1,6 @@
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
-import 'package:eps_pay/features/onbording/logic/onbording_helper.dart';
+import 'package:eps_pay/features/settings/logic/onbording_helper.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatefulWidget {
@@ -16,7 +16,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<OnboardingPage> _pages = [
     OnboardingPage(
-      title: 'Welcome to Bankak',
+      title: 'Welcome to EpsPay',
       description:
           'Your trusted banking partner in Sudan. Manage your finances securely and conveniently from your mobile device.',
       icon: Icons.account_balance,

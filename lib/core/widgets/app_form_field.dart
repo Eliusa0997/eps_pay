@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:eps_pay/core/theming/colors.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -39,7 +40,7 @@ class AppFormField extends StatelessWidget {
         filled: true,
         fillColor: AppColors.background,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(15.r),
           borderSide: BorderSide.none,
         ),
         errorBorder: OutlineInputBorder(
@@ -48,10 +49,7 @@ class AppFormField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.info),
         ),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 16,
-        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 13.h),
         counterText: '',
       ),
       validator: (value) {
