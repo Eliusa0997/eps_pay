@@ -32,16 +32,23 @@ class wellcomeCard extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.all(16),
+              height: 120.h,
+              width: 120.w,
+              padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(16.r),
-              ),
-              child: Icon(
-                headerIcon ?? Icons.account_balance,
-                size: 48.sp,
                 color: Colors.white,
+                borderRadius: BorderRadius.circular(60.r),
               ),
+              child: Image.asset(
+                "assets/images/logo.png",
+                height: 50,
+                width: 50,
+              ),
+              // child: Icon(
+              //   headerIcon ?? Icons.account_balance,
+              //   size: 48.sp,
+              //   color: Colors.white,
+              // ),
             ),
             SizedBox(height: 15.h),
             Text(title, style: AppFonts.font28WhiteBold),
