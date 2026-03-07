@@ -7,6 +7,7 @@ class AppColors {
 
   // TextFormFeild Grey Colors
   static const Color myGery = Color.fromARGB(255, 240, 243, 247);
+  static const Color lightGery = Color.fromARGB(255, 241, 242, 244);
 
   // Background Colors
   static const Color background = Color(0xFFF9FAFB);
