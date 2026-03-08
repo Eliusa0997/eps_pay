@@ -16,9 +16,16 @@ class MobileRechargeScreen extends StatelessWidget {
               wellcomeCard(
                 title: 'Mobile Recharge',
                 subTitle: 'Recharge your Mobile bill quickly and securely',
-                headerIcon: Icons.smartphone,
+                headerIcon: Icon(
+                  Icons.smartphone,
+                  size: 100,
+                  color: Color(0xFF10B981),
+                ),
                 headerGradientColor: LinearGradient(
-                  colors: [Color(0xFF34D399), Color(0xFF10B981)],
+                  colors: [
+                    Color.fromARGB(255, 74, 200, 154),
+                    Color(0xFF10B981),
+                  ],
                 ),
               ),
               // Form and button and bloc listner Section

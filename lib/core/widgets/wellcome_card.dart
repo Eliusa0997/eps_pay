@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class wellcomeCard extends StatelessWidget {
   final String title;
   final String subTitle;
-  IconData? headerIcon;
+  Widget? headerIcon;
   LinearGradient? headerGradientColor;
   wellcomeCard({
     super.key,
@@ -39,11 +39,9 @@ class wellcomeCard extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(60.r),
               ),
-              child: Image.asset(
-                "assets/images/logo.png",
-                height: 50,
-                width: 50,
-              ),
+              child:
+                  headerIcon ??
+                  Image.asset("assets/images/logo.png", height: 50, width: 50),
             ),
             SizedBox(height: 15.h),
             Text(title, style: AppFonts.font28WhiteBold),
