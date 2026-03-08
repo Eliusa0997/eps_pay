@@ -12,10 +12,10 @@ class WaterScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header
+              // Header title and discrption Section
               wellcomeCard(
                 title: ' Water',
-                subTitle: 'Water Payment Section',
+                subTitle: 'Quickly pay your water bill and securely',
                 headerIcon: Icons.water_drop,
                 headerGradientColor: LinearGradient(
                   colors: [Color(0xFF60A5FA), Color(0xFF3B82F6)],

@@ -27,7 +27,7 @@ class WaterBlocListener extends StatelessWidget {
               },
             );
           },
-          success: (reciverResponse) {
+          success: (waterResponse) {
             showDialog(
               context: context,
               builder: (context) {
@@ -38,7 +38,7 @@ class WaterBlocListener extends StatelessWidget {
                     size: 32,
                   ),
                   content: Text(
-                    'Water Bill Payment Done Successfully',
+                    'Your ${waterResponse.sucsuccessMessage} done ✅',
                     style: AppFonts.font14W600textPrimary,
                   ),
                   actions: [
@@ -55,7 +55,28 @@ class WaterBlocListener extends StatelessWidget {
             );
           },
           error: (error) {
-            // (context, error);
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  icon: const Icon(
+                    Icons.error,
+                    color: AppColors.error,
+                    size: 32,
+                  ),
+                  content: Text(error, style: AppFonts.font14W600textPrimary),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        context.pop();
+                        context.pushNamed(Routes.homeDashboardScreen);
+                      },
+                      child: Text("ok"),
+                    ),
+                  ],
+                );
+              },
+            );
           },
         );
       },

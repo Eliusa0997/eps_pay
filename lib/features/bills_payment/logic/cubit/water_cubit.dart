@@ -12,16 +12,21 @@ class WaterCubit extends Cubit<WaterState> {
   final amountController = TextEditingController();
   final invoiceNumberController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  void emitWaterState(BillsRequestBody billsRequestBody) async {
-    emit(WaterState.loading());
-    final response = await _waterRepo.water(billsRequestBody);
-    response.when(
-      success: (waterResponse) {
-        emit(WaterState.success(waterResponse));
-      },
-      failure: (failure) {
-        emit(WaterState.error(message: failure.toString()));
-      },
-    );
+
+  void emitWaterState() async {
+    if (formKey.currentState!.validate()) {
+      emit(WaterState.loading());
+      final response = await _waterRepo.water(
+        BillsRequestBody(amount: amountController.text),
+      );
+      response.when(
+        success: (waterResponse) {
+          emit(WaterState.success(waterResponse));
+        },
+        failure: (failure) {
+          emit(WaterState.error(message: failure.toString()));
+        },
+      );
+    }
   }
 }

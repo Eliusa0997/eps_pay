@@ -75,7 +75,7 @@ class WaterFormButtonSection extends StatelessWidget {
                 AppButton(
                   backgroundColor: Color(0xFF3B82F6),
                   onPressed: () {
-                    validateAndComfirm(context);
+                    context.read<WaterCubit>().emitWaterState();
                   },
                   buttonText: "Confirm Payment",
                 ),
@@ -86,15 +86,5 @@ class WaterFormButtonSection extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void validateAndComfirm(BuildContext context) {
-    if (context.read<WaterCubit>().formKey.currentState!.validate()) {
-      context.read<WaterCubit>().emitWaterState(
-        BillsRequestBody(
-          amount: context.read<WaterCubit>().amountController.text,
-        ),
-      );
-    }
   }
 }
