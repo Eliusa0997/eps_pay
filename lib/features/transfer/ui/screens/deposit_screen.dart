@@ -12,11 +12,14 @@ class DepositScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header
-              wellcomeCard(title: 'Deposit', subTitle: ''),
+              // Header title and discrption Section
+              wellcomeCard(
+                title: 'Deposit',
+                subTitle: 'Securely add funds to your EpsPay account',
+              ),
 
               // Form and button and bloc listner Section
-              depositFormButtonSection(),
+              DepositFormButtonSection(),
             ],
           ),
         ),
