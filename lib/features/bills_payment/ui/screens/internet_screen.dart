@@ -16,9 +16,16 @@ class InternetScreen extends StatelessWidget {
               wellcomeCard(
                 title: ' Internet',
                 subTitle: 'Pay your internet bill quickly and securely',
-                headerIcon: Icons.wifi,
+                headerIcon: Icon(
+                  Icons.wifi,
+                  size: 100,
+                  color: Color(0xFF8B5CF6),
+                ),
                 headerGradientColor: LinearGradient(
-                  colors: [Color(0xFFA78BFA), Color(0xFF8B5CF6)],
+                  colors: [
+                    Color.fromARGB(255, 185, 170, 231),
+                    Color(0xFF8B5CF6),
+                  ],
                 ),
               ),
               // Form and button and bloc listner Section

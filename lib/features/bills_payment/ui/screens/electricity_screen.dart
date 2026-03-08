@@ -16,7 +16,11 @@ class ElectricityScreen extends StatelessWidget {
               wellcomeCard(
                 title: 'Electricity',
                 subTitle: 'Pay your electricity bill quickly and securely',
-                headerIcon: Icons.flash_on,
+                headerIcon: Icon(
+                  Icons.flash_on,
+                  size: 100,
+                  color: Color.fromARGB(255, 244, 201, 132),
+                ),
                 headerGradientColor: LinearGradient(
                   colors: [
                     Color.fromARGB(255, 132, 117, 78),
