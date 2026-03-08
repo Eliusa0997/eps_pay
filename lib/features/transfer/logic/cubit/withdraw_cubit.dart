@@ -14,16 +14,20 @@ class WithdrawCubit extends Cubit<WithdrawState> {
   //  Global Key
   final formKey = GlobalKey<FormState>();
 
-  void emitWithdrawState(TransferRequestBody transferRequestBody) async {
-    emit(WithdrawState.loading());
-    final response = await _withdrawRepo.withdraw(transferRequestBody);
-    response.when(
-      success: (withdrawResponse) {
-        emit(WithdrawState.success(withdrawResponse));
-      },
-      failure: (failure) {
-        emit(WithdrawState.error(message: failure.toString()));
-      },
-    );
+  void emitWithdrawState() async {
+    if (formKey.currentState!.validate()) {
+      emit(WithdrawState.loading());
+      final response = await _withdrawRepo.withdraw(
+        TransferRequestBody(amount: amountController.text),
+      );
+      response.when(
+        success: (withdrawResponse) {
+          emit(WithdrawState.success(withdrawResponse));
+        },
+        failure: (failure) {
+          emit(WithdrawState.error(message: failure.toString()));
+        },
+      );
+    }
   }
 }

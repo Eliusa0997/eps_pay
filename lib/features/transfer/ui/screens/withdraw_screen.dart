@@ -12,8 +12,11 @@ class WithdrawScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header
-              wellcomeCard(title: 'Withdraw', subTitle: ''),
+              // Header title and discription section
+              wellcomeCard(
+                title: 'Withdraw',
+                subTitle: 'Securely withdraw funds from your account',
+              ),
               // Form and button and bloc listner Section
               WithdrawFormButtonSection(),
             ],

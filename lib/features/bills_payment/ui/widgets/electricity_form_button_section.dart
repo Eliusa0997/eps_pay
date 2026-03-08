@@ -4,8 +4,6 @@ import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
 import 'package:eps_pay/features/bills_payment/data/model/bills_request_body.dart';
 import 'package:eps_pay/features/bills_payment/logic/cubit/electricity_cubit.dart';
 import 'package:eps_pay/features/bills_payment/ui/widgets/electricity_bloc_listener.dart';
-import 'package:eps_pay/features/transfer/data/model/transfer_request_body.dart';
-import 'package:eps_pay/features/transfer/logic/cubit/deposit_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -77,7 +75,7 @@ class ElectricityFormButtonSection extends StatelessWidget {
                 AppButton(
                   backgroundColor: Color.fromARGB(255, 138, 119, 88),
                   onPressed: () {
-                    validateAndComfirm(context);
+                    context.read<ElectricityCubit>().emitElectricityState();
                   },
                   buttonText: "Confirm Payment",
                 ),
@@ -88,15 +86,5 @@ class ElectricityFormButtonSection extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void validateAndComfirm(BuildContext context) {
-    if (context.read<ElectricityCubit>().formKey.currentState!.validate()) {
-      context.read<ElectricityCubit>().emitElectricityState(
-        BillsRequestBody(
-          amount: context.read<ElectricityCubit>().amountController.text,
-        ),
-      );
-    }
   }
 }
