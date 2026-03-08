@@ -12,14 +12,14 @@ class ElectricityScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header
+              // Header title and discrption Section
               wellcomeCard(
                 title: 'Electricity',
-                subTitle: 'Electricity Payment Section',
+                subTitle: 'Pay your electricity bill quickly and securely',
                 headerIcon: Icons.flash_on,
                 headerGradientColor: LinearGradient(
                   colors: [
-                    Color.fromARGB(255, 168, 149, 101),
+                    Color.fromARGB(255, 132, 117, 78),
                     Color.fromARGB(255, 244, 201, 132),
                   ],
                 ),

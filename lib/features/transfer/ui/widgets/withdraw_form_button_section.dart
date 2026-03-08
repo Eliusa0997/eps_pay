@@ -56,7 +56,7 @@ class WithdrawFormButtonSection extends StatelessWidget {
                 SizedBox(height: 6.h),
                 AppButton(
                   onPressed: () {
-                    validateAndComfirm(context);
+                    context.read<WithdrawCubit>().emitWithdrawState();
                   },
                   buttonText: "Withdraw",
                 ),
@@ -67,15 +67,5 @@ class WithdrawFormButtonSection extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void validateAndComfirm(BuildContext context) {
-    if (context.read<WithdrawCubit>().formKey.currentState!.validate()) {
-      context.read<WithdrawCubit>().emitWithdrawState(
-        TransferRequestBody(
-          amount: context.read<WithdrawCubit>().amountController.text,
-        ),
-      );
-    }
   }
 }
