@@ -13,16 +13,20 @@ class DepositCubit extends Cubit<DepositState> {
   //  Global Key
   final formKey = GlobalKey<FormState>();
 
-  void emitDepositState(TransferRequestBody transferRequestBody) async {
-    emit(DepositState.loading());
-    final response = await _depositRepo.deposit(transferRequestBody);
-    response.when(
-      success: (depositResponse) {
-        emit(DepositState.success(depositResponse));
-      },
-      failure: (failure) {
-        emit(DepositState.error(message: failure.toString()));
-      },
-    );
+  void emitDepositState() async {
+    if (formKey.currentState!.validate()) {
+      emit(DepositState.loading());
+      final response = await _depositRepo.deposit(
+        TransferRequestBody(amount: amountController.text),
+      );
+      response.when(
+        success: (depositResponse) {
+          emit(DepositState.success(depositResponse));
+        },
+        failure: (failure) {
+          emit(DepositState.error(message: failure.toString()));
+        },
+      );
+    }
   }
 }

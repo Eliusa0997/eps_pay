@@ -5,7 +5,6 @@ import 'package:eps_pay/core/widgets/app_button.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
 import 'package:eps_pay/core/widgets/forgot_password_and_goto_screen.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
-import 'package:eps_pay/features/auth/siginup/data/model/signup_request_body.dart';
 import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
 import 'package:eps_pay/features/auth/siginup/ui/widgets/password_validations.dart';
 import 'package:eps_pay/features/auth/siginup/ui/widgets/signup_bloc_listener.dart';

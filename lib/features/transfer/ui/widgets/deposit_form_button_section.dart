@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class depositFormButtonSection extends StatelessWidget {
-  const depositFormButtonSection({super.key});
+class DepositFormButtonSection extends StatelessWidget {
+  const DepositFormButtonSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class depositFormButtonSection extends StatelessWidget {
                 SizedBox(height: 6.h),
                 AppButton(
                   onPressed: () {
-                    validateAndComfirm(context);
+                    context.read<DepositCubit>().emitDepositState();
                   },
                   buttonText: "Deposit",
                 ),
@@ -67,15 +67,5 @@ class depositFormButtonSection extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void validateAndComfirm(BuildContext context) {
-    if (context.read<DepositCubit>().formKey.currentState!.validate()) {
-      context.read<DepositCubit>().emitDepositState(
-        TransferRequestBody(
-          amount: context.read<DepositCubit>().amountController.text,
-        ),
-      );
-    }
   }
 }
