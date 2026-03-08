@@ -28,7 +28,7 @@ class MobileRechargeBlocListener extends StatelessWidget {
               },
             );
           },
-          success: (billResponse) {
+          success: (mobileRechargeResponse) {
             showDialog(
               context: context,
               builder: (context) {
@@ -39,7 +39,7 @@ class MobileRechargeBlocListener extends StatelessWidget {
                     size: 32,
                   ),
                   content: Text(
-                    'Mobile Recharge Done Successfully',
+                    'Your ${mobileRechargeResponse.sucsuccessMessage} done ✅',
                     style: AppFonts.font14W600textPrimary,
                   ),
                   actions: [
@@ -56,7 +56,28 @@ class MobileRechargeBlocListener extends StatelessWidget {
             );
           },
           error: (error) {
-            // (context, error);
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  icon: const Icon(
+                    Icons.error,
+                    color: AppColors.error,
+                    size: 32,
+                  ),
+                  content: Text(error, style: AppFonts.font14W600textPrimary),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        context.pop();
+                        context.pushNamed(Routes.homeDashboardScreen);
+                      },
+                      child: Text("ok"),
+                    ),
+                  ],
+                );
+              },
+            );
           },
         );
       },
