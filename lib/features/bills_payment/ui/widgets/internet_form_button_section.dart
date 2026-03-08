@@ -73,7 +73,7 @@ class InternetFormButtonSection extends StatelessWidget {
                 AppButton(
                   backgroundColor: Color(0xFF8B5CF6),
                   onPressed: () {
-                    validateAndComfirm(context);
+                    context.read<InternetCubit>().emitInternetState();
                   },
                   buttonText: "Confirm Payment",
                 ),
@@ -84,15 +84,5 @@ class InternetFormButtonSection extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void validateAndComfirm(BuildContext context) {
-    if (context.read<InternetCubit>().formKey.currentState!.validate()) {
-      context.read<InternetCubit>().emitInternetState(
-        BillsRequestBody(
-          amount: context.read<InternetCubit>().amountController.text,
-        ),
-      );
-    }
   }
 }

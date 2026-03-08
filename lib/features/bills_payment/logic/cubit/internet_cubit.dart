@@ -13,16 +13,20 @@ class InternetCubit extends Cubit<InternetState> {
   final invoiceController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  void emitInternetState(BillsRequestBody billsRequestBody) async {
-    emit(InternetState.loading());
-    final response = await _internetRepo.internet(billsRequestBody);
-    response.when(
-      success: (internetResponse) {
-        emit(InternetState.success(internetResponse));
-      },
-      failure: (failure) {
-        emit(InternetState.error(message: failure.toString()));
-      },
-    );
+  void emitInternetState() async {
+    if (formKey.currentState!.validate()) {
+      emit(InternetState.loading());
+      final response = await _internetRepo.internet(
+        BillsRequestBody(amount: amountController.text),
+      );
+      response.when(
+        success: (internetResponse) {
+          emit(InternetState.success(internetResponse));
+        },
+        failure: (failure) {
+          emit(InternetState.error(message: failure.toString()));
+        },
+      );
+    }
   }
 }

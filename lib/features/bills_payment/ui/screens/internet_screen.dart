@@ -12,10 +12,10 @@ class InternetScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header
+              // Header title and discrption Section
               wellcomeCard(
                 title: ' Internet',
-                subTitle: 'Internet Payment Section',
+                subTitle: 'Pay your internet bill quickly and securely',
                 headerIcon: Icons.wifi,
                 headerGradientColor: LinearGradient(
                   colors: [Color(0xFFA78BFA), Color(0xFF8B5CF6)],

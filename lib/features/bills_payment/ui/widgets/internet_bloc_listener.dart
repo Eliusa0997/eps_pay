@@ -27,7 +27,7 @@ class InternetBlocListener extends StatelessWidget {
               },
             );
           },
-          success: (billResponse) {
+          success: (internetResponse) {
             showDialog(
               context: context,
               builder: (context) {
@@ -38,7 +38,7 @@ class InternetBlocListener extends StatelessWidget {
                     size: 32,
                   ),
                   content: Text(
-                    'Internet Bill Payment Done Successfully',
+                    'Your ${internetResponse.sucsuccessMessage} done ✅',
                     style: AppFonts.font14W600textPrimary,
                   ),
                   actions: [
@@ -55,7 +55,28 @@ class InternetBlocListener extends StatelessWidget {
             );
           },
           error: (error) {
-            // (context, error);
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  icon: const Icon(
+                    Icons.error,
+                    color: AppColors.error,
+                    size: 32,
+                  ),
+                  content: Text(error, style: AppFonts.font14W600textPrimary),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        context.pop();
+                        context.pushNamed(Routes.homeDashboardScreen);
+                      },
+                      child: Text("ok"),
+                    ),
+                  ],
+                );
+              },
+            );
           },
         );
       },
