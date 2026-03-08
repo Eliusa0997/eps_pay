@@ -79,7 +79,9 @@ class MobileRechargeFormButtonSection extends StatelessWidget {
                 AppButton(
                   backgroundColor: Color(0xFF10B981),
                   onPressed: () {
-                    validateAndComfirm(context);
+                    context
+                        .read<MobileRechargeCubit>()
+                        .emitMobileRechargeState();
                   },
                   buttonText: "Confirm Payment",
                 ),
@@ -90,15 +92,5 @@ class MobileRechargeFormButtonSection extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void validateAndComfirm(BuildContext context) {
-    if (context.read<MobileRechargeCubit>().formKey.currentState!.validate()) {
-      context.read<MobileRechargeCubit>().emitMobileRechargeState(
-        BillsRequestBody(
-          amount: context.read<MobileRechargeCubit>().amountController.text,
-        ),
-      );
-    }
   }
 }

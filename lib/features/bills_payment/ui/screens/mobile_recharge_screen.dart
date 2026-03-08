@@ -12,10 +12,10 @@ class MobileRechargeScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header
+              // Header title and discrption Section
               wellcomeCard(
                 title: 'Mobile Recharge',
-                subTitle: 'Mobile Recharge Payment Section',
+                subTitle: 'Recharge your Mobile bill quickly and securely',
                 headerIcon: Icons.smartphone,
                 headerGradientColor: LinearGradient(
                   colors: [Color(0xFF34D399), Color(0xFF10B981)],
