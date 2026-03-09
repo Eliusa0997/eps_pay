@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 class RecentTransaction extends StatelessWidget {
   final List<RecentTransactions> transactions;
-  // final List<RecentTransactions> myList = profileModel.recentTransactions;
   RecentTransaction({super.key, required this.transactions});
 
   @override

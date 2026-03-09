@@ -4,6 +4,7 @@ import 'package:eps_pay/features/auth/login/logic/cubit/login_cubit.dart';
 import 'package:eps_pay/features/auth/login/ui/screens/login_screen.dart';
 import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
 import 'package:eps_pay/features/auth/siginup/ui/screens/signup_screen.dart';
+import 'package:eps_pay/features/bills_payment/logic/cubit/bills_and_payment_cubit.dart';
 import 'package:eps_pay/features/bills_payment/logic/cubit/electricity_cubit.dart';
 import 'package:eps_pay/features/bills_payment/logic/cubit/internet_cubit.dart';
 import 'package:eps_pay/features/bills_payment/logic/cubit/mobile_recharge_cubit.dart';
@@ -99,7 +100,13 @@ class AppRouter {
 
       // Bills & Payment
       case Routes.billsBaymentsScreen:
-        return MaterialPageRoute(builder: (_) => const BillsPaymentsScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) =>
+                getIt<BillsAndPaymentCubit>()..emitBillsAndPaymentState(),
+            child: const BillsPaymentsScreen(),
+          ),
+        );
 
       case Routes.electricityScreen:
         return MaterialPageRoute(

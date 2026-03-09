@@ -8,6 +8,7 @@ import 'package:eps_pay/features/bills_payment/data/repository/electricity_repo.
 import 'package:eps_pay/features/bills_payment/data/repository/internet_repo.dart';
 import 'package:eps_pay/features/bills_payment/data/repository/mobile_recharge_repo.dart';
 import 'package:eps_pay/features/bills_payment/data/repository/water_repo.dart';
+import 'package:eps_pay/features/bills_payment/logic/cubit/bills_and_payment_cubit.dart';
 import 'package:eps_pay/features/bills_payment/logic/cubit/electricity_cubit.dart';
 import 'package:eps_pay/features/bills_payment/logic/cubit/internet_cubit.dart';
 import 'package:eps_pay/features/bills_payment/logic/cubit/mobile_recharge_cubit.dart';
@@ -24,6 +25,7 @@ import 'package:eps_pay/features/transfer/logic/cubit/deposit_cubit.dart';
 import 'package:eps_pay/features/transfer/logic/cubit/resiver_cubit.dart';
 import 'package:eps_pay/features/transfer/logic/cubit/transfer_cubit.dart';
 import 'package:eps_pay/features/transfer/logic/cubit/withdraw_cubit.dart';
+import 'package:eps_pay/features/bills_payment/data/repository/bills_payment_repo.dart';
 import 'package:get_it/get_it.dart';
 import 'package:dio/dio.dart';
 
@@ -76,6 +78,12 @@ setupGetIt() {
   );
   getIt.registerLazySingleton<MobileRechargeRepo>(
     () => MobileRechargeRepo(getIt()),
+  );
+
+  // Bills & Payment
+  getIt.registerLazySingleton<BillPaymentRepo>(() => BillPaymentRepo(getIt()));
+  getIt.registerFactory<BillsAndPaymentCubit>(
+    () => BillsAndPaymentCubit(getIt()),
   );
 
   //  Reciver Data
