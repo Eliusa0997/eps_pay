@@ -4,6 +4,7 @@ import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
 import 'package:eps_pay/features/auth/login/data/model/login_response.dart';
 import 'package:eps_pay/features/auth/siginup/data/model/signup_request_body.dart';
 import 'package:eps_pay/features/auth/siginup/data/model/signup_response.dart';
+import 'package:eps_pay/features/bills_payment/data/model/bill_payment_response.dart';
 import 'package:eps_pay/features/bills_payment/data/model/bills_request_body.dart';
 import 'package:eps_pay/features/bills_payment/data/model/bills_response.dart';
 import 'package:eps_pay/features/home_dashboard/data/model/profile_model.dart';
@@ -64,6 +65,10 @@ abstract class ApiService {
   // Transactions History
   @GET(ApiConstant.transactionsHistory)
   Future<List<TransactionHistoryModel>> getTransactionsHistory();
+
+  // Bills & Payments
+  @GET(ApiConstant.billsAndPayments)
+  Future<List<BillPaymentResponse>> getBillsAndPayments();
 
   @POST(ApiConstant.getReciverData)
   Future<ReciverResponse> getReciver(
