@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:eps_pay/features/bills_payment/ui/widgets/categories_list.dart';
@@ -77,7 +78,7 @@ class CategoriesGridSection extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '${category['providers']} providers',
+                    '${category['providers']} providers'.tr(),
                     style: const TextStyle(
                       fontSize: 12,
                       color: AppColors.textSecondary,

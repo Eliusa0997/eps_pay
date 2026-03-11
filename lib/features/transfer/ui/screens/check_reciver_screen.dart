@@ -16,8 +16,8 @@ class CheckReciverScreen extends StatelessWidget {
             children: [
               // Header
               wellcomeCard(
-                title: 'Welcome Back',
-                subTitle: 'Login to access your account',
+                title: 'Transfer Money',
+                subTitle: 'Do your transformation Securely',
               ),
               // Login Section
               FormButtnSection(),

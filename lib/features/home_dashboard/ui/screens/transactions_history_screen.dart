@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/features/home_dashboard/logic/cubit/transactions_history_cubit.dart';
 import 'package:eps_pay/features/home_dashboard/ui/widgets/recent_transactions_history_header.dart';
 import 'package:flutter/material.dart';
@@ -97,8 +98,8 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 16),
-                                const Text(
-                                  'No transactions found',
+                                Text(
+                                  'No transactions found'.tr(),
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
@@ -106,8 +107,8 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                   ),
                                 ),
                                 const SizedBox(height: 8),
-                                const Text(
-                                  'Try adjusting your search or filters',
+                                Text(
+                                  'Try adjusting your search or filters'.tr(),
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: AppColors.textTertiary,
@@ -135,7 +136,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                                       top: 12,
                                     ),
                                     child: Text(
-                                      dateLabel,
+                                      dateLabel.tr(),
                                       style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
@@ -194,7 +195,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
               : [],
         ),
         child: Text(
-          label,
+          label.tr(),
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,

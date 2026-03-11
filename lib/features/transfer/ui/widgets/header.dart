@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -31,8 +32,8 @@ class Header extends StatelessWidget {
                 backgroundColor: Colors.white.withOpacity(0.1),
               ),
             ),
-            const Text(
-              'Transfer Money',
+            Text(
+              'Transfer Money'.tr(),
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

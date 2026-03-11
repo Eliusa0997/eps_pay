@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/widgets/app_button.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
@@ -49,7 +50,7 @@ class MobileRechargeFormButtonSection extends StatelessWidget {
                   prefixIcon: const Icon(Icons.person),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Plece Enter a valid Mobile Recharge amount";
+                      return "Plece Enter a valid Mobile Recharge amount".tr();
                     }
                   },
                 ),
@@ -68,7 +69,7 @@ class MobileRechargeFormButtonSection extends StatelessWidget {
                   prefixIcon: const Icon(Icons.person),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Plece Enter a valid Mobile Phone Number";
+                      return "Plece Enter a valid Mobile Phone Number".tr();
                     }
                   },
                 ),

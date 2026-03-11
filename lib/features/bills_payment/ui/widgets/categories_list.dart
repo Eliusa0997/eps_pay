@@ -1,10 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/routing/routes.dart' show Routes;
 import 'package:flutter/material.dart';
 
 final myCategories = [
   {
     'icon': Icons.flash_on,
-    'label': 'Electricity',
+    'label': 'Electricity'.tr(),
     'color': const LinearGradient(
       colors: [Color(0xFFFBBF24), Color(0xFFF59E0B)],
     ),
@@ -13,7 +14,7 @@ final myCategories = [
   },
   {
     'icon': Icons.water_drop,
-    'label': 'Water',
+    'label': 'Water'.tr(),
     'color': const LinearGradient(
       colors: [Color(0xFF60A5FA), Color(0xFF3B82F6)],
     ),
@@ -22,7 +23,7 @@ final myCategories = [
   },
   {
     'icon': Icons.wifi,
-    'label': 'Internet',
+    'label': 'Internet'.tr(),
     'color': const LinearGradient(
       colors: [Color(0xFFA78BFA), Color(0xFF8B5CF6)],
     ),
@@ -31,7 +32,7 @@ final myCategories = [
   },
   {
     'icon': Icons.smartphone,
-    'label': 'Mobile Recharge',
+    'label': 'Mobile Recharge'.tr(),
     'color': const LinearGradient(
       colors: [Color(0xFF34D399), Color(0xFF10B981)],
     ),
@@ -40,7 +41,7 @@ final myCategories = [
   },
   {
     'icon': Icons.description,
-    'label': 'Government',
+    'label': 'Government'.tr(),
     'color': const LinearGradient(
       colors: [Color(0xFFF87171), Color(0xFFEF4444)],
     ),
@@ -49,7 +50,7 @@ final myCategories = [
   },
   {
     'icon': Icons.business,
-    'label': 'Other Services',
+    'label': 'Other Services'.tr(),
     'color': const LinearGradient(
       colors: [Color(0xFF9CA3AF), Color(0xFF6B7280)],
     ),

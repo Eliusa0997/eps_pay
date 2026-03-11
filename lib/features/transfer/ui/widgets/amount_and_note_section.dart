@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
@@ -53,7 +54,7 @@ class AmountAndNoteSection extends StatelessWidget {
             prefixIcon: const Icon(Icons.person),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "Plece Enter Valid amount";
+                return "Plece Enter Valid amount".tr();
               }
             },
           ),
@@ -94,7 +95,7 @@ class AmountAndNoteSection extends StatelessWidget {
             prefixIcon: const Icon(Icons.person),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "Plece Enter Valid phone namber";
+                return "Plece Enter Valid phone namber".tr();
               }
             },
           ),
@@ -106,7 +107,7 @@ class AmountAndNoteSection extends StatelessWidget {
             controller: noteNumberController,
             isObscurePin: false,
             textInputType: TextInputType.number,
-            hintText: 'Enter account number',
+            hintText: 'Enter your note',
             prefixIcon: const Icon(Icons.person),
           ),
 
@@ -115,14 +116,14 @@ class AmountAndNoteSection extends StatelessWidget {
           const FormFeildTitle(title: "Reciver Informations"),
           _buildSettingItem(
             Icons.person,
-            "Reciver :-  ",
+            "Reciver :-  ".tr(),
             reciverName,
             const Color(0xFF3B82F6),
             const Color(0xFFDEEDFF),
           ),
           _buildSettingItem(
             Icons.account_balance,
-            "Account  :-  ",
+            "Account  :-  ".tr(),
             reciverAccountNumber,
             const Color(0xFF8B5CF6),
             const Color(0xFFEDE9FE),
@@ -144,8 +145,8 @@ class AmountAndNoteSection extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: const Text(
-                'Continue to Confirm',
+              child: Text(
+                'Confirm'.tr(),
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),

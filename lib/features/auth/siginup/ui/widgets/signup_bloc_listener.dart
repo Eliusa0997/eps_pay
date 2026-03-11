@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/functions/setup_auth_error_state.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
@@ -41,7 +42,7 @@ class SignupBlocListener extends StatelessWidget {
                     size: 32,
                   ),
                   content: Text(
-                    'You are Signup Successfully Login Now',
+                    'You are Signup Successfully Login Now'.tr(),
                     style: AppFonts.font14W600textPrimary,
                   ),
                   actions: [

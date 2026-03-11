@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +37,7 @@ class AppButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          buttonText,
+          buttonText.tr(),
           style:
               textStyle ?? TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
