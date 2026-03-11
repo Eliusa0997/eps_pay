@@ -109,7 +109,7 @@ class _LoginSectionState extends State<LoginSection> {
                 SizedBox(height: 6.h),
                 AppButton(
                   onPressed: () {
-                    context.read<LoginCubit>().emitLoginState();
+                    context.read<LoginCubit>().validateThenDoLogin();
                   },
                   buttonText: "Login",
                 ),
