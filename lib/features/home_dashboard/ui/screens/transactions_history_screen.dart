@@ -1,4 +1,5 @@
 import 'package:eps_pay/features/home_dashboard/logic/cubit/transactions_history_cubit.dart';
+import 'package:eps_pay/features/home_dashboard/ui/widgets/recent_transactions_history_header.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/for_test_models/transaction.dart';
@@ -45,75 +46,9 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
 
               return Column(
                 children: [
-                  // Header
-                  Container(
-                    decoration: const BoxDecoration(
-                      gradient: AppColors.primaryGradient,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(32),
-                        bottomRight: Radius.circular(32),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(24, 24, 24, 24),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              IconButton(
-                                onPressed: () => Navigator.pop(context),
-                                icon: const Icon(Icons.arrow_back),
-                                color: Colors.white,
-                                style: IconButton.styleFrom(
-                                  backgroundColor: Colors.white.withOpacity(
-                                    0.1,
-                                  ),
-                                ),
-                              ),
-                              const Text(
-                                'Transaction History',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              IconButton(
-                                onPressed: () {},
-                                icon: const Icon(Icons.calendar_today),
-                                color: Colors.white,
-                                style: IconButton.styleFrom(
-                                  backgroundColor: Colors.white.withOpacity(
-                                    0.1,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 24),
-                          // Search
-                          TextField(
-                            controller: _searchController,
-                            onChanged: (value) => setState(() {}),
-                            decoration: InputDecoration(
-                              hintText: 'Search transactions...',
-                              prefixIcon: const Icon(Icons.search),
-                              filled: true,
-                              fillColor: Colors.white,
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(12),
-                                borderSide: BorderSide.none,
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 16,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                  // Header Section
+                  RecentTransactionsHistoryHeader(
+                    searchController: _searchController,
                   ),
 
                   // Filters

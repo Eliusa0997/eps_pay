@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/app_fonts.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
@@ -44,10 +45,10 @@ class wellcomeCard extends StatelessWidget {
                   Image.asset("assets/images/logo.png", height: 50, width: 50),
             ),
             SizedBox(height: 15.h),
-            Text(title, style: AppFonts.font28WhiteBold),
+            Text(title.tr(), style: AppFonts.font28WhiteBold),
             SizedBox(height: 4.h),
             Text(
-              subTitle,
+              subTitle.tr(),
               style: AppFonts.font14White,
               textAlign: TextAlign.center,
             ),

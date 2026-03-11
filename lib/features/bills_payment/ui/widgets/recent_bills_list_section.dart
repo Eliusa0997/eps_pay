@@ -7,6 +7,16 @@ import 'package:flutter/material.dart';
 class RecentBillsListSection extends StatelessWidget {
   final List<BillPaymentResponse> bills;
   const RecentBillsListSection({super.key, required this.bills});
+  String _formatDate(DateTime date) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final yesterday = DateTime(now.year, now.month, now.day - 1);
+    final dateToCheck = DateTime(date.year, date.month, date.day);
+    if (dateToCheck == now) return 'Now';
+    if (dateToCheck == today) return 'Today';
+    if (dateToCheck == yesterday) return 'Yesterday';
+    return '${date.month}/${date.day}/${date.year}';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +100,7 @@ class RecentBillsListSection extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      bill.date.toString(),
+                      _formatDate(bill.date),
                       style: const TextStyle(
                         fontSize: 12,
                         color: AppColors.textSecondary,
