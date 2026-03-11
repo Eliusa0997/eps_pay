@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
@@ -31,8 +32,8 @@ class BillsPaymentHeader extends StatelessWidget {
                   backgroundColor: Colors.white.withOpacity(0.1),
                 ),
               ),
-              const Text(
-                'Bills & Payments',
+              Text(
+                'Bills & Payments'.tr(),
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,

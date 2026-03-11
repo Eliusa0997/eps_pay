@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -37,8 +38,8 @@ class _RecentTransactionsHistoryHeaderState
                     backgroundColor: Colors.white.withOpacity(0.1),
                   ),
                 ),
-                const Text(
-                  'Transaction History',
+                Text(
+                  'Transaction History'.tr(),
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -61,7 +62,7 @@ class _RecentTransactionsHistoryHeaderState
               controller: widget.searchController,
               onChanged: (value) => setState(() {}),
               decoration: InputDecoration(
-                hintText: 'Search transactions...',
+                hintText: 'Search transactions...'.tr(),
                 prefixIcon: const Icon(Icons.search),
                 filled: true,
                 fillColor: Colors.white,

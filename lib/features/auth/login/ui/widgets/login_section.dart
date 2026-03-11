@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/widgets/app_button.dart';
@@ -62,7 +63,7 @@ class _LoginSectionState extends State<LoginSection> {
                   prefixIcon: const Icon(Icons.person),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Plece Enter Valid User Name";
+                      return "Plece Enter Valid User Name".tr();
                     }
                   },
                 ),
@@ -90,7 +91,7 @@ class _LoginSectionState extends State<LoginSection> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Plece Enter Valid Password";
+                      return "Plece Enter Valid Password".tr();
                     }
                   },
                 ),
@@ -98,7 +99,7 @@ class _LoginSectionState extends State<LoginSection> {
                 // Forgot PIN
                 SizedBox(height: 10.h),
                 ForgetPassordAndGoToSomeScreen(
-                  text: 'I dont have account',
+                  text: 'I dont have account'.tr(),
                   goToScreen: () {
                     context.pushNamed(Routes.signupScreen);
                   },

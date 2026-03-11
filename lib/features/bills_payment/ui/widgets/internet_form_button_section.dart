@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/widgets/app_button.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
@@ -62,7 +63,7 @@ class InternetFormButtonSection extends StatelessWidget {
                   prefixIcon: const Icon(Icons.person),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Plece Enter a valid Router invoice number";
+                      return "Plece Enter a valid Router invoice number".tr();
                     }
                   },
                 ),

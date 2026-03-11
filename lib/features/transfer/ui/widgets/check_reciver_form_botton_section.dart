@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/widgets/app_button.dart';
@@ -52,7 +53,7 @@ class FormButtnSection extends StatelessWidget {
                   prefixIcon: const Icon(Icons.person),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Plece Enter Account number";
+                      return "Plece Enter Valid Account number".tr();
                     }
                   },
                 ),

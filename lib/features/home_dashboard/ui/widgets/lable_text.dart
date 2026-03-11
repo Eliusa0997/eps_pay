@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ class LableText extends StatelessWidget {
   ) {
     if (transactionType == "deposit") {
       return Text(
-        "Income",
+        "Income".tr(),
         style: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,
@@ -34,7 +35,7 @@ class LableText extends StatelessWidget {
     }
     if (transactionType != "deposit" && transactionType != "transfer") {
       return Text(
-        transactionType,
+        transactionType.tr(),
         style: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,

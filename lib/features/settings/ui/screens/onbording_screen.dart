@@ -129,9 +129,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   // Language selector
                   InkWell(
                     onTap: () {
-                      context.setLocale(Locale('ar'));
-                      //  !=
-                      //     context.setLocale(Locale('en'));
+                      setState(() {
+                        context.setLocale(Locale('ar'));
+                      });
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -142,7 +142,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         border: Border.all(color: AppColors.border),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const Row(
+                      child: Row(
                         children: [
                           Icon(
                             Icons.language,
@@ -151,7 +151,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                           SizedBox(width: 4),
                           Text(
-                            'EN',
+                            'EN'.tr(),
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
@@ -166,8 +166,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   if (_currentPage < _pages.length - 1)
                     TextButton(
                       onPressed: _skipOnboarding,
-                      child: const Text(
-                        'Skip',
+                      child: Text(
+                        'Skip'.tr(),
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -223,13 +223,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(Icons.arrow_back, size: 20),
                                 SizedBox(width: 8),
                                 Text(
-                                  'Back',
+                                  'Back'.tr(),
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -262,8 +262,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             children: [
                               Text(
                                 _currentPage == _pages.length - 1
-                                    ? 'Get Started'
-                                    : 'Next',
+                                    ? 'Get Started'.tr()
+                                    : 'Next'.tr(),
                                 style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -336,7 +336,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           // Title
           Text(
-            page.title,
+            page.title.tr(),
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 28,
@@ -350,7 +350,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           // Description
           Text(
-            page.description,
+            page.description.tr(),
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 16,
@@ -404,7 +404,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                badge,
+                badge.tr(),
                 style: const TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w600,

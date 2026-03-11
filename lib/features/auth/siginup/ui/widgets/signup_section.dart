@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/helpers/app_regex.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
@@ -82,7 +83,7 @@ class _SignupSectionState extends State<SignupSection> {
                     if (value == null ||
                         value.isEmpty ||
                         !AppRegex.hasMinUserNameLength(value)) {
-                      return "Plece Enter Valid User Name";
+                      return "Plece Enter Valid User Name".tr();
                     }
                   },
                 ),
@@ -103,7 +104,7 @@ class _SignupSectionState extends State<SignupSection> {
                     if (value == null ||
                         value.isEmpty ||
                         !AppRegex.isEmailValid(value)) {
-                      return "Plece Enter Valid User Email";
+                      return "Plece Enter Valid User Email".tr();
                     }
                   },
                 ),
@@ -122,7 +123,7 @@ class _SignupSectionState extends State<SignupSection> {
                     if (value == null ||
                         value.isEmpty ||
                         !AppRegex.hasMinUserNameLength(value)) {
-                      return "Plece Enter Valid first name";
+                      return "Plece Enter Valid first name.".tr();
                     }
                   },
                 ),
@@ -142,7 +143,7 @@ class _SignupSectionState extends State<SignupSection> {
                     if (value == null ||
                         value.isEmpty ||
                         !AppRegex.hasMinUserNameLength(value)) {
-                      return "Plece Enter Valid last name";
+                      return "Plece Enter Valid last name".tr();
                     }
                   },
                 ),
@@ -150,7 +151,7 @@ class _SignupSectionState extends State<SignupSection> {
                 SizedBox(height: 15.h),
 
                 // Password Form Field
-                const FormFeildTitle(title: " Password"),
+                const FormFeildTitle(title: "Password"),
                 SizedBox(height: 6.h),
                 AppFormField(
                   textInputType: TextInputType.text,
@@ -173,7 +174,7 @@ class _SignupSectionState extends State<SignupSection> {
                     if (value == null ||
                         value.isEmpty ||
                         !AppRegex.hasMinLength(value)) {
-                      return "Password Must Be More Than 5 Length";
+                      return "Password Must Be More Than 5 Length".tr();
                     }
                   },
                 ),
@@ -181,7 +182,7 @@ class _SignupSectionState extends State<SignupSection> {
                 // Navigation Row for Forget Password and login and signup
                 SizedBox(height: 10.h),
                 ForgetPassordAndGoToSomeScreen(
-                  text: 'I have a account',
+                  text: 'I have a account'.tr(),
                   goToScreen: () {
                     context.pushNamed(Routes.loginScreen);
                   },

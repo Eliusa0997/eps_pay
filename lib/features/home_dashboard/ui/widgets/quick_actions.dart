@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class QuickActions extends StatelessWidget {
     final List<Map<String, dynamic>> _quickActions = [
       {
         'icon': Icons.arrow_upward,
-        'label': 'Transfer',
+        'label': 'Transfer'.tr(),
         'gradient': const LinearGradient(
           colors: [Color(0xFF3B82F6), Color(0xFF2563EB)],
         ),
@@ -18,7 +19,7 @@ class QuickActions extends StatelessWidget {
       },
       {
         'icon': Icons.receipt,
-        'label': 'Pay Bills',
+        'label': 'Pay Bills'.tr(),
         'gradient': const LinearGradient(
           colors: [Color(0xFF10B981), Color(0xFF059669)],
         ),
@@ -26,7 +27,7 @@ class QuickActions extends StatelessWidget {
       },
       {
         'icon': Icons.smartphone,
-        'label': 'Deposit',
+        'label': 'Deposit'.tr(),
         'gradient': const LinearGradient(
           colors: [Color(0xFF8B5CF6), Color(0xFF7C3AED)],
         ),
@@ -34,7 +35,7 @@ class QuickActions extends StatelessWidget {
       },
       {
         'icon': Icons.credit_card,
-        'label': 'Withdraw',
+        'label': 'Withdraw'.tr(),
         'gradient': const LinearGradient(
           colors: [Color(0xFFF97316), Color(0xFFEA580C)],
         ),
@@ -47,8 +48,8 @@ class QuickActions extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Quick Actions',
+            Text(
+              'Quick Actions'.tr(),
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

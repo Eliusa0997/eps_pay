@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:eps_pay/features/home_dashboard/ui/widgets/lable_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theming/colors.dart';
@@ -12,6 +14,17 @@ class ListItemTransactionHistory extends StatelessWidget {
     required this.dateLabel,
     required this.transaction,
   });
+
+  String _formatDate(DateTime date) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final yesterday = DateTime(now.year, now.month, now.day - 1);
+    final dateToCheck = DateTime(date.year, date.month, date.day);
+    if (dateToCheck == now) return 'Now'.tr();
+    if (dateToCheck == today) return 'Today'.tr();
+    if (dateToCheck == yesterday) return 'Yesterday'.tr();
+    return '${date.month}/${date.day}/${date.year}';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,36 +49,25 @@ class ListItemTransactionHistory extends StatelessWidget {
                       : AppColors.error.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
-                child: transaction.transactionType == "transfer"
-                    ? Icon(Icons.arrow_upward, color: Colors.red)
-                    : Icon(Icons.arrow_downward, color: AppColors.success),
+                child: transaction.transactionType == "deposit"
+                    ? Icon(Icons.arrow_downward, color: AppColors.success)
+                    : Icon(Icons.arrow_upward, color: AppColors.myRed),
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      // "transaction.receiverName",
-                      transaction.receiverName == null
-                          ? "Bills Payment"
-                          : transaction.receiverName!,
-
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.textPrimary,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    LableText(
+                      receiverName: transaction.receiverName.toString(),
+                      transactionType: transaction.transactionType,
                     ),
                     const SizedBox(height: 4),
                     Row(
                       children: [
                         Expanded(
                           child: Text(
-                            transaction.date.toString(),
-
+                            _formatDate(transaction.date),
                             style: const TextStyle(
                               fontSize: 12,
                               color: AppColors.textSecondary,
@@ -84,7 +86,7 @@ class ListItemTransactionHistory extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          transaction.transactionType,
+                          transaction.transactionType.tr(),
                           style: const TextStyle(
                             fontSize: 12,
                             color: AppColors.textSecondary,
@@ -143,10 +145,7 @@ class ListItemTransactionHistory extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      // transaction.status ==
-                      'completed',
-                      // ? 'Completed'
-                      // : transaction.status,
+                      'completed'.tr(),
                       style: const TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w600,
@@ -158,8 +157,8 @@ class ListItemTransactionHistory extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {},
-                child: const Text(
-                  'View Details',
+                child: Text(
+                  'View Details'.tr(),
                   style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                 ),
               ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:eps_pay/features/bills_payment/data/model/bill_payment_response.dart';
 import 'package:eps_pay/features/bills_payment/data/repository/bills_payment_repo.dart';
@@ -12,9 +13,9 @@ class RecentBillsListSection extends StatelessWidget {
     final today = DateTime(now.year, now.month, now.day);
     final yesterday = DateTime(now.year, now.month, now.day - 1);
     final dateToCheck = DateTime(date.year, date.month, date.day);
-    if (dateToCheck == now) return 'Now';
-    if (dateToCheck == today) return 'Today';
-    if (dateToCheck == yesterday) return 'Yesterday';
+    if (dateToCheck == now) return 'Now'.tr();
+    if (dateToCheck == today) return 'Today'.tr();
+    if (dateToCheck == yesterday) return 'Yesterday'.tr();
     return '${date.month}/${date.day}/${date.year}';
   }
 
@@ -54,7 +55,7 @@ class RecentBillsListSection extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              bill.transactionType,
+                              bill.transactionType.tr(),
                               style: const TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
@@ -63,7 +64,7 @@ class RecentBillsListSection extends StatelessWidget {
                             ),
                             const SizedBox(height: 2),
                             Text(
-                              'Account: 987654321',
+                              'Account: 987654321'.tr(),
                               style: const TextStyle(
                                 fontSize: 12,
                                 color: AppColors.textSecondary,
