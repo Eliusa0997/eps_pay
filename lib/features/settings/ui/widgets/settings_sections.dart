@@ -1,4 +1,7 @@
 import 'package:eps_pay/core/theming/colors.dart';
+import 'package:eps_pay/features/settings/ui/widgets/language_option_section.dart';
+import 'package:eps_pay/features/settings/ui/widgets/settings_card.dart';
+import 'package:eps_pay/features/settings/ui/widgets/settings_title_section.dart';
 import 'package:flutter/material.dart';
 
 class SettingsSections extends StatelessWidget {
@@ -11,7 +14,8 @@ class SettingsSections extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildSectionTitle('Account'),
+          const SettingsTitelSection(title: 'Account'),
+
           const SizedBox(height: 12),
           _buildSettingsCard([
             _buildSettingItem(
@@ -34,7 +38,7 @@ class SettingsSections extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 24),
-          _buildSectionTitle('Preferences'),
+          const SettingsTitelSection(title: 'Preferences'),
           const SizedBox(height: 12),
           _buildSettingsCard([
             _buildSettingItem(
@@ -52,7 +56,8 @@ class SettingsSections extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 24),
-          _buildSectionTitle('Support'),
+          const SettingsTitelSection(title: 'Support'),
+
           const SizedBox(height: 12),
           _buildSettingsCard([
             _buildSettingItem(
@@ -63,12 +68,15 @@ class SettingsSections extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 24),
-          _buildSectionTitle('Select Language'),
+          const SettingsTitelSection(title: 'Select Language'),
           const SizedBox(height: 12),
-          _buildSettingsCard([
-            _buildLanguageOption('English', '🇬🇧'),
-            _buildLanguageOption('العربية (Arabic)', '🇸🇩'),
-          ]),
+
+          SettingsCard(
+            children: [
+              LanguageOptionSection(label: 'English', flag: '🇬🇧'),
+              LanguageOptionSection(label: 'العربية (Arabic)', flag: '🇸🇩'),
+            ],
+          ),
           const SizedBox(height: 24),
 
           // Logout Button
@@ -130,20 +138,6 @@ class SettingsSections extends StatelessWidget {
 
           const SizedBox(height: 24),
         ],
-      ),
-    );
-  }
-
-  Widget _buildSectionTitle(String title) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8),
-      child: Text(
-        title,
-        style: const TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-          color: AppColors.textSecondary,
-        ),
       ),
     );
   }
@@ -220,66 +214,6 @@ class SettingsSections extends StatelessWidget {
               Icons.chevron_right,
               color: AppColors.textSecondary,
               size: 20,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLanguageOption(String label, String flag) {
-    String _selectedLanguage = 'English';
-    final isSelected = label.startsWith(_selectedLanguage);
-    return InkWell(
-      onTap: () {
-        // setState(() {
-        //   _selectedLanguage = label.split(' ').first;
-        // });
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            Container(
-              width: 32,
-              height: 32,
-              decoration: BoxDecoration(
-                color: isSelected
-                    ? AppColors.primary.withOpacity(0.1)
-                    : AppColors.background,
-                shape: BoxShape.circle,
-              ),
-              child: Center(
-                child: Text(flag, style: const TextStyle(fontSize: 18)),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.textPrimary,
-                ),
-              ),
-            ),
-            Container(
-              width: 20,
-              height: 20,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: isSelected ? AppColors.primary : AppColors.border,
-                  width: 2,
-                ),
-                color: isSelected ? AppColors.primary : Colors.transparent,
-              ),
-              child: isSelected
-                  ? const Center(
-                      child: Icon(Icons.circle, size: 8, color: Colors.white),
-                    )
-                  : null,
             ),
           ],
         ),
