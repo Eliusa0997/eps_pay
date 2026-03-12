@@ -8,6 +8,7 @@ import 'package:eps_pay/features/bills_payment/data/model/bill_payment_response.
 import 'package:eps_pay/features/bills_payment/data/model/bills_request_body.dart';
 import 'package:eps_pay/features/bills_payment/data/model/bills_response.dart';
 import 'package:eps_pay/features/home_dashboard/data/model/profile_model.dart';
+import 'package:eps_pay/features/settings/data/model/settings_profile_model.dart';
 import 'package:eps_pay/features/transfer/data/model/reciver_request_body.dart';
 import 'package:eps_pay/features/transfer/data/model/reciver_response.dart';
 import 'package:eps_pay/features/transfer/data/model/transfer_request_body.dart';
@@ -78,4 +79,8 @@ abstract class ApiService {
   // Home
   @GET(ApiConstant.getProfileData)
   Future<ProfileModel> getProfileData();
+
+  // Settings
+  @GET(ApiConstant.getProfileData)
+  Future<SettingsProfileModel> getSettingsProfileData();
 }

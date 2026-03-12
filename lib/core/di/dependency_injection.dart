@@ -17,6 +17,8 @@ import 'package:eps_pay/features/home_dashboard/data/repository/home_repo.dart';
 import 'package:eps_pay/features/home_dashboard/data/repository/transactions_history_repo.dart';
 import 'package:eps_pay/features/home_dashboard/logic/cubit/home_cubit.dart';
 import 'package:eps_pay/features/home_dashboard/logic/cubit/transactions_history_cubit.dart';
+import 'package:eps_pay/features/settings/data/repository/settings_repo.dart';
+import 'package:eps_pay/features/settings/logic/cubit/Settings_cubit.dart';
 import 'package:eps_pay/features/transfer/data/repository/deposit_repo.dart';
 import 'package:eps_pay/features/transfer/data/repository/reciver_repo.dart';
 import 'package:eps_pay/features/transfer/data/repository/transfer_repo.dart';
@@ -89,4 +91,8 @@ setupGetIt() {
   //  Reciver Data
   getIt.registerLazySingleton<ReciverRepo>(() => ReciverRepo(getIt()));
   getIt.registerFactory<ReciverCubit>(() => ReciverCubit(getIt()));
+
+  //  Settings
+  getIt.registerLazySingleton<SettingsRepo>(() => SettingsRepo(getIt()));
+  getIt.registerFactory<SettingsCubit>(() => SettingsCubit(getIt()));
 }
