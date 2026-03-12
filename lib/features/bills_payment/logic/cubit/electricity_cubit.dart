@@ -15,20 +15,24 @@ class ElectricityCubit extends Cubit<ElectricityState> {
   final counterNumberController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  void emitElectricityState() async {
+  void validateThenDoElectricityPayment() {
     if (formKey.currentState!.validate()) {
-      emit(ElectricityState.loading());
-      final response = await _electricityRepo.electricity(
-        BillsRequestBody(amount: amountController.text),
-      );
-      response.when(
-        success: (electricityResponse) {
-          emit(ElectricityState.success(electricityResponse));
-        },
-        failure: (failure) {
-          emit(ElectricityState.error(message: failure.toString()));
-        },
-      );
+      emitElectricityPaymentState();
     }
+  }
+
+  void emitElectricityPaymentState() async {
+    emit(ElectricityState.loading());
+    final response = await _electricityRepo.electricity(
+      BillsRequestBody(amount: amountController.text),
+    );
+    response.when(
+      success: (electricityResponse) {
+        emit(ElectricityState.success(electricityResponse));
+      },
+      failure: (failure) {
+        emit(ElectricityState.error(message: failure.toString()));
+      },
+    );
   }
 }

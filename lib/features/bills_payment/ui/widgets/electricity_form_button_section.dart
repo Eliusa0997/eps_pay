@@ -74,7 +74,9 @@ class ElectricityFormButtonSection extends StatelessWidget {
                 AppButton(
                   backgroundColor: Color.fromARGB(255, 138, 119, 88),
                   onPressed: () {
-                    context.read<ElectricityCubit>().emitElectricityState();
+                    context
+                        .read<ElectricityCubit>()
+                        .validateThenDoElectricityPayment();
                   },
                   buttonText: "Confirm Payment",
                 ),

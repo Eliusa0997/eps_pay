@@ -198,7 +198,7 @@ class _SignupSectionState extends State<SignupSection> {
                 SizedBox(height: 8.h),
                 AppButton(
                   onPressed: () {
-                    validateThenDoSignup(context);
+                    context.read<SignupCubit>().validateThenDoSignup();
                   },
                   buttonText: "Sign up",
                 ),
@@ -213,17 +213,9 @@ class _SignupSectionState extends State<SignupSection> {
     );
   }
 
-  void validateThenDoSignup(BuildContext context) {
-    if (context.read<SignupCubit>().formKey.currentState!.validate()) {
-      context.read<SignupCubit>().emitSignupState(
-        context.read<SignupCubit>().userNameController.text,
-      );
-    }
-  }
-
   @override
   void dispose() {
-    // passwordController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 }

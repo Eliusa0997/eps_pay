@@ -14,20 +14,24 @@ class MobileRechargeCubit extends Cubit<MobileRechargeState> {
   final phoneNumberController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  void emitMobileRechargeState() async {
+  void validateThenDoMobileRechargePayment() {
     if (formKey.currentState!.validate()) {
-      emit(MobileRechargeState.loading());
-      final response = await _mobileRechargeRepo.mobileRecharge(
-        BillsRequestBody(amount: amountController.text),
-      );
-      response.when(
-        success: (mobileRechargeResponse) {
-          emit(MobileRechargeState.success(mobileRechargeResponse));
-        },
-        failure: (failure) {
-          emit(MobileRechargeState.error(message: failure.toString()));
-        },
-      );
+      emitMobileRechargePaymentState();
     }
+  }
+
+  void emitMobileRechargePaymentState() async {
+    emit(MobileRechargeState.loading());
+    final response = await _mobileRechargeRepo.mobileRecharge(
+      BillsRequestBody(amount: amountController.text),
+    );
+    response.when(
+      success: (mobileRechargeResponse) {
+        emit(MobileRechargeState.success(mobileRechargeResponse));
+      },
+      failure: (failure) {
+        emit(MobileRechargeState.error(message: failure.toString()));
+      },
+    );
   }
 }

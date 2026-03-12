@@ -26,41 +26,77 @@ class RecentTransaction extends StatelessWidget {
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate((context, index) {
           final transaction = transactions[index];
-          return Container(
-            margin: const EdgeInsets.only(bottom: 12),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColors.border),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: transaction.transactionType == "deposit"
-                        ? AppColors.success.withOpacity(0.1)
-                        : AppColors.error.withOpacity(0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: transaction.transactionType == "deposit"
-                      ? Icon(Icons.arrow_downward, color: AppColors.success)
-                      : Icon(Icons.arrow_upward, color: Colors.red),
+          if (transactions.isEmpty) {
+            return Center(
+              child: Text(
+                'No transactions found'.tr(),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.textSecondary,
                 ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+            );
+          } else {
+            return Container(
+              margin: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: AppColors.border),
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: transaction.transactionType == "deposit"
+                          ? AppColors.success.withOpacity(0.1)
+                          : AppColors.error.withOpacity(0.1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: transaction.transactionType == "deposit"
+                        ? Icon(Icons.arrow_downward, color: AppColors.success)
+                        : Icon(Icons.arrow_upward, color: Colors.red),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        LableText(
+                          receiverName: transaction.receiverName.toString(),
+                          transactionType: transaction.transactionType,
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          _formatDate(transaction.date),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: AppColors.textSecondary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      LableText(
-                        receiverName: transaction.receiverName.toString(),
-                        transactionType: transaction.transactionType,
+                      Text(
+                        '${transaction.transactionType == "deposit" ? '+' : '-'}${transaction.amount}',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: transaction.transactionType == "deposit"
+                              ? AppColors.success
+                              : AppColors.textPrimary,
+                        ),
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        _formatDate(transaction.date),
+                        transaction.transactionType.tr(),
                         style: const TextStyle(
                           fontSize: 12,
                           color: AppColors.textSecondary,
@@ -68,33 +104,10 @@ class RecentTransaction extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      '${transaction.transactionType == "deposit" ? '+' : '-'}${transaction.amount}',
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: transaction.transactionType == "deposit"
-                            ? AppColors.success
-                            : AppColors.textPrimary,
-                      ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      transaction.transactionType.tr(),
-                      style: const TextStyle(
-                        fontSize: 12,
-                        color: AppColors.textSecondary,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          );
+                ],
+              ),
+            );
+          }
         }, childCount: transactions.length),
       ),
     );
