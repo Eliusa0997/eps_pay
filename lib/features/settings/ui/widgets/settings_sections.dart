@@ -1,6 +1,8 @@
+import 'package:eps_pay/core/helpers/extensions.dart';
+import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:eps_pay/features/settings/ui/widgets/language_option_section.dart';
-import 'package:eps_pay/features/settings/ui/widgets/settings_card.dart';
+import 'package:eps_pay/features/settings/ui/widgets/logout_button.dart';
 import 'package:eps_pay/features/settings/ui/widgets/settings_title_section.dart';
 import 'package:flutter/material.dart';
 
@@ -70,52 +72,13 @@ class SettingsSections extends StatelessWidget {
           const SizedBox(height: 24),
           const SettingsTitelSection(title: 'Select Language'),
           const SizedBox(height: 12),
+          // Language Section
+          _buildSettingsCard([LanguageOptionSection()]),
 
-          SettingsCard(
-            children: [
-              LanguageOptionSection(label: 'English', flag: '🇬🇧'),
-              LanguageOptionSection(label: 'العربية (Arabic)', flag: '🇸🇩'),
-            ],
-          ),
           const SizedBox(height: 24),
 
           // Logout Button
-          InkWell(
-            onTap: () {
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                '/login',
-                (route) => false,
-              );
-            },
-            borderRadius: BorderRadius.circular(16),
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: AppColors.error.withOpacity(0.3),
-                  width: 2,
-                ),
-              ),
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.logout, color: AppColors.error, size: 20),
-                  SizedBox(width: 12),
-                  Text(
-                    'Logout',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.error,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          const LogoutButtonSection(),
 
           const SizedBox(height: 24),
 
