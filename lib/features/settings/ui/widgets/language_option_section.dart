@@ -1,24 +1,46 @@
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
-class LanguageOptionSection extends StatelessWidget {
-  final String label;
-  final String flag;
-  const LanguageOptionSection({
-    super.key,
-    required this.label,
-    required this.flag,
-  });
+class LanguageOptionSection extends StatefulWidget {
+  const LanguageOptionSection({super.key});
 
   @override
+  State<LanguageOptionSection> createState() => _LanguageOptionSectionState();
+}
+
+class _LanguageOptionSectionState extends State<LanguageOptionSection> {
+  @override
   Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.border),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          _buildLanguageOption('English', '🇬🇧'),
+          _buildLanguageOption('العربية (Arabic)', '🇸🇩'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLanguageOption(String label, String flag) {
     String _selectedLanguage = 'English';
     final isSelected = label.startsWith(_selectedLanguage);
     return InkWell(
       onTap: () {
-        // setState(() {
-        //   _selectedLanguage = label.split(' ').first;
-        // });
+        setState(() {
+          _selectedLanguage = label.split(' ').first;
+        });
       },
       child: Padding(
         padding: const EdgeInsets.all(16),
