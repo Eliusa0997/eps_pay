@@ -14,6 +14,7 @@ import 'package:eps_pay/features/bills_payment/ui/screens/electricity_screen.dar
 import 'package:eps_pay/features/bills_payment/ui/screens/internet_screen.dart';
 import 'package:eps_pay/features/bills_payment/ui/screens/mobile_recharge_screen.dart';
 import 'package:eps_pay/features/bills_payment/ui/screens/water_screen.dart';
+import 'package:eps_pay/features/settings/logic/cubit/Settings_cubit.dart';
 import 'package:eps_pay/features/transfer/logic/cubit/deposit_cubit.dart';
 import 'package:eps_pay/features/transfer/logic/cubit/withdraw_cubit.dart';
 import 'package:eps_pay/features/transfer/ui/screens/deposit_screen.dart';
@@ -78,7 +79,12 @@ class AppRouter {
 
       // Profile
       case Routes.profileSettingsScreen:
-        return MaterialPageRoute(builder: (_) => const ProfileSettingsScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<SettingsCubit>()..emitSettingsState(),
+            child: ProfileSettingsScreen(),
+          ),
+        );
 
       // Money transctions
       case Routes.transferMoneyScreen:
