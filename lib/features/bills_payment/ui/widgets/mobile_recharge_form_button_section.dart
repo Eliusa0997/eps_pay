@@ -82,7 +82,7 @@ class MobileRechargeFormButtonSection extends StatelessWidget {
                   onPressed: () {
                     context
                         .read<MobileRechargeCubit>()
-                        .emitMobileRechargeState();
+                        .validateThenDoMobileRechargePayment();
                   },
                   buttonText: "Confirm Payment",
                 ),

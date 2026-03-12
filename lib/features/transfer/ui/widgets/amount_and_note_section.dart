@@ -9,18 +9,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AmountAndNoteSection extends StatelessWidget {
-  TextEditingController amountController = TextEditingController();
-  TextEditingController phoneNumberController = TextEditingController();
-  TextEditingController noteNumberController = TextEditingController();
   final String reciverName;
   final String reciverAccountNumber;
   void Function()? transfer;
 
   AmountAndNoteSection({
     super.key,
-    required this.amountController,
-    required this.phoneNumberController,
-    required this.noteNumberController,
     required this.transfer,
     required this.reciverName,
     required this.reciverAccountNumber,
@@ -47,7 +41,7 @@ class AmountAndNoteSection extends StatelessWidget {
           SizedBox(height: 5.h),
           // User Name Section
           AppFormField(
-            controller: amountController,
+            controller: context.read<TransferCubit>().amountController,
             isObscurePin: false,
             textInputType: TextInputType.number,
             hintText: 'Enter amount',
@@ -88,7 +82,7 @@ class AmountAndNoteSection extends StatelessWidget {
           const FormFeildTitle(title: "Phone Namber"),
           SizedBox(height: 5.h),
           AppFormField(
-            controller: phoneNumberController,
+            controller: context.read<TransferCubit>().phoneNumberController,
             isObscurePin: false,
             textInputType: TextInputType.number,
             hintText: 'Enter phone namber',
@@ -104,7 +98,7 @@ class AmountAndNoteSection extends StatelessWidget {
           const FormFeildTitle(title: "Add a note"),
           SizedBox(height: 5.h),
           AppFormField(
-            controller: noteNumberController,
+            controller: context.read<TransferCubit>().noteController,
             isObscurePin: false,
             textInputType: TextInputType.number,
             hintText: 'Enter your note',

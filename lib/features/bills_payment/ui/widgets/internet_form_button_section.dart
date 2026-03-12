@@ -74,7 +74,9 @@ class InternetFormButtonSection extends StatelessWidget {
                 AppButton(
                   backgroundColor: Color(0xFF8B5CF6),
                   onPressed: () {
-                    context.read<InternetCubit>().emitInternetState();
+                    context
+                        .read<InternetCubit>()
+                        .validateThenDoInternetPayment();
                   },
                   buttonText: "Confirm Payment",
                 ),

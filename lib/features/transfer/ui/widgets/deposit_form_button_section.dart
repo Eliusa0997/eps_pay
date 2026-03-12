@@ -57,7 +57,7 @@ class DepositFormButtonSection extends StatelessWidget {
                 SizedBox(height: 6.h),
                 AppButton(
                   onPressed: () {
-                    context.read<DepositCubit>().emitDepositState();
+                    context.read<DepositCubit>().validateThenDoDeposit();
                   },
                   buttonText: "Deposit",
                 ),

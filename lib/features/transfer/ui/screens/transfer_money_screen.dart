@@ -25,9 +25,6 @@ class TransferMoneyScreen extends StatelessWidget {
               Header(),
               // Amount and Notes Section
               AmountAndNoteSection(
-                amountController: transferCubit.amountController,
-                noteNumberController: transferCubit.noteController,
-                phoneNumberController: transferCubit.phoneNumberController,
                 reciverName: receiver.reciverName.toString(),
                 reciverAccountNumber: receiver.accountNumber.toString(),
                 transfer: () {
