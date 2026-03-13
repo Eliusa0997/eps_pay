@@ -1,8 +1,8 @@
-import 'package:eps_pay/core/helpers/extensions.dart';
-import 'package:eps_pay/core/routing/routes.dart';
-import 'package:eps_pay/core/theming/colors.dart';
+import 'package:eps_pay/features/settings/ui/widgets/app_version_section.dart';
 import 'package:eps_pay/features/settings/ui/widgets/language_option_section.dart';
 import 'package:eps_pay/features/settings/ui/widgets/logout_button.dart';
+import 'package:eps_pay/features/settings/ui/widgets/settings_card.dart';
+import 'package:eps_pay/features/settings/ui/widgets/settings_item_section.dart';
 import 'package:eps_pay/features/settings/ui/widgets/settings_title_section.dart';
 import 'package:flutter/material.dart';
 
@@ -19,62 +19,69 @@ class SettingsSections extends StatelessWidget {
           const SettingsTitelSection(title: 'Account'),
 
           const SizedBox(height: 12),
-          _buildSettingsCard([
-            _buildSettingItem(
-              Icons.person,
-              'Personal Information',
-              const Color(0xFF3B82F6),
-              const Color(0xFFDEEDFF),
-            ),
-            _buildSettingItem(
-              Icons.lock,
-              'Change PIN',
-              const Color(0xFF8B5CF6),
-              const Color(0xFFEDE9FE),
-            ),
-            _buildSettingItem(
-              Icons.security,
-              'Security Settings',
-              const Color(0xFF10B981),
-              const Color(0xFFD1FAE5),
-            ),
-          ]),
+
+          SettingsCard(
+            children: [
+              SettingsItemSection(
+                icon: Icons.person,
+                label: 'Personal Information',
+                iconColor: const Color(0xFF3B82F6),
+                bgColor: const Color(0xFFDEEDFF),
+              ),
+              SettingsItemSection(
+                icon: Icons.lock,
+                label: 'Change PIN',
+                iconColor: const Color(0xFF8B5CF6),
+                bgColor: const Color(0xFFEDE9FE),
+              ),
+              SettingsItemSection(
+                icon: Icons.security,
+                label: 'Security Settings',
+                iconColor: const Color(0xFF10B981),
+                bgColor: const Color(0xFFD1FAE5),
+              ),
+            ],
+          ),
           const SizedBox(height: 24),
           const SettingsTitelSection(title: 'Preferences'),
           const SizedBox(height: 12),
-          _buildSettingsCard([
-            _buildSettingItem(
-              Icons.language,
-              'Language',
-              const Color(0xFFF97316),
-              const Color(0xFFFFEDD5),
-              trailing: 'English',
-            ),
-            _buildSettingItem(
-              Icons.notifications,
-              'Notifications',
-              const Color(0xFFFBBF24),
-              const Color(0xFFFEF3C7),
-            ),
-          ]),
+          SettingsCard(
+            children: [
+              SettingsItemSection(
+                icon: Icons.language,
+                label: 'Language',
+                iconColor: const Color(0xFFF97316),
+                bgColor: const Color(0xFFFFEDD5),
+              ),
+              SettingsItemSection(
+                icon: Icons.notifications,
+                label: 'Notifications',
+                iconColor: const Color(0xFFFBBF24),
+                bgColor: const Color(0xFFFFEDD5),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
           const SizedBox(height: 24),
           const SettingsTitelSection(title: 'Support'),
-
           const SizedBox(height: 12),
-          _buildSettingsCard([
-            _buildSettingItem(
-              Icons.help,
-              'Help & Support',
-              const Color(0xFF14B8A6),
-              const Color(0xFFCCFBF1),
-            ),
-          ]),
+          SettingsCard(
+            children: [
+              SettingsItemSection(
+                icon: Icons.help,
+                label: 'Help & Support',
+                iconColor: const Color(0xFF14B8A6),
+                bgColor: const Color(0xFFCCFBF1),
+              ),
+            ],
+          ),
           const SizedBox(height: 24),
           const SettingsTitelSection(title: 'Select Language'),
           const SizedBox(height: 12),
-          // Language Section
-          _buildSettingsCard([LanguageOptionSection()]),
 
+          // Language Section
+          SettingsCard(children: [LanguageOptionSection()]),
           const SizedBox(height: 24),
 
           // Logout Button
@@ -83,103 +90,10 @@ class SettingsSections extends StatelessWidget {
           const SizedBox(height: 24),
 
           // App Version
-          const Center(
-            child: Column(
-              children: [
-                Text(
-                  'Bankak App Version 3.2.1',
-                  style: TextStyle(fontSize: 12, color: AppColors.textTertiary),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  '© 2026 Bankak. All rights reserved.',
-                  style: TextStyle(fontSize: 11, color: AppColors.textTertiary),
-                ),
-              ],
-            ),
-          ),
+          const AppVersionSection(),
 
           const SizedBox(height: 24),
         ],
-      ),
-    );
-  }
-
-  Widget _buildSettingsCard(List<Widget> children) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.border),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        children: List.generate(
-          children.length,
-          (index) => Column(
-            children: [
-              children[index],
-              if (index < children.length - 1) const Divider(height: 1),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSettingItem(
-    IconData icon,
-    String label,
-    Color iconColor,
-    Color bgColor, {
-    String? trailing,
-  }) {
-    return InkWell(
-      onTap: () {},
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(color: bgColor, shape: BoxShape.circle),
-              child: Icon(icon, size: 20, color: iconColor),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                label,
-                style: const TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  color: AppColors.textPrimary,
-                ),
-              ),
-            ),
-            if (trailing != null) ...[
-              Text(
-                trailing,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: AppColors.textSecondary,
-                ),
-              ),
-              const SizedBox(width: 8),
-            ],
-            const Icon(
-              Icons.chevron_right,
-              color: AppColors.textSecondary,
-              size: 20,
-            ),
-          ],
-        ),
       ),
     );
   }
