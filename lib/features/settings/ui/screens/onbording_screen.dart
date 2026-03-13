@@ -129,9 +129,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   // Language selector
                   InkWell(
                     onTap: () {
-                      setState(() {
-                        context.setLocale(Locale('ar'));
-                      });
+                      if (context.locale.languageCode == 'en') {
+                        context.setLocale(const Locale('ar'));
+                      } else {
+                        context.setLocale(const Locale('en'));
+                      }
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
@@ -151,7 +153,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                           SizedBox(width: 4),
                           Text(
-                            'EN'.tr(),
+                            'EN/AR'.tr(),
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,

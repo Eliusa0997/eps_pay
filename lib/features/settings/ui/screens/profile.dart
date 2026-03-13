@@ -12,8 +12,6 @@ class ProfileSettingsScreen extends StatefulWidget {
 }
 
 class _ProfileSettingsScreenState extends State<ProfileSettingsScreen> {
-  String _selectedLanguage = 'English';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
