@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,8 @@ class LanguageOptionSection extends StatefulWidget {
   @override
   State<LanguageOptionSection> createState() => _LanguageOptionSectionState();
 }
+
+String _selectedLanguage = 'English';
 
 class _LanguageOptionSectionState extends State<LanguageOptionSection> {
   @override
@@ -35,12 +38,18 @@ class _LanguageOptionSectionState extends State<LanguageOptionSection> {
   }
 
   Widget _buildLanguageOption(String label, String flag) {
-    String _selectedLanguage = 'English';
     final isSelected = label.startsWith(_selectedLanguage);
     return InkWell(
       onTap: () {
         setState(() {
           _selectedLanguage = label.split(' ').first;
+          if (_selectedLanguage == 'English') {
+            context.setLocale(Locale('en'));
+            print("english choosen");
+          } else {
+            context.setLocale(Locale('ar'));
+            print("Arbic choosen");
+          }
         });
       },
       child: Padding(

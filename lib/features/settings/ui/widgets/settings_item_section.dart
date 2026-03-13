@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,7 @@ class SettingsItemSection extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                label,
+                label.tr(),
                 style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,

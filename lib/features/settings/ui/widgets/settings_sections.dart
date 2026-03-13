@@ -30,7 +30,7 @@ class SettingsSections extends StatelessWidget {
               ),
               SettingsItemSection(
                 icon: Icons.lock,
-                label: 'Change PIN',
+                label: 'Change Password',
                 iconColor: const Color(0xFF8B5CF6),
                 bgColor: const Color(0xFFEDE9FE),
               ),

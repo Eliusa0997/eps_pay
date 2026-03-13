@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class SettingsTitelSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 8),
       child: Text(
-        title,
+        title.tr(),
         style: const TextStyle(
           fontSize: 14,
           fontWeight: FontWeight.w600,
