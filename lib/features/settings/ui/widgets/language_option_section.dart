@@ -27,6 +27,7 @@ class _LanguageOptionSectionState extends State<LanguageOptionSection> {
       child: Column(
         children: [
           _buildLanguageOption('English', '🇬🇧'),
+          Divider(height: 1),
           _buildLanguageOption('العربية (Arabic)', '🇸🇩'),
         ],
       ),
