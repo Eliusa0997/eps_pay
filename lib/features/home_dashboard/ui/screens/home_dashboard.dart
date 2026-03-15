@@ -13,6 +13,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/helpers/extensions.dart';
 import '../../../../core/routing/routes.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
 class HomeDashboard extends StatefulWidget {
   const HomeDashboard({super.key});
 
@@ -22,6 +25,14 @@ class HomeDashboard extends StatefulWidget {
 
 class _HomeDashboardState extends State<HomeDashboard> {
   bool _balanceVisible = true;
+
+  @override
+  void initState() {
+    FirebaseMessaging.instance.getToken().then((token) {
+      print("FCM TOKEN: $token");
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
