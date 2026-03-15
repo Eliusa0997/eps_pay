@@ -5,11 +5,18 @@ import 'package:eps_pay/features/auth/login/logic/cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final storage = FlutterSecureStorage();
   final LoginRepo _loginRepo;
   LoginCubit(this._loginRepo) : super(LoginState.initial());
+
+  Future<String?> getFcmToken() async {
+    String? token = await FirebaseMessaging.instance.getToken();
+    print("FCM TOKEN: $token");
+    return token;
+  }
 
   // Form Controllers
 
