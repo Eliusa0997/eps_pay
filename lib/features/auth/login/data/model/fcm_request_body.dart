@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
-part '../../../../settings/data/model/fcm_request_body.g.dart';
+part 'fcm_request_body.g.dart';
 
 @JsonSerializable()
 class FcmRequestBody {
-  @JsonKey(name: "fcm-token")
+  @JsonKey(name: "fcm_token")
   final String? fcmToken;
 
   FcmRequestBody({this.fcmToken});

@@ -430,24 +430,32 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<dynamic> sendFCMToken(FcmRequestBody fcmRequestBody) async {
+  Future<FcmResponse> sendFcmTokenToServer(
+    FcmRequestBody fcmRequestBody,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(fcmRequestBody.toJson());
-    final _options = _setStreamType<dynamic>(
+    final _options = _setStreamType<FcmResponse>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'profile/',
+            'save-fcm-token/',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch(_options);
-    final _value = _result.data;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late FcmResponse _value;
+    try {
+      _value = FcmResponse.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
     return _value;
   }
 
