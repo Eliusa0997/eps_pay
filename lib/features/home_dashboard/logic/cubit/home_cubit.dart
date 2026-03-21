@@ -1,8 +1,10 @@
 import 'package:eps_pay/core/networking/api_result.dart';
+import 'package:eps_pay/features/auth/login/data/model/fcm_request_body.dart';
 import 'package:eps_pay/features/home_dashboard/data/model/profile_model.dart';
 import 'package:eps_pay/features/home_dashboard/data/repository/home_repo.dart';
 import 'package:eps_pay/features/home_dashboard/logic/cubit/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo;
@@ -14,11 +16,17 @@ class HomeCubit extends Cubit<HomeState> {
   List<RecentTransactions>? transactions;
   HomeCubit(this._homeRepo) : super(HomeState.initial());
 
+  //  Get FCM Token
+  Future<String?> getFcmToken() async {
+    return await FirebaseMessaging.instance.getToken();
+  }
+
   void emitHomeState() async {
     emit(HomeState.loading());
     final response = await _homeRepo.getProileData();
     response.when(
       success: (homeResponse) {
+        setupFcm();
         emit(HomeState.success(homeResponse));
         // userdata = homeResponse;
         userName = homeResponse.userName;
@@ -31,5 +39,14 @@ class HomeCubit extends Cubit<HomeState> {
         emit(HomeState.error(message: failure.toString()));
       },
     );
+  }
+
+  //  Sent The FCM Token
+  void setupFcm() async {
+    String? token = await getFcmToken();
+    if (token != null) {
+      await _homeRepo.sendFcmTokenToServer(FcmRequestBody(fcmToken: token));
+      print("FCM LOGIN TOKEN SENT SUCCESSFULY: $token");
+    }
   }
 }

@@ -6,7 +6,6 @@ import 'package:eps_pay/features/auth/login/logic/cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final storage = FlutterSecureStorage();
@@ -21,29 +20,8 @@ class LoginCubit extends Cubit<LoginState> {
   //  Global Key
   final formKey = GlobalKey<FormState>();
 
-  //  Get FCM Token
-  Future<String?> getFcmToken() async {
-    String? token = await FirebaseMessaging.instance.getToken();
-    print("FCM LOGIN TOKEN: $token");
-    return token;
-  }
-
-  //  Sent The FCM Token
-
-  void setupFcm() async {
-    String? token = await getFcmToken();
-
-    if (token != null) {
-      await _loginRepo.sendFcmTokenToServer(
-        FcmRequestBody(fcmToken: await getFcmToken()),
-      );
-      print("FCM LOGIN TOKEN SENT SUCCESSFULY: $token");
-    }
-  }
-
   void validateThenDoLogin() {
     if (formKey.currentState!.validate()) {
-      setupFcm();
       emitLoginState();
     }
   }
@@ -63,7 +41,6 @@ class LoginCubit extends Cubit<LoginState> {
           loginResponse.refreshToken.toString(),
         );
         saveUserName(userNameController.text);
-
         emit(LoginState.success(loginResponse));
       },
       failure: (failure) {

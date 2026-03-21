@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:eps_pay/core/networking/api_constant.dart';
+import 'package:eps_pay/features/auth/login/data/model/fcm_response.dart';
 import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
 import 'package:eps_pay/features/auth/login/data/model/login_response.dart';
 import 'package:eps_pay/features/auth/siginup/data/model/signup_request_body.dart';
@@ -87,5 +88,7 @@ abstract class ApiService {
 
   // Settings
   @POST(ApiConstant.sendFcmToken)
-  Future sendFcmTokenToServer(@Body() FcmRequestBody fcmRequestBody);
+  Future<FcmResponse> sendFcmTokenToServer(
+    @Body() FcmRequestBody fcmRequestBody,
+  );
 }
