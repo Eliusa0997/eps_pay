@@ -1,4 +1,5 @@
 import 'package:eps_pay/core/networking/api_result.dart';
+import 'package:eps_pay/features/auth/login/data/model/fcm_request_body.dart';
 import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
 import 'package:eps_pay/features/auth/login/data/repository/login_repo.dart';
 import 'package:eps_pay/features/auth/login/logic/cubit/login_state.dart';
@@ -12,12 +13,6 @@ class LoginCubit extends Cubit<LoginState> {
   final LoginRepo _loginRepo;
   LoginCubit(this._loginRepo) : super(LoginState.initial());
 
-  Future<String?> getFcmToken() async {
-    String? token = await FirebaseMessaging.instance.getToken();
-    print("FCM TOKEN: $token");
-    return token;
-  }
-
   // Form Controllers
 
   final passwordController = TextEditingController();
@@ -26,8 +21,29 @@ class LoginCubit extends Cubit<LoginState> {
   //  Global Key
   final formKey = GlobalKey<FormState>();
 
+  //  Get FCM Token
+  Future<String?> getFcmToken() async {
+    String? token = await FirebaseMessaging.instance.getToken();
+    print("FCM LOGIN TOKEN: $token");
+    return token;
+  }
+
+  //  Sent The FCM Token
+
+  void setupFcm() async {
+    String? token = await getFcmToken();
+
+    if (token != null) {
+      await _loginRepo.sendFcmTokenToServer(
+        FcmRequestBody(fcmToken: await getFcmToken()),
+      );
+      print("FCM LOGIN TOKEN SENT SUCCESSFULY: $token");
+    }
+  }
+
   void validateThenDoLogin() {
     if (formKey.currentState!.validate()) {
+      setupFcm();
       emitLoginState();
     }
   }
