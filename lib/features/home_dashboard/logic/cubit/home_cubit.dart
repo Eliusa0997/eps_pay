@@ -26,7 +26,6 @@ class HomeCubit extends Cubit<HomeState> {
     final response = await _homeRepo.getProileData();
     response.when(
       success: (homeResponse) {
-        setupFcm();
         emit(HomeState.success(homeResponse));
         // userdata = homeResponse;
         userName = homeResponse.userName;
@@ -34,6 +33,7 @@ class HomeCubit extends Cubit<HomeState> {
         totalBalance = homeResponse.balance;
         accountNumber = homeResponse.accountNumber;
         transactions = homeResponse.recentTransactions;
+        setupFcm();
       },
       failure: (failure) {
         emit(HomeState.error(message: failure.toString()));
