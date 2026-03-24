@@ -92,6 +92,9 @@ abstract class ApiService {
   //   @Body() FcmRequestBody fcmRequestBody,
   // );
 
-  @POST(ApiConstant.sendFcmTokenToServer)
-  Future sendFcmToken(@Body() FcmRequestBody fcmRequestBody);
+  // @POST(ApiConstant.sendFcmTokenToServer)
+  // Future sendFcmToken(@Body() FcmRequestBody fcmRequestBody);
+
+  @POST(ApiConstant.sendFcm)
+  Future<FcmResponse> sendFcm(@Body() FcmRequestBody fcmRequestBody);
 }

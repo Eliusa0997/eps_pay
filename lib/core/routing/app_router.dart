@@ -61,7 +61,7 @@ class AppRouter {
       case Routes.homeDashboardScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => getIt<HomeCubit>()..emitHomeState(),
+            create: (context) => getIt<HomeCubit>()..setupHome(),
             child: const HomeDashboard(),
           ),
         );
