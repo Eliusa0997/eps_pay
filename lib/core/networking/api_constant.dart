@@ -13,5 +13,5 @@ class ApiConstant {
   static const String mobileRecharge = "mobile-recharge/";
   static const String transactionsHistory = "transaction-history/";
   static const String billsAndPayments = "bills-transaction-history/";
-  static const String sendFcmToken = "save-fcm-token/";
+  static const String sendFcmTokenToServer = "save-fcm-token/";
 }

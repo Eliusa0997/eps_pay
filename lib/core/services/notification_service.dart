@@ -8,8 +8,8 @@ class NotificationService {
     await _firebaseMessaging.requestPermission();
 
     // Get device token
-    String? token = await _firebaseMessaging.getToken();
-    print("FCM Token: $token");
+    String? fcmToken = await _firebaseMessaging.getToken();
+    print("FCM Token: $fcmToken");
 
     // Listen for notifications while app is open
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {

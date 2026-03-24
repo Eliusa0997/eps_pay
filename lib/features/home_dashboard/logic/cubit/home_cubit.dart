@@ -43,10 +43,10 @@ class HomeCubit extends Cubit<HomeState> {
 
   //  Sent The FCM Token
   void setupFcm() async {
-    String? token = await getFcmToken();
-    if (token != null) {
-      await _homeRepo.sendFcmTokenToServer(FcmRequestBody(fcmToken: token));
-      print("FCM LOGIN TOKEN SENT SUCCESSFULY: $token");
+    String? fcmToken = await getFcmToken();
+    if (fcmToken != null) {
+      await _homeRepo.sendFcmTokenToServer(FcmRequestBody(fcmToken: fcmToken));
+      print("FCM LOGIN TOKEN SENT SUCCESSFULY: $fcmToken");
     }
   }
 }

@@ -20,7 +20,7 @@ class HomeRepo {
     FcmRequestBody fcmRequestBody,
   ) async {
     try {
-      final response = await _apiService.sendFcmTokenToServer(fcmRequestBody);
+      final response = await _apiService.sendFcmToken(fcmRequestBody);
 
       return ApiResult.success(response);
     } catch (error) {
