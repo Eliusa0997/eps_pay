@@ -13,8 +13,10 @@ import 'package:eps_pay/features/bills_payment/logic/cubit/electricity_cubit.dar
 import 'package:eps_pay/features/bills_payment/logic/cubit/internet_cubit.dart';
 import 'package:eps_pay/features/bills_payment/logic/cubit/mobile_recharge_cubit.dart';
 import 'package:eps_pay/features/bills_payment/logic/cubit/water_cubit.dart';
+import 'package:eps_pay/features/home_dashboard/data/repository/fcm_repo.dart';
 import 'package:eps_pay/features/home_dashboard/data/repository/home_repo.dart';
 import 'package:eps_pay/features/home_dashboard/data/repository/transactions_history_repo.dart';
+import 'package:eps_pay/features/home_dashboard/logic/cubit/fcm_cubit.dart';
 import 'package:eps_pay/features/home_dashboard/logic/cubit/home_cubit.dart';
 import 'package:eps_pay/features/home_dashboard/logic/cubit/transactions_history_cubit.dart';
 import 'package:eps_pay/features/settings/data/repository/settings_repo.dart';
@@ -95,4 +97,8 @@ setupGetIt() {
   //  Settings
   getIt.registerLazySingleton<SettingsRepo>(() => SettingsRepo(getIt()));
   getIt.registerFactory<SettingsCubit>(() => SettingsCubit(getIt()));
+
+  //  FCM
+  getIt.registerLazySingleton<FcmRepo>(() => FcmRepo(getIt()));
+  getIt.registerFactory<FcmCubit>(() => FcmCubit(getIt()));
 }

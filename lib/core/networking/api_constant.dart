@@ -1,5 +1,6 @@
 class ApiConstant {
   static const String baseUrl = "http://5.189.155.145:1030/api/";
+  static const String sendFcmTokenToServer = "save-fcm-token/";
   static const String login = "token/";
   static const String signup = "register/";
   static const String getProfileData = "profile/";
@@ -13,5 +14,4 @@ class ApiConstant {
   static const String mobileRecharge = "mobile-recharge/";
   static const String transactionsHistory = "transaction-history/";
   static const String billsAndPayments = "bills-transaction-history/";
-  static const String sendFcmTokenToServer = "save-fcm-token/";
 }
