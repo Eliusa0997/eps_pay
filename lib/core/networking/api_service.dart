@@ -87,8 +87,11 @@ abstract class ApiService {
   Future<SettingsProfileModel> getSettingsProfileData();
 
   // Send Fcm Token
-  @POST(ApiConstant.sendFcmToken)
-  Future<FcmResponse> sendFcmTokenToServer(
-    @Body() FcmRequestBody fcmRequestBody,
-  );
+  // @GET(ApiConstant.sendFcmToken)
+  // Future<FcmResponse> sendFcmTokenToServer(
+  //   @Body() FcmRequestBody fcmRequestBody,
+  // );
+
+  @POST(ApiConstant.sendFcmTokenToServer)
+  Future sendFcmToken(@Body() FcmRequestBody fcmRequestBody);
 }
