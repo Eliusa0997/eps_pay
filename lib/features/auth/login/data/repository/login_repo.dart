@@ -1,5 +1,6 @@
 import 'package:eps_pay/core/networking/api_result.dart';
 import 'package:eps_pay/core/networking/api_service.dart';
+import 'package:eps_pay/features/auth/login/data/model/login_error_model.dart';
 import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
 import 'package:eps_pay/features/auth/login/data/model/login_response.dart';
 

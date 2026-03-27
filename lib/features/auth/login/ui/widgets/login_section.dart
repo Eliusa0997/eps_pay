@@ -108,7 +108,7 @@ class _LoginSectionState extends State<LoginSection> {
                 SizedBox(height: 6.h),
                 AppButton(
                   onPressed: () {
-                    validateThenDoLogin(context);
+                    context.read<LoginCubit>().emitLoginState();
                   },
                   buttonText: "Login",
                 ),
@@ -119,17 +119,5 @@ class _LoginSectionState extends State<LoginSection> {
         ),
       ),
     );
-  }
-
-  void validateThenDoLogin(BuildContext context) {
-    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLoginState(
-        LoginRequestBody(
-          userName: context.read<LoginCubit>().userNameController.text,
-          password: context.read<LoginCubit>().passwordController.text,
-        ),
-        context.read<LoginCubit>().userNameController.text,
-      );
-    }
   }
 }

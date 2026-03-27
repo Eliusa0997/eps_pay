@@ -5,7 +5,6 @@ import 'package:eps_pay/core/widgets/app_button.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
 import 'package:eps_pay/core/widgets/forgot_password_and_goto_screen.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
-import 'package:eps_pay/features/auth/siginup/data/model/signup_request_body.dart';
 import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
 import 'package:eps_pay/features/auth/siginup/ui/widgets/password_validations.dart';
 import 'package:eps_pay/features/auth/siginup/ui/widgets/signup_bloc_listener.dart';
@@ -110,6 +109,46 @@ class _SignupSectionState extends State<SignupSection> {
                 ),
                 SizedBox(height: 15.h),
 
+                // User first name Section
+                const FormFeildTitle(title: "Firs Name"),
+                SizedBox(height: 6.h),
+                AppFormField(
+                  controller: context.read<SignupCubit>().firstNameController,
+                  isObscurePin: false,
+                  textInputType: TextInputType.text,
+                  hintText: 'Enter your first name',
+                  prefixIcon: const Icon(Icons.person),
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        !AppRegex.hasMinUserNameLength(value)) {
+                      return "Plece Enter Valid first name";
+                    }
+                  },
+                ),
+
+                SizedBox(height: 15.h),
+
+                // User last name Section
+                const FormFeildTitle(title: "Last Name"),
+                SizedBox(height: 6.h),
+                AppFormField(
+                  controller: context.read<SignupCubit>().lastNameController,
+                  isObscurePin: false,
+                  textInputType: TextInputType.text,
+                  hintText: 'Enter your last name',
+                  prefixIcon: const Icon(Icons.person),
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        !AppRegex.hasMinUserNameLength(value)) {
+                      return "Plece Enter Valid last name";
+                    }
+                  },
+                ),
+
+                SizedBox(height: 15.h),
+
                 // Password Form Field
                 const FormFeildTitle(title: " Password"),
                 SizedBox(height: 6.h),
@@ -176,11 +215,6 @@ class _SignupSectionState extends State<SignupSection> {
   void validateThenDoSignup(BuildContext context) {
     if (context.read<SignupCubit>().formKey.currentState!.validate()) {
       context.read<SignupCubit>().emitSignupState(
-        SignupRequestBody(
-          userName: context.read<SignupCubit>().userNameController.text,
-          email: context.read<SignupCubit>().emailController.text,
-          password: context.read<SignupCubit>().passwordController.text,
-        ),
         context.read<SignupCubit>().userNameController.text,
       );
     }

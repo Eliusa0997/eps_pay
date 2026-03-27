@@ -1,3 +1,5 @@
+import 'package:eps_pay/core/helpers/extensions.dart';
+import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +24,7 @@ class TitleAndSeeall extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/transactions');
+                context.pushNamed(Routes.transactionsHistoryScreen);
               },
               child: const Text('See All'),
             ),

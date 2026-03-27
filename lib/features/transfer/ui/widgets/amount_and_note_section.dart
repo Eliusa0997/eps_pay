@@ -2,11 +2,28 @@ import 'package:eps_pay/core/theming/colors.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
 import 'package:eps_pay/features/transfer/logic/cubit/transfer_cubit.dart';
+import 'package:eps_pay/features/transfer/ui/widgets/transfer_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AmountAndNoteSection extends StatelessWidget {
-  const AmountAndNoteSection({super.key});
+  TextEditingController amountController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController noteNumberController = TextEditingController();
+  final String reciverName;
+  final String reciverAccountNumber;
+  void Function()? transfer;
+
+  AmountAndNoteSection({
+    super.key,
+    required this.amountController,
+    required this.phoneNumberController,
+    required this.noteNumberController,
+    required this.transfer,
+    required this.reciverName,
+    required this.reciverAccountNumber,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,30 +42,22 @@ class AmountAndNoteSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Amount (SDG)',
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              color: AppColors.textPrimary,
-            ),
-          ),
-          const SizedBox(height: 8),
+          const FormFeildTitle(title: "Amount (SDG)"),
+          SizedBox(height: 5.h),
           // User Name Section
-          const FormFeildTitle(title: "Amount"),
           AppFormField(
-            controller: context.read<TransferCubit>().accountNumber,
+            controller: amountController,
             isObscurePin: false,
-            textInputType: TextInputType.text,
-            hintText: 'Enter account number',
+            textInputType: TextInputType.number,
+            hintText: 'Enter amount',
             prefixIcon: const Icon(Icons.person),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "Plece Enter Valid account number";
+                return "Plece Enter Valid amount";
               }
             },
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 10.h),
           Row(
             children: [100, 500, 1000, 5000].map((amount) {
               return Expanded(
@@ -73,27 +82,59 @@ class AmountAndNoteSection extends StatelessWidget {
               );
             }).toList(),
           ),
-          const SizedBox(height: 16),
-          // User Name Section
-          const FormFeildTitle(title: "Add a note"),
+          SizedBox(height: 20.h),
+          // Phone Namber Section
+          const FormFeildTitle(title: "Phone Namber"),
+          SizedBox(height: 5.h),
           AppFormField(
-            controller: context.read<TransferCubit>().accountNumber,
+            controller: phoneNumberController,
             isObscurePin: false,
-            textInputType: TextInputType.text,
-            hintText: 'Enter account number',
+            textInputType: TextInputType.number,
+            hintText: 'Enter phone namber',
             prefixIcon: const Icon(Icons.person),
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "Plece Enter Valid account number";
+                return "Plece Enter Valid phone namber";
               }
             },
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 20.h),
+          // User Name Section
+          const FormFeildTitle(title: "Add a note"),
+          SizedBox(height: 5.h),
+          AppFormField(
+            controller: noteNumberController,
+            isObscurePin: false,
+            textInputType: TextInputType.number,
+            hintText: 'Enter account number',
+            prefixIcon: const Icon(Icons.person),
+          ),
+
+          SizedBox(height: 20.h),
+          // User Data Section
+          const FormFeildTitle(title: "Reciver Informations"),
+          _buildSettingItem(
+            Icons.person,
+            "Reciver :-  ",
+            reciverName,
+            const Color(0xFF3B82F6),
+            const Color(0xFFDEEDFF),
+          ),
+          _buildSettingItem(
+            Icons.account_balance,
+            "Account  :-  ",
+            reciverAccountNumber,
+            const Color(0xFF8B5CF6),
+            const Color(0xFFEDE9FE),
+          ),
+          TransferBlocListener(),
+          SizedBox(height: 50.h),
+          // Comfirm Button Section
           SizedBox(
             width: double.infinity,
             height: 56,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: transfer,
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
@@ -110,6 +151,56 @@ class AmountAndNoteSection extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildSettingItem(
+    IconData icon,
+    String fixedLabel,
+    String label,
+    Color iconColor,
+    Color bgColor, {
+    String? trailing,
+  }) {
+    return InkWell(
+      onTap: () {},
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20),
+        child: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(color: bgColor, shape: BoxShape.circle),
+              child: Icon(icon, size: 20, color: iconColor),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Row(
+                children: [
+                  Text(
+                    fixedLabel,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                  Divider(color: Colors.black),
+                  Text(
+                    label,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

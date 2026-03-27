@@ -1,13 +1,11 @@
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
-import 'package:eps_pay/features/home_dashboard/logic/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Header extends StatelessWidget {
-  final String userName;
-  const Header({super.key, required this.userName});
+  final String fullName;
+  const Header({super.key, required this.fullName});
 
   String _getGreeting() {
     final hour = DateTime.now().hour;
@@ -45,7 +43,7 @@ class Header extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    context.read<HomeCubit>().userName.toString(),
+                    fullName,
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,

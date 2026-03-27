@@ -1,0 +1,19 @@
+import 'package:eps_pay/core/networking/api_result.dart';
+import 'package:eps_pay/core/networking/api_service.dart';
+import 'package:eps_pay/features/transfer/data/model/transfer_request_body.dart';
+import 'package:eps_pay/features/transfer/data/model/transfer_response.dart';
+
+class WithdrawRepo {
+  final ApiService _apiService;
+  WithdrawRepo(this._apiService);
+  Future<ApiResult<TransferRespone>> withdraw(
+    TransferRequestBody transferRequestBody,
+  ) async {
+    try {
+      final response = await _apiService.withdraw(transferRequestBody);
+      return ApiResult.success(response);
+    } catch (error) {
+      return ApiResult.failure(error.toString());
+    }
+  }
+}

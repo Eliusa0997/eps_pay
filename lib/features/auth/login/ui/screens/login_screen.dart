@@ -18,14 +18,14 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header
+              // Header Section
               wellcomeCard(
-                title: 'Welcome Back',
-                subTitle: 'Login to access your account',
+                title: 'Welcome Back 👋',
+                subTitle: 'Securely sign in to your EpsPay account',
               ),
               // Login Section
               LoginSection(),
-              // Biometric Login
+              // Biometric Login Section
               const BiometricLogin(),
             ],
           ),
