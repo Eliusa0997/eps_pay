@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/helpers/app_regex.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
@@ -5,7 +6,6 @@ import 'package:eps_pay/core/widgets/app_button.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
 import 'package:eps_pay/core/widgets/forgot_password_and_goto_screen.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
-import 'package:eps_pay/features/auth/siginup/data/model/signup_request_body.dart';
 import 'package:eps_pay/features/auth/siginup/logic/cubit/signup_cubit.dart';
 import 'package:eps_pay/features/auth/siginup/ui/widgets/password_validations.dart';
 import 'package:eps_pay/features/auth/siginup/ui/widgets/signup_bloc_listener.dart';
@@ -83,7 +83,7 @@ class _SignupSectionState extends State<SignupSection> {
                     if (value == null ||
                         value.isEmpty ||
                         !AppRegex.hasMinUserNameLength(value)) {
-                      return "Plece Enter Valid User Name";
+                      return "Plece Enter Valid User Name".tr();
                     }
                   },
                 ),
@@ -104,14 +104,54 @@ class _SignupSectionState extends State<SignupSection> {
                     if (value == null ||
                         value.isEmpty ||
                         !AppRegex.isEmailValid(value)) {
-                      return "Plece Enter Valid User Email";
+                      return "Plece Enter Valid User Email".tr();
                     }
                   },
                 ),
                 SizedBox(height: 15.h),
 
+                // User first name Section
+                const FormFeildTitle(title: "Firs Name"),
+                SizedBox(height: 6.h),
+                AppFormField(
+                  controller: context.read<SignupCubit>().firstNameController,
+                  isObscurePin: false,
+                  textInputType: TextInputType.text,
+                  hintText: 'Enter your first name',
+                  prefixIcon: const Icon(Icons.person),
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        !AppRegex.hasMinUserNameLength(value)) {
+                      return "Plece Enter Valid first name.".tr();
+                    }
+                  },
+                ),
+
+                SizedBox(height: 15.h),
+
+                // User last name Section
+                const FormFeildTitle(title: "Last Name"),
+                SizedBox(height: 6.h),
+                AppFormField(
+                  controller: context.read<SignupCubit>().lastNameController,
+                  isObscurePin: false,
+                  textInputType: TextInputType.text,
+                  hintText: 'Enter your last name',
+                  prefixIcon: const Icon(Icons.person),
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        !AppRegex.hasMinUserNameLength(value)) {
+                      return "Plece Enter Valid last name".tr();
+                    }
+                  },
+                ),
+
+                SizedBox(height: 15.h),
+
                 // Password Form Field
-                const FormFeildTitle(title: " Password"),
+                const FormFeildTitle(title: "Password"),
                 SizedBox(height: 6.h),
                 AppFormField(
                   textInputType: TextInputType.text,
@@ -134,7 +174,7 @@ class _SignupSectionState extends State<SignupSection> {
                     if (value == null ||
                         value.isEmpty ||
                         !AppRegex.hasMinLength(value)) {
-                      return "Password Must Be More Than 5 Length";
+                      return "Password Must Be More Than 5 Length".tr();
                     }
                   },
                 ),
@@ -142,7 +182,7 @@ class _SignupSectionState extends State<SignupSection> {
                 // Navigation Row for Forget Password and login and signup
                 SizedBox(height: 10.h),
                 ForgetPassordAndGoToSomeScreen(
-                  text: 'I have a account',
+                  text: 'I have a account'.tr(),
                   goToScreen: () {
                     context.pushNamed(Routes.loginScreen);
                   },
@@ -158,7 +198,7 @@ class _SignupSectionState extends State<SignupSection> {
                 SizedBox(height: 8.h),
                 AppButton(
                   onPressed: () {
-                    validateThenDoSignup(context);
+                    context.read<SignupCubit>().validateThenDoSignup();
                   },
                   buttonText: "Sign up",
                 ),
@@ -173,22 +213,9 @@ class _SignupSectionState extends State<SignupSection> {
     );
   }
 
-  void validateThenDoSignup(BuildContext context) {
-    if (context.read<SignupCubit>().formKey.currentState!.validate()) {
-      context.read<SignupCubit>().emitSignupState(
-        SignupRequestBody(
-          userName: context.read<SignupCubit>().userNameController.text,
-          email: context.read<SignupCubit>().emailController.text,
-          password: context.read<SignupCubit>().passwordController.text,
-        ),
-        context.read<SignupCubit>().userNameController.text,
-      );
-    }
-  }
-
   @override
   void dispose() {
-    // passwordController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 }

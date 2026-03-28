@@ -29,7 +29,7 @@ class LoginBlocListener extends StatelessWidget {
           },
           success: (loginResponse) {
             context.pop();
-            context.pushReplacementNamed(Routes.homeDashboard);
+            context.pushReplacementNamed(Routes.homeDashboardScreen);
           },
           error: (error) {
             setupErrorState(context, error);

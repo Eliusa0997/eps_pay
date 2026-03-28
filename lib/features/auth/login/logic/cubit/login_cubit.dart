@@ -5,11 +5,18 @@ import 'package:eps_pay/features/auth/login/logic/cubit/login_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   final storage = FlutterSecureStorage();
   final LoginRepo _loginRepo;
   LoginCubit(this._loginRepo) : super(LoginState.initial());
+
+  Future<String?> getFcmToken() async {
+    String? token = await FirebaseMessaging.instance.getToken();
+    print("FCM TOKEN: $token");
+    return token;
+  }
 
   // Form Controllers
 
@@ -19,19 +26,27 @@ class LoginCubit extends Cubit<LoginState> {
   //  Global Key
   final formKey = GlobalKey<FormState>();
 
-  void emitLoginState(
-    LoginRequestBody loginRequestBody,
-    String storedUserName,
-  ) async {
+  void validateThenDoLogin() {
+    if (formKey.currentState!.validate()) {
+      emitLoginState();
+    }
+  }
+
+  void emitLoginState() async {
     emit(LoginState.loading());
-    final response = await _loginRepo.login(loginRequestBody);
+    final response = await _loginRepo.login(
+      LoginRequestBody(
+        userName: userNameController.text,
+        password: passwordController.text,
+      ),
+    );
     response.when(
       success: (loginResponse) {
         saveTokens(
           loginResponse.accessToken.toString(),
           loginResponse.refreshToken.toString(),
         );
-        saveUserName(storedUserName);
+        saveUserName(userNameController.text);
 
         emit(LoginState.success(loginResponse));
       },
@@ -60,6 +75,5 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> saveTokens(String access, String refresh) async {
     await storage.write(key: 'access_token', value: access);
     await storage.write(key: 'refresh_token', value: refresh);
-    print("==================== done ============================");
   }
 }

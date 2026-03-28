@@ -16,18 +16,31 @@ class SignupCubit extends Cubit<SignupState> {
   final userNameController = TextEditingController();
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
   //  Global Key
   final formKey = GlobalKey<FormState>();
 
-  void emitSignupState(
-    SignupRequestBody signupRequestBody,
-    String storedUserName,
-  ) async {
+  void validateThenDoSignup() {
+    if (formKey.currentState!.validate()) {
+      emitSignupState();
+    }
+  }
+
+  void emitSignupState() async {
     emit(SignupState.loading());
-    final response = await _signupRepo.signup(signupRequestBody);
+    final response = await _signupRepo.signup(
+      SignupRequestBody(
+        userName: userNameController.text,
+        password: passwordController.text,
+        email: emailController.text,
+        firstName: firstNameController.text,
+        lastName: lastNameController.text,
+      ),
+    );
     response.when(
       success: (signupResponse) {
-        saveUserName(storedUserName);
+        saveUserName(userNameController.text);
         emit(SignupState.success(signupResponse));
       },
       failure: (failure) {
