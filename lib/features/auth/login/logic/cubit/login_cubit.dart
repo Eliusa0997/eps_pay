@@ -43,8 +43,8 @@ class LoginCubit extends Cubit<LoginState> {
         saveUserName(userNameController.text);
         emit(LoginState.success(loginResponse));
       },
-      failure: (failure) {
-        emit(LoginState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        emit(LoginState.error(apiErrorModel));
       },
     );
   }

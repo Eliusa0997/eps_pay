@@ -24,7 +24,7 @@ class ApiErrorHandler {
             detail: "Send timeout  in connection with the server",
           );
         case DioException.badResponse:
-          return _handleError(dynamic errorDetail);
+          return _handleError(error);
         default:
           return ApiErrorModel(detail: "Some thing went wrong");
       }
@@ -32,8 +32,8 @@ class ApiErrorHandler {
       return ApiErrorModel(detail: "Unexpected error");
     }
   }
+}
 
-  ApiErrorModel _handleError(dynamic errorDetail) {
-    return ApiErrorModel(detail: errorDetail);
-  }
+ApiErrorModel _handleError(dynamic error) {
+  return ApiErrorModel(detail: error);
 }
