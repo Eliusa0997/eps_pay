@@ -1,3 +1,4 @@
+import 'package:eps_pay/core/networking/api_error_handler.dart';
 import 'package:eps_pay/core/networking/api_result.dart';
 import 'package:eps_pay/core/networking/api_service.dart';
 import 'package:eps_pay/features/auth/login/data/model/fcm_request_body.dart';
@@ -12,7 +13,7 @@ class HomeRepo {
       final response = await _apiService.getProfileData();
       return ApiResult.success(response);
     } catch (error) {
-      return ApiResult.failure(error.toString());
+      return ApiResult.failure(ApiErrorHandler.handle(error));
     }
   }
 
@@ -24,7 +25,7 @@ class HomeRepo {
 
       return ApiResult.success(response);
     } catch (error) {
-      return ApiResult.failure(error.toString());
+      return ApiResult.failure(ApiErrorHandler.handle(error));
     }
   }
 }

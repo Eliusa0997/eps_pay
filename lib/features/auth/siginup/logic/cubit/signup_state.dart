@@ -1,3 +1,4 @@
+import 'package:eps_pay/core/networking/api_error_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'signup_state.freezed.dart';
 
@@ -6,5 +7,5 @@ class SignupState<T> with _$SignupState {
   const factory SignupState.initial() = _Initial;
   const factory SignupState.loading() = Loading;
   const factory SignupState.success(T data) = Success<T>;
-  const factory SignupState.error({required String message}) = Error;
+  const factory SignupState.error(ApiErrorModel apiErrorModel) = Error;
 }

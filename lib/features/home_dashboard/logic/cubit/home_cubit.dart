@@ -34,8 +34,8 @@ class HomeCubit extends Cubit<HomeState> {
         accountNumber = homeResponse.accountNumber;
         transactions = homeResponse.recentTransactions;
       },
-      failure: (failure) {
-        emit(HomeState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        emit(HomeState.error(apiErrorModel));
       },
     );
   }

@@ -23,9 +23,9 @@ class TransactionsHistoryCubit extends Cubit<TransactionsHistoryState> {
         print("✅ Success my list: ${allTransactions.length}");
         emit(TransactionsHistoryState.success(transactionsHistoryResponse));
       },
-      failure: (failure) {
-        print("❌ Error: $failure");
-        emit(TransactionsHistoryState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        print("❌ Error: $apiErrorModel");
+        emit(TransactionsHistoryState.error(apiErrorModel));
       },
     );
   }

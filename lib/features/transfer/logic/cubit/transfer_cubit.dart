@@ -26,8 +26,8 @@ class TransferCubit extends Cubit<TransferState> {
       success: (transferResponse) {
         emit(TransferState.success(transferResponse));
       },
-      failure: (failure) {
-        emit(TransferState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        emit(TransferState.error(apiErrorModel));
       },
     );
   }
