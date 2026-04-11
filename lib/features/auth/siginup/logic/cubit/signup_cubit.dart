@@ -43,8 +43,8 @@ class SignupCubit extends Cubit<SignupState> {
         saveUserName(userNameController.text);
         emit(SignupState.success(signupResponse));
       },
-      failure: (failure) {
-        emit(SignupState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        emit(SignupState.error(apiErrorModel));
       },
     );
   }
