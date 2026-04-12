@@ -28,8 +28,8 @@ class WaterCubit extends Cubit<WaterState> {
       success: (waterResponse) {
         emit(WaterState.success(waterResponse));
       },
-      failure: (failure) {
-        emit(WaterState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        emit(WaterState.error(apiErrorModel));
       },
     );
   }

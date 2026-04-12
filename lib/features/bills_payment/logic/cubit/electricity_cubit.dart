@@ -30,8 +30,8 @@ class ElectricityCubit extends Cubit<ElectricityState> {
       success: (electricityResponse) {
         emit(ElectricityState.success(electricityResponse));
       },
-      failure: (failure) {
-        emit(ElectricityState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        emit(ElectricityState.error(apiErrorModel));
       },
     );
   }

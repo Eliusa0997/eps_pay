@@ -29,8 +29,8 @@ class MobileRechargeCubit extends Cubit<MobileRechargeState> {
       success: (mobileRechargeResponse) {
         emit(MobileRechargeState.success(mobileRechargeResponse));
       },
-      failure: (failure) {
-        emit(MobileRechargeState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        emit(MobileRechargeState.error(apiErrorModel));
       },
     );
   }
