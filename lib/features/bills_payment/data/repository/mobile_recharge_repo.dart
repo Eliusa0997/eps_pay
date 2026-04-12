@@ -1,3 +1,4 @@
+import 'package:eps_pay/core/networking/api_error_handler.dart';
 import 'package:eps_pay/core/networking/api_result.dart';
 import 'package:eps_pay/core/networking/api_service.dart';
 import 'package:eps_pay/features/bills_payment/data/model/bills_request_body.dart';
@@ -13,7 +14,7 @@ class MobileRechargeRepo {
       final response = await _apiService.mobileRecharge(billsRequestBody);
       return ApiResult.success(response);
     } catch (error) {
-      return ApiResult.failure(error.toString());
+      return ApiResult.failure(ApiErrorHandler.handle(error));
     }
   }
 }

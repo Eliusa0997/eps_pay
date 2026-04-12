@@ -28,8 +28,8 @@ class InternetCubit extends Cubit<InternetState> {
       success: (internetResponse) {
         emit(InternetState.success(internetResponse));
       },
-      failure: (failure) {
-        emit(InternetState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        emit(InternetState.error(apiErrorModel));
       },
     );
   }
