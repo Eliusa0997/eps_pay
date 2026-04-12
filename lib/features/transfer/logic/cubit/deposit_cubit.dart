@@ -28,8 +28,8 @@ class DepositCubit extends Cubit<DepositState> {
       success: (depositResponse) {
         emit(DepositState.success(depositResponse));
       },
-      failure: (failure) {
-        emit(DepositState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        emit(DepositState.error(apiErrorModel));
       },
     );
   }

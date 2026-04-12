@@ -21,8 +21,8 @@ class SettingsCubit extends Cubit<SettingsState> {
         print("=========================================");
         emit(SettingsState.success(profileResponse));
       },
-      failure: (failure) {
-        emit(SettingsState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        emit(SettingsState.error(apiErrorModel));
       },
     );
   }
