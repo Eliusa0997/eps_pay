@@ -29,8 +29,8 @@ class WithdrawCubit extends Cubit<WithdrawState> {
       success: (withdrawResponse) {
         emit(WithdrawState.success(withdrawResponse));
       },
-      failure: (failure) {
-        emit(WithdrawState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        emit(WithdrawState.error(apiErrorModel));
       },
     );
   }
