@@ -24,8 +24,8 @@ class BillsAndPaymentCubit extends Cubit<BillsAndPaymentState> {
         print(billsAndPaymentResponse.first.transactionType);
         print("=============================");
       },
-      failure: (failure) {
-        emit(BillsAndPaymentState.error(message: failure.toString()));
+      failure: (apiErrorModel) {
+        emit(BillsAndPaymentState.error(apiErrorModel));
       },
     );
   }
