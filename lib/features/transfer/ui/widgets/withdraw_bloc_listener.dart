@@ -64,7 +64,10 @@ class WithdrawBlocListener extends StatelessWidget {
                     color: AppColors.error,
                     size: 32,
                   ),
-                  content: Text(error, style: AppFonts.font14W600textPrimary),
+                  content: Text(
+                    error.detail.toString(),
+                    style: AppFonts.font14W600textPrimary,
+                  ),
                   actions: [
                     TextButton(
                       onPressed: () {
