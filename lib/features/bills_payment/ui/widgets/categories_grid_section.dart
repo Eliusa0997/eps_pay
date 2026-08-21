@@ -3,6 +3,7 @@ import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:eps_pay/features/bills_payment/ui/widgets/categories_list.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoriesGridSection extends StatelessWidget {
   const CategoriesGridSection({super.key});
@@ -11,11 +12,11 @@ class CategoriesGridSection extends StatelessWidget {
   Widget build(BuildContext context) {
     var categories = myCategories;
     return SliverPadding(
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.all(20.w),
       sliver: SliverGrid(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          childAspectRatio: 1,
+          childAspectRatio: .9,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
         ),
@@ -25,17 +26,17 @@ class CategoriesGridSection extends StatelessWidget {
             onTap: () {
               context.pushNamed(category['route'].toString());
             },
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(16.r),
             child: Container(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.all(10.r),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(16.r),
                 border: Border.all(color: AppColors.border),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.05),
-                    blurRadius: 8,
+                    blurRadius: 8.r,
                     offset: const Offset(0, 2),
                   ),
                 ],
@@ -44,11 +45,11 @@ class CategoriesGridSection extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    width: 64,
-                    height: 64,
+                    width: 64.w,
+                    height: 64.h,
                     decoration: BoxDecoration(
                       gradient: category['color'] as LinearGradient,
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(16.r),
                       boxShadow: [
                         BoxShadow(
                           color: (category['color'] as LinearGradient)
@@ -62,7 +63,7 @@ class CategoriesGridSection extends StatelessWidget {
                     ),
                     child: Icon(
                       category['icon'] as IconData,
-                      size: 32,
+                      size: 35.sp,
                       color: Colors.white,
                     ),
                   ),
@@ -70,17 +71,18 @@ class CategoriesGridSection extends StatelessWidget {
                   Text(
                     category['label'] as String,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 14,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textPrimary,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4.h),
                   Text(
                     '${category['providers']} providers'.tr(),
-                    style: const TextStyle(
-                      fontSize: 12,
+                    style: TextStyle(
+                      fontSize: 12.sp,
                       color: AppColors.textSecondary,
                     ),
                   ),
