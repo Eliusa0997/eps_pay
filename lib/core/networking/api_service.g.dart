@@ -12,7 +12,7 @@ part of 'api_service.dart';
 
 class _ApiService implements ApiService {
   _ApiService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'http://5.189.155.145:1030/api/';
+    baseUrl ??= 'https://epspay.pythonanywhere.com/api/';
   }
 
   final Dio _dio;
