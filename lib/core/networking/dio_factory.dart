@@ -9,7 +9,7 @@ class DioFactory {
   static Dio? dio;
   static final FlutterSecureStorage _storage = FlutterSecureStorage();
   static Dio getDio() {
-    Duration timeOut = const Duration(seconds: 100);
+    Duration timeOut = const Duration(seconds: 30);
 
     if (dio == null) {
       dio = Dio();
