@@ -6,6 +6,7 @@ import 'package:eps_pay/features/transfer/ui/widgets/reciver_name_and_account_nu
 import 'package:eps_pay/features/transfer/ui/widgets/amount_and_note_section.dart';
 import 'package:eps_pay/features/transfer/ui/widgets/header.dart';
 import 'package:eps_pay/features/transfer/ui/widgets/reciver_name_section.dart';
+import 'package:eps_pay/features/transfer/ui/widgets/transfer_money_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,6 +37,7 @@ class TransferMoneyScreen extends StatelessWidget {
                   );
                 },
               ),
+              const TransferMoneyBlocListener(),
             ],
           ),
         ),
