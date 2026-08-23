@@ -1,3 +1,4 @@
+import 'package:eps_pay/core/functions/setup_error_state.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/app_fonts.dart';
@@ -35,7 +36,7 @@ class CheckReciverBlocListener extends StatelessWidget {
             );
           },
           error: (error) {
-            // (context, error);
+            setupErrorState(context, error);
           },
         );
       },
