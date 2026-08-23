@@ -67,7 +67,11 @@ class QuickActions extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, action['route']);
+                            Navigator.pushReplacementNamed(
+                              context,
+                              action['route'],
+                            );
+                            // Navigator.pushNamed(context, action['route']);
                           },
                           borderRadius: BorderRadius.circular(16),
                           child: Container(

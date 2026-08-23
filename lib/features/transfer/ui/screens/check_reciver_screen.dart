@@ -1,6 +1,5 @@
-import 'package:eps_pay/features/auth/login/ui/widgets/biometric_login.dart';
-import 'package:eps_pay/features/auth/login/ui/widgets/login_section.dart';
 import 'package:eps_pay/core/widgets/wellcome_card.dart';
+import 'package:eps_pay/features/transfer/ui/widgets/check_reciver_bloc_listener.dart';
 import 'package:eps_pay/features/transfer/ui/widgets/check_reciver_form_botton_section.dart';
 import 'package:flutter/material.dart';
 
