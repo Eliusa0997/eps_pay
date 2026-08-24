@@ -1,4 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:eps_pay/core/helpers/extensions.dart';
+import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/app_fonts.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +34,20 @@ class wellcomeCard extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(24.w, 48.h, 24.w, 80.h),
         child: Column(
           children: [
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () =>
+                      context.pushNamed(Routes.homeDashboardScreen),
+
+                  icon: const Icon(Icons.arrow_back),
+                  color: Colors.white,
+                  style: IconButton.styleFrom(
+                    backgroundColor: Colors.white.withOpacity(0.1),
+                  ),
+                ),
+              ],
+            ),
             Container(
               height: 120.h,
               width: 120.w,
