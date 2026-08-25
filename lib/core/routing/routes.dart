@@ -15,7 +15,7 @@ class Routes {
   static const transferMoneyScreen = '/transfer-money-screen';
   static const depositScreen = '/deposit-screen';
   static const withdrawScreen = '/withdraw-screen';
-  static const reciverDataScreen = '/reciver-data-screen';
+  static const checkReciverScreen = '/reciver-data-screen';
 
   // Bills & Payment
   static const billsBaymentsScreen = '/bills-payments-screen';

@@ -88,7 +88,8 @@ class AppRouter {
 
       // Money transctions
       case Routes.transferMoneyScreen:
-        final receiverData = settings.arguments as ReciverResponse;
+        final ReciverResponse receiverData =
+            settings.arguments as ReciverResponse;
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => getIt<TransferCubit>(),
@@ -96,7 +97,7 @@ class AppRouter {
           ),
         );
       // Rciver Data
-      case Routes.reciverDataScreen:
+      case Routes.checkReciverScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => getIt<ReciverCubit>(),

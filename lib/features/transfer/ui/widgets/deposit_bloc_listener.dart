@@ -1,3 +1,5 @@
+import 'package:eps_pay/core/for_test_models/setup_success_state.dart';
+import 'package:eps_pay/core/functions/setup_error_state.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/app_fonts.dart';
@@ -28,58 +30,17 @@ class DepositBlocListener extends StatelessWidget {
             );
           },
           success: (depositResponse) {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  icon: const Icon(
-                    Icons.error,
-                    color: AppColors.error,
-                    size: 32,
-                  ),
-                  content: Text(
-                    'Your ${depositResponse.sucsuccessMessage} done ✅',
-                    style: AppFonts.font14W600textPrimary,
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        context.pop();
-                        context.pushNamed(Routes.homeDashboardScreen);
-                      },
-                      child: Text("ok"),
-                    ),
-                  ],
-                );
+            setupSuccessState(
+              context,
+              'Your ${depositResponse.sucsuccessMessage}',
+              () {
+                context.pop();
+                context.pushReplacementNamed(Routes.homeDashboardScreen);
               },
             );
           },
           error: (error) {
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  icon: const Icon(
-                    Icons.error,
-                    color: AppColors.error,
-                    size: 32,
-                  ),
-                  content: Text(
-                    error.detail.toString(),
-                    style: AppFonts.font14W600textPrimary,
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        context.pop();
-                        context.pushNamed(Routes.homeDashboardScreen);
-                      },
-                      child: Text("ok"),
-                    ),
-                  ],
-                );
-              },
-            );
+            setupErrorState(context, error);
           },
         );
       },

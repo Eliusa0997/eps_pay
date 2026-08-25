@@ -37,7 +37,6 @@ class TransferMoneyScreen extends StatelessWidget {
                   );
                 },
               ),
-              const TransferMoneyBlocListener(),
             ],
           ),
         ),

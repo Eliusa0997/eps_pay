@@ -1,3 +1,4 @@
+import 'package:eps_pay/core/for_test_models/setup_success_state.dart';
 import 'package:eps_pay/core/functions/setup_error_state.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
@@ -28,8 +29,14 @@ class TransferMoneyBlocListener extends StatelessWidget {
             );
           },
           success: (transferResponse) {
-            context.pop();
-            context.pushReplacementNamed(Routes.transferMoneyScreen);
+            setupSuccessState(
+              context,
+              'Your ${transferResponse.sucsuccessMessage}',
+              () {
+                context.pop();
+                context.pushReplacementNamed(Routes.homeDashboardScreen);
+              },
+            );
           },
           error: (error) {
             setupErrorState(context, error);
