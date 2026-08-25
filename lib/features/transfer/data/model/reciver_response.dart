@@ -4,11 +4,11 @@ part 'reciver_response.g.dart';
 @JsonSerializable()
 class ReciverResponse {
   @JsonKey(name: "account_number")
-  final int? accountNumber;
+  final int accountNumber;
   @JsonKey(name: "username")
-  final String? reciverName;
+  final String reciverName;
 
-  ReciverResponse({this.reciverName, this.accountNumber});
+  ReciverResponse({required this.reciverName, required this.accountNumber});
   factory ReciverResponse.fromJson(Map<String, dynamic> json) =>
       _$ReciverResponseFromJson(json);
   Map<String, dynamic> toJson() => _$ReciverResponseToJson(this);

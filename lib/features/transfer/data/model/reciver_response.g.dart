@@ -8,8 +8,8 @@ part of 'reciver_response.dart';
 
 ReciverResponse _$ReciverResponseFromJson(Map<String, dynamic> json) =>
     ReciverResponse(
-      reciverName: json['username'] as String?,
-      accountNumber: (json['account_number'] as num?)?.toInt(),
+      reciverName: json['username'] as String,
+      accountNumber: (json['account_number'] as num).toInt(),
     );
 
 Map<String, dynamic> _$ReciverResponseToJson(ReciverResponse instance) =>

@@ -3,7 +3,8 @@ import 'package:eps_pay/core/theming/colors.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
 import 'package:eps_pay/features/transfer/logic/cubit/transfer_cubit.dart';
-import 'package:eps_pay/features/transfer/ui/widgets/transfer_bloc_listener.dart';
+import 'package:eps_pay/features/transfer/ui/widgets/transfer_bloc_listener.txt';
+import 'package:eps_pay/features/transfer/ui/widgets/transfer_money_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -100,7 +101,7 @@ class AmountAndNoteSection extends StatelessWidget {
           AppFormField(
             controller: context.read<TransferCubit>().noteController,
             isObscurePin: false,
-            textInputType: TextInputType.number,
+            textInputType: TextInputType.text,
             hintText: 'Enter your note',
             prefixIcon: const Icon(Icons.person),
           ),
@@ -145,6 +146,7 @@ class AmountAndNoteSection extends StatelessWidget {
               ),
             ),
           ),
+          const TransferMoneyBlocListener(),
         ],
       ),
     );
