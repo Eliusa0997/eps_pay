@@ -68,7 +68,7 @@ class RecentTransaction extends StatelessWidget {
                       children: [
                         LableText(
                           receiverName: transaction.receiverName.toString(),
-                          transactionType: transaction.transactionType,
+                          transactionType: transaction.transactionType.tr(),
                         ),
                         const SizedBox(height: 2),
                         Text(
@@ -91,7 +91,7 @@ class RecentTransaction extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: transaction.transactionType == "deposit"
                               ? AppColors.success
-                              : AppColors.textPrimary,
+                              : AppColors.myRed,
                         ),
                       ),
                       const SizedBox(height: 2),

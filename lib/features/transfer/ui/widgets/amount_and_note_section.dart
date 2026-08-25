@@ -111,14 +111,14 @@ class AmountAndNoteSection extends StatelessWidget {
           const FormFeildTitle(title: "Reciver Informations"),
           _buildSettingItem(
             Icons.person,
-            "Reciver :-  ".tr(),
+            "Reciver".tr() + " > ",
             reciverName,
             const Color(0xFF3B82F6),
             const Color(0xFFDEEDFF),
           ),
           _buildSettingItem(
             Icons.account_balance,
-            "Account  :-  ".tr(),
+            "Account".tr() + " > ",
             reciverAccountNumber,
             const Color(0xFF8B5CF6),
             const Color(0xFFEDE9FE),
