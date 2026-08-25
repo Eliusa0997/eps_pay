@@ -31,7 +31,7 @@ class wellcomeCard extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: EdgeInsets.fromLTRB(24.w, 48.h, 24.w, 80.h),
+        padding: EdgeInsets.fromLTRB(24.w, 20.h, 24.w, 80.h),
         child: Column(
           children: [
             Row(
