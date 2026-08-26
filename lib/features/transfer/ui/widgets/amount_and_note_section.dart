@@ -3,7 +3,7 @@ import 'package:eps_pay/core/theming/colors.dart';
 import 'package:eps_pay/core/widgets/app_form_field.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
 import 'package:eps_pay/features/transfer/logic/cubit/transfer_cubit.dart';
-import 'package:eps_pay/features/transfer/ui/widgets/transfer_bloc_listener.txt';
+// import 'package:eps_pay/features/transfer/ui/widgets/transfer_bloc_listener.txt';
 import 'package:eps_pay/features/transfer/ui/widgets/transfer_money_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -123,7 +123,7 @@ class AmountAndNoteSection extends StatelessWidget {
             const Color(0xFF8B5CF6),
             const Color(0xFFEDE9FE),
           ),
-          TransferBlocListener(),
+          // TransferBlocListener(),
           SizedBox(height: 50.h),
           // Comfirm Button Section
           SizedBox(
