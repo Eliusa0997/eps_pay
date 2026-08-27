@@ -18,7 +18,7 @@ class CheckReciverScreen extends StatelessWidget {
                 title: 'Transfer Money',
                 subTitle: 'Do your transformation Securely',
               ),
-              // Login Section
+              // Check reciver form Section
               FormButtnSection(),
               // Biometric Login
             ],
