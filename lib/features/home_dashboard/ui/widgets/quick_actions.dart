@@ -35,7 +35,7 @@ class QuickActions extends StatelessWidget {
       },
       {
         'icon': Icons.credit_card,
-        'label': 'Withdraw'.tr(),
+        'label': 'withdraw'.tr(),
         'gradient': const LinearGradient(
           colors: [Color(0xFFF97316), Color(0xFFEA580C)],
         ),
