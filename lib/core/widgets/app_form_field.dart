@@ -31,7 +31,7 @@ class AppFormField extends StatelessWidget {
       controller: controller,
       obscureText: isObscurePin,
       keyboardType: textInputType,
-      maxLength: maxLength ?? 14,
+      maxLength: maxLength ?? 20,
 
       decoration: InputDecoration(
         hintText: hintText.tr(),
