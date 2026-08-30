@@ -57,6 +57,7 @@ class _LoginSectionState extends State<LoginSection> {
                 AppFormField(
                   controller: context.read<LoginCubit>().userNameController,
                   isObscurePin: false,
+                  maxLength: 150,
                   textInputType: TextInputType.text,
                   hintText: 'Enter User Name',
                   prefixIcon: const Icon(Icons.person),

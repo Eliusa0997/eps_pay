@@ -96,7 +96,7 @@ class _SignupSectionState extends State<SignupSection> {
                 AppFormField(
                   controller: context.read<SignupCubit>().emailController,
                   isObscurePin: false,
-                  maxLength: 30,
+                  maxLength: 150,
                   textInputType: TextInputType.text,
                   hintText: 'Enter Your Email',
                   prefixIcon: const Icon(Icons.email),
