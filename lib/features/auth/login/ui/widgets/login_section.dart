@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/widgets/app_button.dart';
@@ -8,7 +9,6 @@ import 'package:eps_pay/features/auth/login/ui/widgets/form_feild_title.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/login_bloc_listener.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:eps_pay/features/auth/login/data/model/login_request_body.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -62,7 +62,7 @@ class _LoginSectionState extends State<LoginSection> {
                   prefixIcon: const Icon(Icons.person),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Plece Enter Valid User Name";
+                      return "Plece Enter Valid User Name".tr();
                     }
                   },
                 ),
@@ -90,7 +90,7 @@ class _LoginSectionState extends State<LoginSection> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return "Plece Enter Valid Password";
+                      return "Plece Enter Valid Password".tr();
                     }
                   },
                 ),
@@ -98,7 +98,7 @@ class _LoginSectionState extends State<LoginSection> {
                 // Forgot PIN
                 SizedBox(height: 10.h),
                 ForgetPassordAndGoToSomeScreen(
-                  text: 'I dont have account',
+                  text: 'I dont have account'.tr(),
                   goToScreen: () {
                     context.pushNamed(Routes.signupScreen);
                   },
@@ -108,7 +108,7 @@ class _LoginSectionState extends State<LoginSection> {
                 SizedBox(height: 6.h),
                 AppButton(
                   onPressed: () {
-                    validateThenDoLogin(context);
+                    context.read<LoginCubit>().validateThenDoLogin();
                   },
                   buttonText: "Login",
                 ),
@@ -119,17 +119,5 @@ class _LoginSectionState extends State<LoginSection> {
         ),
       ),
     );
-  }
-
-  void validateThenDoLogin(BuildContext context) {
-    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLoginState(
-        LoginRequestBody(
-          userName: context.read<LoginCubit>().userNameController.text,
-          password: context.read<LoginCubit>().passwordController.text,
-        ),
-        context.read<LoginCubit>().userNameController.text,
-      );
-    }
   }
 }

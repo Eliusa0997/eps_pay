@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/biometric_login.dart';
 import 'package:eps_pay/features/auth/login/ui/widgets/login_section.dart';
 import 'package:eps_pay/core/widgets/wellcome_card.dart';
@@ -18,14 +19,14 @@ class _LoginScreenState extends State<LoginScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Header
+              // Header Section
               wellcomeCard(
                 title: 'Welcome Back',
-                subTitle: 'Login to access your account',
+                subTitle: 'Securely sign in to your EpsPay account',
               ),
               // Login Section
               LoginSection(),
-              // Biometric Login
+              // Biometric Login Section
               const BiometricLogin(),
             ],
           ),
