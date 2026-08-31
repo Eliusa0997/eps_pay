@@ -16,6 +16,7 @@ class MobileRechargeScreen extends StatelessWidget {
               wellcomeCard(
                 title: 'Mobile Recharge',
                 subTitle: 'Recharge your Mobile bill quickly and securely',
+                isAuth: false,
                 headerIcon: Icon(
                   Icons.smartphone,
                   size: 100,

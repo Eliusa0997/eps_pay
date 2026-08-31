@@ -164,6 +164,12 @@
       "languageVersion": "3.9"
     },
     {
+      "name": "dbus",
+      "rootUri": "file:///home/eliusa/.pub-cache/hosted/pub.dev/dbus-0.7.15",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
+    },
+    {
       "name": "dio",
       "rootUri": "file:///home/eliusa/.pub-cache/hosted/pub.dev/dio-5.9.1",
       "packageUri": "lib/",
@@ -270,6 +276,36 @@
       "rootUri": "file:///home/eliusa/.pub-cache/hosted/pub.dev/flutter_lints-6.0.0",
       "packageUri": "lib/",
       "languageVersion": "3.8"
+    },
+    {
+      "name": "flutter_local_notifications",
+      "rootUri": "file:///home/eliusa/.pub-cache/hosted/pub.dev/flutter_local_notifications-22.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "flutter_local_notifications_linux",
+      "rootUri": "file:///home/eliusa/.pub-cache/hosted/pub.dev/flutter_local_notifications_linux-8.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "flutter_local_notifications_platform_interface",
+      "rootUri": "file:///home/eliusa/.pub-cache/hosted/pub.dev/flutter_local_notifications_platform_interface-12.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "flutter_local_notifications_web",
+      "rootUri": "file:///home/eliusa/.pub-cache/hosted/pub.dev/flutter_local_notifications_web-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
+    },
+    {
+      "name": "flutter_local_notifications_windows",
+      "rootUri": "file:///home/eliusa/.pub-cache/hosted/pub.dev/flutter_local_notifications_windows-3.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
     },
     {
       "name": "flutter_localizations",
@@ -774,6 +810,12 @@
       "rootUri": "file:///home/eliusa/.pub-cache/hosted/pub.dev/test_api-0.7.7",
       "packageUri": "lib/",
       "languageVersion": "3.5"
+    },
+    {
+      "name": "timezone",
+      "rootUri": "file:///home/eliusa/.pub-cache/hosted/pub.dev/timezone-0.11.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.10"
     },
     {
       "name": "typed_data",
