@@ -17,6 +17,7 @@ class CheckReciverScreen extends StatelessWidget {
               wellcomeCard(
                 title: 'Transfer Money',
                 subTitle: 'Do your transformation Securely',
+                isAuth: false,
               ),
               // Check reciver form Section
               FormButtnSection(),

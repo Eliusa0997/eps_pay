@@ -16,6 +16,7 @@ class WaterScreen extends StatelessWidget {
               wellcomeCard(
                 title: ' Water',
                 subTitle: 'Quickly pay your water bill and securely',
+                isAuth: false,
                 headerIcon: Icon(
                   Icons.water_drop,
                   size: 100,

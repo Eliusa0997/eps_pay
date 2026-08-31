@@ -16,6 +16,7 @@ class DepositScreen extends StatelessWidget {
               wellcomeCard(
                 title: 'Deposit',
                 subTitle: 'Securely add funds to your EpsPay account',
+                isAuth: false,
               ),
 
               // Form and button and bloc listner Section

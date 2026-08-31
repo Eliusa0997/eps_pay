@@ -16,6 +16,7 @@ class InternetScreen extends StatelessWidget {
               wellcomeCard(
                 title: ' Internet',
                 subTitle: 'Pay your internet bill quickly and securely',
+                isAuth: false,
                 headerIcon: Icon(
                   Icons.wifi,
                   size: 100,

@@ -16,6 +16,7 @@ class ElectricityScreen extends StatelessWidget {
               wellcomeCard(
                 title: 'Electricity',
                 subTitle: 'Pay your electricity bill quickly and securely',
+                isAuth: false,
                 headerIcon: Icon(
                   Icons.flash_on,
                   size: 100,

@@ -23,6 +23,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 title: 'Get Started',
                 subTitle:
                     'Create your account to start sending\n and receiving money',
+                isAuth: true,
               ),
               // Signup Section
               const SignupSection(),

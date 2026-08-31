@@ -10,6 +10,7 @@ class wellcomeCard extends StatelessWidget {
   final String title;
   final String subTitle;
   Widget? headerIcon;
+  bool isAuth = false;
   LinearGradient? headerGradientColor;
   wellcomeCard({
     super.key,
@@ -17,6 +18,7 @@ class wellcomeCard extends StatelessWidget {
     required this.subTitle,
     this.headerIcon,
     this.headerGradientColor,
+    required this.isAuth,
   });
 
   @override
@@ -36,16 +38,18 @@ class wellcomeCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                IconButton(
-                  onPressed: () =>
-                      context.pushNamed(Routes.homeDashboardScreen),
+                isAuth
+                    ? SizedBox()
+                    : IconButton(
+                        onPressed: () =>
+                            context.pushNamed(Routes.homeDashboardScreen),
 
-                  icon: const Icon(Icons.arrow_back),
-                  color: Colors.white,
-                  style: IconButton.styleFrom(
-                    backgroundColor: Colors.white.withOpacity(0.1),
-                  ),
-                ),
+                        icon: const Icon(Icons.arrow_back),
+                        color: Colors.white,
+                        style: IconButton.styleFrom(
+                          backgroundColor: Colors.white.withOpacity(0.1),
+                        ),
+                      ),
               ],
             ),
             Container(

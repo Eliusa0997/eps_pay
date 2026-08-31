@@ -23,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
               wellcomeCard(
                 title: 'Welcome Back',
                 subTitle: 'Securely sign in to your EpsPay account',
+                isAuth: true,
               ),
               // Login Section
               LoginSection(),
