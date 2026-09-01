@@ -1,4 +1,4 @@
-import 'package:eps_pay/core/for_test_models/setup_success_state.dart';
+import 'package:eps_pay/core/functions/setup_success_state.dart';
 import 'package:eps_pay/core/functions/setup_error_state.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
