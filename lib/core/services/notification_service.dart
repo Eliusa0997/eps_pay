@@ -1,5 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:eps_pay/core/di/dependency_injection.dart';
+import 'package:eps_pay/features/home_dashboard/logic/cubit/home_cubit.dart';
 
 class NotificationService {
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
@@ -8,7 +10,7 @@ class NotificationService {
       FlutterLocalNotificationsPlugin();
 
   Future<void> initNotifications() async {
-    // Request Firebase notification permission (important for Android 13+ and iOS)
+    // Request notification permission
     await _firebaseMessaging.requestPermission();
 
     // Initialize local notifications
@@ -20,15 +22,36 @@ class NotificationService {
 
     await _localNotifications.initialize(settings: initializationSettings);
 
-    // Get device token
+    // Create Android notification channel
+    const AndroidNotificationChannel channel = AndroidNotificationChannel(
+      'epspay_notifications',
+      'EpsPay Notifications',
+      description: 'Notifications for EpsPay',
+      importance: Importance.high,
+    );
+
+    await _localNotifications
+        .resolvePlatformSpecificImplementation<
+          AndroidFlutterLocalNotificationsPlugin
+        >()
+        ?.createNotificationChannel(channel);
+
+    // Get FCM token
     String? fcmToken = await _firebaseMessaging.getToken();
+
     print("FCM Token: $fcmToken");
 
-    // Listen for notifications while app is open
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    // Foreground notifications
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) async {
       print("Notification received");
       print(message.notification?.title);
       print(message.notification?.body);
+
+      // Show notification while app is open
+      await _showLocalNotification(message);
+
+      // Refresh home screen balance
+      getIt<HomeCubit>().emitHomeState();
     });
   }
 
@@ -40,6 +63,7 @@ class NotificationService {
           channelDescription: 'Notifications for EpsPay',
           importance: Importance.high,
           priority: Priority.high,
+          playSound: true,
         );
 
     const NotificationDetails notificationDetails = NotificationDetails(
@@ -47,7 +71,7 @@ class NotificationService {
     );
 
     await _localNotifications.show(
-      id: message.hashCode,
+      id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
       title: message.notification?.title ?? 'EpsPay',
       body: message.notification?.body ?? '',
       notificationDetails: notificationDetails,
