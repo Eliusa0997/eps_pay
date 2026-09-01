@@ -1,3 +1,5 @@
+import 'package:eps_pay/core/helpers/extensions.dart';
+import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/widgets/wellcome_card.dart';
 import 'package:eps_pay/features/bills_payment/ui/widgets/electricity_form_button_section.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,8 @@ class ElectricityScreen extends StatelessWidget {
                 title: 'Electricity',
                 subTitle: 'Pay your electricity bill quickly and securely',
                 isAuth: false,
+                onBackButtonPressed: () =>
+                    context.pushNamed(Routes.billsBaymentsScreen),
                 headerIcon: Icon(
                   Icons.flash_on,
                   size: 100,

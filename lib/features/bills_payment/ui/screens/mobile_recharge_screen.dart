@@ -1,3 +1,5 @@
+import 'package:eps_pay/core/helpers/extensions.dart';
+import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/widgets/wellcome_card.dart';
 import 'package:eps_pay/features/bills_payment/ui/widgets/mobile_recharge_form_button_section.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,8 @@ class MobileRechargeScreen extends StatelessWidget {
                 title: 'Mobile Recharge',
                 subTitle: 'Recharge your Mobile bill quickly and securely',
                 isAuth: false,
+                onBackButtonPressed: () =>
+                    context.pushNamed(Routes.billsBaymentsScreen),
                 headerIcon: Icon(
                   Icons.smartphone,
                   size: 100,

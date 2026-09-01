@@ -11,6 +11,7 @@ class wellcomeCard extends StatelessWidget {
   final String subTitle;
   Widget? headerIcon;
   bool isAuth = false;
+  Function()? onBackButtonPressed;
   LinearGradient? headerGradientColor;
   wellcomeCard({
     super.key,
@@ -19,6 +20,7 @@ class wellcomeCard extends StatelessWidget {
     this.headerIcon,
     this.headerGradientColor,
     required this.isAuth,
+    this.onBackButtonPressed,
   });
 
   @override
@@ -41,8 +43,9 @@ class wellcomeCard extends StatelessWidget {
                 isAuth
                     ? SizedBox()
                     : IconButton(
-                        onPressed: () =>
-                            context.pushNamed(Routes.homeDashboardScreen),
+                        onPressed:
+                            onBackButtonPressed ??
+                            () => context.pushNamed(Routes.homeDashboardScreen),
 
                         icon: const Icon(Icons.arrow_back),
                         color: Colors.white,

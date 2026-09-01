@@ -16,7 +16,7 @@ class WithdrawScreen extends StatelessWidget {
               wellcomeCard(
                 title: 'Withdraw',
                 subTitle: 'Securely withdraw funds from your account',
-                isAuth: true,
+                isAuth: false,
               ),
               // Form and button and bloc listner Section
               WithdrawFormButtonSection(),
