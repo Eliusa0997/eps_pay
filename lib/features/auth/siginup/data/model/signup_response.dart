@@ -7,8 +7,15 @@ class SignupResponse {
   final String? userName;
   final String? email;
   final String? password;
+  @JsonKey(name: "message")
+  final String? sucsuccessMessage;
 
-  SignupResponse({this.userName, this.email, this.password});
+  SignupResponse({
+    this.userName,
+    this.email,
+    this.password,
+    this.sucsuccessMessage,
+  });
 
   factory SignupResponse.fromJson(Map<String, dynamic> json) =>
       _$SignupResponseFromJson(json);
