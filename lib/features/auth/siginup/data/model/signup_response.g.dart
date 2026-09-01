@@ -11,6 +11,7 @@ SignupResponse _$SignupResponseFromJson(Map<String, dynamic> json) =>
       userName: json['username'] as String?,
       email: json['email'] as String?,
       password: json['password'] as String?,
+      sucsuccessMessage: json['message'] as String?,
     );
 
 Map<String, dynamic> _$SignupResponseToJson(SignupResponse instance) =>
@@ -18,4 +19,5 @@ Map<String, dynamic> _$SignupResponseToJson(SignupResponse instance) =>
       'username': instance.userName,
       'email': instance.email,
       'password': instance.password,
+      'message': instance.sucsuccessMessage,
     };
