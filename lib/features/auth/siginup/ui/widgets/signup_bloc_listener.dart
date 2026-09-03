@@ -1,4 +1,6 @@
-import 'package:eps_pay/core/functions/setup_auth_error_state.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:eps_pay/core/functions/setup_error_state.dart';
+import 'package:eps_pay/core/functions/setup_success_state.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/app_fonts.dart';
@@ -29,30 +31,12 @@ class SignupBlocListener extends StatelessWidget {
             );
           },
           success: (signupResponse) {
-            context.pop();
-            context.pushNamed(Routes.loginScreen);
-            showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  icon: const Icon(
-                    Icons.error,
-                    color: AppColors.error,
-                    size: 32,
-                  ),
-                  content: Text(
-                    'You are Signup Successfully Login Now',
-                    style: AppFonts.font14W600textPrimary,
-                  ),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        context.pop();
-                      },
-                      child: Text("ok"),
-                    ),
-                  ],
-                );
+            setupSuccessState(
+              context,
+              'Your ${signupResponse.sucsuccessMessage}',
+              () {
+                context.pop();
+                context.pushNamed(Routes.loginScreen);
               },
             );
           },

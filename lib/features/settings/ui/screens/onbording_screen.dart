@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:eps_pay/features/settings/logic/onbording_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -19,9 +21,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       title: 'Welcome to EpsPay',
       description:
           'Your trusted banking partner in Sudan. Manage your finances securely and conveniently from your mobile device.',
-      icon: Icons.account_balance,
+      // image: Image.asset("assets/images/splash.png"),
+      // icon: Icons.account_balance,
       gradient: const LinearGradient(
-        colors: [Color(0xFF0A5F7D), Color(0xFF0D8BB3)],
+        colors: [
+          Color.fromARGB(255, 255, 255, 255),
+          Color.fromARGB(255, 216, 216, 216),
+        ],
       ),
     ),
     OnboardingPage(
@@ -121,40 +127,49 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // Language selector
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: AppColors.border),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: const Row(
-                      children: [
-                        Icon(
-                          Icons.language,
-                          size: 16,
-                          color: AppColors.textSecondary,
-                        ),
-                        SizedBox(width: 4),
-                        Text(
-                          'EN',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.textPrimary,
+                  InkWell(
+                    onTap: () {
+                      if (context.locale.languageCode == 'en') {
+                        context.setLocale(const Locale('ar'));
+                      } else {
+                        context.setLocale(const Locale('en'));
+                      }
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.border),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.language,
+                            size: 16,
+                            color: AppColors.textSecondary,
                           ),
-                        ),
-                      ],
+                          SizedBox(width: 4),
+                          Text(
+                            'EN/AR'.tr(),
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.textPrimary,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   // Skip button
                   if (_currentPage < _pages.length - 1)
                     TextButton(
                       onPressed: _skipOnboarding,
-                      child: const Text(
-                        'Skip',
+                      child: Text(
+                        'Skip'.tr(),
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
@@ -210,13 +225,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 borderRadius: BorderRadius.circular(12),
                               ),
                             ),
-                            child: const Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Icon(Icons.arrow_back, size: 20),
                                 SizedBox(width: 8),
                                 Text(
-                                  'Back',
+                                  'Back'.tr(),
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -249,8 +264,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             children: [
                               Text(
                                 _currentPage == _pages.length - 1
-                                    ? 'Get Started'
-                                    : 'Next',
+                                    ? 'Get Started'.tr()
+                                    : 'Next'.tr(),
                                 style: const TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
@@ -306,7 +321,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ],
                   ),
                   child: Center(
-                    child: Icon(page.icon, size: 80, color: Colors.white),
+                    child: index != 0
+                        ? Icon(page.icon, size: 80, color: Colors.white)
+                        : Image.asset(
+                            "assets/images/logo.png",
+                            height: 140.h,
+                            width: 140.w,
+                          ),
                   ),
                 ),
               );
@@ -317,7 +338,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           // Title
           Text(
-            page.title,
+            page.title.tr(),
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 28,
@@ -331,7 +352,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           // Description
           Text(
-            page.description,
+            page.description.tr(),
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontSize: 16,
@@ -385,7 +406,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               const SizedBox(width: 8),
               Text(
-                badge,
+                badge.tr(),
                 style: const TextStyle(
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
@@ -418,13 +439,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 class OnboardingPage {
   final String title;
   final String description;
-  final IconData icon;
+  IconData? icon;
+  Image? image;
   final LinearGradient gradient;
 
   OnboardingPage({
     required this.title,
     required this.description,
-    required this.icon,
+    this.icon,
+    this.image,
     required this.gradient,
   });
 }

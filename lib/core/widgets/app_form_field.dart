@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,24 +31,30 @@ class AppFormField extends StatelessWidget {
       controller: controller,
       obscureText: isObscurePin,
       keyboardType: textInputType,
-      maxLength: maxLength ?? 14,
+      maxLength: maxLength ?? 20,
 
       decoration: InputDecoration(
-        hintText: hintText,
+        hintText: hintText.tr(),
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
-
+        hintStyle: TextStyle(fontSize: 15, color: Colors.grey),
         filled: true,
-        fillColor: AppColors.background,
+        fillColor: AppColors.myGery,
         border: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.info),
           borderRadius: BorderRadius.circular(15.r),
-          borderSide: BorderSide.none,
         ),
         errorBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.error),
+          borderRadius: BorderRadius.circular(15.r),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: AppColors.error),
+          borderRadius: BorderRadius.circular(15.r),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.info),
+          borderRadius: BorderRadius.circular(15.r),
         ),
         contentPadding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 13.h),
         counterText: '',
