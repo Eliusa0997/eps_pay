@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:eps_pay/features/home_dashboard/data/model/transactions_history_response_model.dart';
 import 'package:eps_pay/features/home_dashboard/logic/cubit/transactions_history_cubit.dart';
 import 'package:eps_pay/features/home_dashboard/ui/widgets/recent_transactions_history_header.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import '../../../../core/for_test_models/transaction.dart';
 import '../../../../core/theming/colors.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/model/transactions_history_model.dart';
 import '../../logic/cubit/transactions_history_state.dart';
 import '../widgets/list_item_transaction_history.dart';
 
@@ -22,11 +22,27 @@ class TransactionHistoryScreen extends StatefulWidget {
 class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   String _selectedFilter = 'all';
   final _searchController = TextEditingController();
-  List<TransactionHistoryModel> allTransactions = [];
+  final ScrollController _scrollController = ScrollController();
+  List<TransactionHistoryResponseModel> allTransactions = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    _scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 100) {
+      context.read<TransactionsHistoryCubit>().loadMoreTransactions();
+    }
+  }
 
   @override
   void dispose() {
     _searchController.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -118,6 +134,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                             ),
                           )
                         : ListView.builder(
+                            controller: _scrollController,
                             padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
                             itemCount: groupedTransactions.length,
                             itemBuilder: (context, index) {
@@ -206,7 +223,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
     );
   }
 
-  List<TransactionHistoryModel> get _filteredTransactions {
+  List<TransactionHistoryResponseModel> get _filteredTransactions {
     return allTransactions.where((transaction) {
       final matchesSearch = transaction.transactionType.toLowerCase().contains(
         _searchController.text.toLowerCase(),
@@ -220,10 +237,10 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
     }).toList();
   }
 
-  Map<String, List<TransactionHistoryModel>> _groupByDate(
-    List<TransactionHistoryModel> transactions,
+  Map<String, List<TransactionHistoryResponseModel>> _groupByDate(
+    List<TransactionHistoryResponseModel> transactions,
   ) {
-    final Map<String, List<TransactionHistoryModel>> groups = {};
+    final Map<String, List<TransactionHistoryResponseModel>> groups = {};
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
     final yesterday = DateTime(now.year, now.month, now.day - 1);
