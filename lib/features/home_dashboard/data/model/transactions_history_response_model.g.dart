@@ -1,14 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'transactions_history_model.dart';
+part of 'transactions_history_response_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TransactionHistoryModel _$TransactionHistoryModelFromJson(
+TransactionHistoryResponseModel _$TransactionHistoryResponseModelFromJson(
   Map<String, dynamic> json,
-) => TransactionHistoryModel(
+) => TransactionHistoryResponseModel(
   id: (json['id'] as num).toInt(),
   transactionType: json['transaction_type'] as String,
   amount: json['amount'] as String,
@@ -17,8 +17,8 @@ TransactionHistoryModel _$TransactionHistoryModelFromJson(
   senderFullName: json['sender_full_name'] as String?,
 );
 
-Map<String, dynamic> _$TransactionHistoryModelToJson(
-  TransactionHistoryModel instance,
+Map<String, dynamic> _$TransactionHistoryResponseModelToJson(
+  TransactionHistoryResponseModel instance,
 ) => <String, dynamic>{
   'id': instance.id,
   'transaction_type': instance.transactionType,

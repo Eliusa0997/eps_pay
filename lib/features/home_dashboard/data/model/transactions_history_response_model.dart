@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'transactions_history_model.g.dart';
+part 'transactions_history_response_model.g.dart';
 
 @JsonSerializable()
-class TransactionHistoryModel {
+class TransactionHistoryResponseModel {
   final int id;
   @JsonKey(name: "transaction_type")
   final String transactionType;
@@ -15,7 +15,7 @@ class TransactionHistoryModel {
   @JsonKey(name: "receiver_full_name")
   final String? receiverName;
 
-  TransactionHistoryModel({
+  TransactionHistoryResponseModel({
     required this.id,
     required this.transactionType,
     required this.amount,
@@ -24,8 +24,9 @@ class TransactionHistoryModel {
     this.senderFullName,
   });
 
-  factory TransactionHistoryModel.fromJson(Map<String, dynamic> json) =>
-      _$TransactionHistoryModelFromJson(json);
+  factory TransactionHistoryResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$TransactionHistoryResponseModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TransactionHistoryModelToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$TransactionHistoryResponseModelToJson(this);
 }

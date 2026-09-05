@@ -10,6 +10,7 @@ import 'package:eps_pay/features/bills_payment/data/model/bills_request_body.dar
 import 'package:eps_pay/features/bills_payment/data/model/bills_response.dart';
 import 'package:eps_pay/features/home_dashboard/data/model/profile_model.dart';
 import 'package:eps_pay/features/auth/login/data/model/fcm_request_body.dart';
+import 'package:eps_pay/features/home_dashboard/data/model/transaction_history_pagination_model.dart';
 import 'package:eps_pay/features/settings/data/model/settings_profile_model.dart';
 import 'package:eps_pay/features/transfer/data/model/reciver_request_body.dart';
 import 'package:eps_pay/features/transfer/data/model/reciver_response.dart';
@@ -17,7 +18,6 @@ import 'package:eps_pay/features/transfer/data/model/transfer_request_body.dart'
 import 'package:eps_pay/features/transfer/data/model/transfer_response.dart';
 import 'package:retrofit/retrofit.dart';
 
-import '../../features/home_dashboard/data/model/transactions_history_model.dart';
 part 'api_service.g.dart';
 
 @RestApi(baseUrl: ApiConstant.baseUrl)
@@ -67,7 +67,11 @@ abstract class ApiService {
 
   // Transactions History
   @GET(ApiConstant.transactionsHistory)
-  Future<List<TransactionHistoryModel>> getTransactionsHistory();
+  Future<TransactionHistoryPaginationModel> getTransactionsHistory(
+    @Query("page") int page,
+  );
+  // @GET(ApiConstant.transactionsHistory)
+  // Future<List<TransactionHistoryPaginationModel>> getTransactionsHistory();
 
   // Bills & Payments
   @GET(ApiConstant.billsAndPayments)

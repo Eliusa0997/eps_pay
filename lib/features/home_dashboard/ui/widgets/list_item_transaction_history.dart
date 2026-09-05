@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:eps_pay/features/home_dashboard/data/model/transactions_history_response_model.dart';
 import 'package:eps_pay/features/home_dashboard/ui/widgets/lable_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/theming/colors.dart';
-import '../../data/model/transactions_history_model.dart';
 
 class ListItemTransactionHistory extends StatelessWidget {
   final String dateLabel;
-  final TransactionHistoryModel transaction;
+  final TransactionHistoryResponseModel transaction;
 
   const ListItemTransactionHistory({
     super.key,
