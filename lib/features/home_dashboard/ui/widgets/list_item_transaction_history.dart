@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:eps_pay/core/functions/transaction_history.dart';
 import 'package:eps_pay/features/home_dashboard/data/model/transactions_history_response_model.dart';
 import 'package:eps_pay/features/home_dashboard/ui/widgets/lable_text.dart';
 import 'package:flutter/material.dart';
@@ -14,17 +15,6 @@ class ListItemTransactionHistory extends StatelessWidget {
     required this.dateLabel,
     required this.transaction,
   });
-
-  String _formatDate(DateTime date) {
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final yesterday = DateTime(now.year, now.month, now.day - 1);
-    final dateToCheck = DateTime(date.year, date.month, date.day);
-    if (dateToCheck == now) return 'Now'.tr();
-    if (dateToCheck == today) return 'Today'.tr();
-    if (dateToCheck == yesterday) return 'Yesterday'.tr();
-    return '${date.month}/${date.day}/${date.year}';
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +57,7 @@ class ListItemTransactionHistory extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            _formatDate(transaction.date),
+                            formatDate(transaction.date),
                             style: const TextStyle(
                               fontSize: 12,
                               color: AppColors.textSecondary,
