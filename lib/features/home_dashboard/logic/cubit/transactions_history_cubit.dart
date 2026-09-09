@@ -26,11 +26,11 @@ class TransactionsHistoryCubit extends Cubit<TransactionsHistoryState> {
     allTransactions.clear();
 
     emit(TransactionsHistoryState.loading());
-
+    print("🟠 Calling API for page 1...");
     final response = await _transactionsHistoryRepo.getTransactionsHistory(
       currentPage,
     );
-
+    print("🟠 API response received for page 1");
     response.when(
       success: (transactionsHistoryResponse) {
         allTransactions = transactionsHistoryResponse.results;
@@ -40,7 +40,11 @@ class TransactionsHistoryCubit extends Cubit<TransactionsHistoryState> {
         print("✅ First page loaded: ${allTransactions.length}");
         print("➡️ Has more: $hasMore");
 
-        emit(TransactionsHistoryState.success(allTransactions));
+        emit(
+          TransactionsHistoryState.success(
+            List<TransactionHistoryResponseModel>.from(allTransactions),
+          ),
+        );
       },
       failure: (apiErrorModel) {
         print("❌ Error: $apiErrorModel");
@@ -81,7 +85,10 @@ class TransactionsHistoryCubit extends Cubit<TransactionsHistoryState> {
 
         print("➡️ Has more: $hasMore");
 
+        print('🚨 EMITTING ${allTransactions.length} TRANSACTIONS');
         emit(TransactionsHistoryState.success(List.from(allTransactions)));
+        print("🚨 SUCCESS 40 EMITTED");
+        print("🚨 CUBIT CLOSED: $isClosed");
       },
       failure: (apiErrorModel) {
         print("❌ Load more error: $apiErrorModel");
@@ -94,36 +101,3 @@ class TransactionsHistoryCubit extends Cubit<TransactionsHistoryState> {
     isLoadingMore = false;
   }
 }
-
-// import 'package:eps_pay/features/home_dashboard/data/model/transactions_history_model.dart';
-// import 'package:eps_pay/features/home_dashboard/data/repository/transactions_history_repo.dart';
-// import 'package:eps_pay/features/home_dashboard/logic/cubit/transactions_history_state.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-
-// import '../../../../core/networking/api_result.dart';
-
-// class TransactionsHistoryCubit extends Cubit<TransactionsHistoryState> {
-//   final TransactionsHistoryRepo _transactionsHistoryRepo;
-
-//   TransactionsHistoryCubit(this._transactionsHistoryRepo)
-//     : super(TransactionsHistoryState.initial());
-//   List<TransactionHistoryModel> allTransactions = [];
-
-//   void emitTransactionsHistoryState() async {
-//     print("🔵 Loading transactions...");
-//     emit(TransactionsHistoryState.loading());
-//     final response = await _transactionsHistoryRepo.getTransactionsHistory();
-//     response.when(
-//       success: (transactionsHistoryResponse) {
-//         print("✅ Success: ${transactionsHistoryResponse.length}");
-//         allTransactions = transactionsHistoryResponse;
-//         print("✅ Success my list: ${allTransactions.length}");
-//         emit(TransactionsHistoryState.success(transactionsHistoryResponse));
-//       },
-//       failure: (apiErrorModel) {
-//         print("❌ Error: $apiErrorModel");
-//         emit(TransactionsHistoryState.error(apiErrorModel));
-//       },
-//     );
-//   }
-// }
