@@ -70,8 +70,6 @@ abstract class ApiService {
   Future<TransactionHistoryPaginationModel> getTransactionsHistory(
     @Query("page") int page,
   );
-  // @GET(ApiConstant.transactionsHistory)
-  // Future<List<TransactionHistoryPaginationModel>> getTransactionsHistory();
 
   // Bills & Payments
   @GET(ApiConstant.billsAndPayments)

@@ -58,13 +58,15 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         child: BlocBuilder<TransactionsHistoryCubit, TransactionsHistoryState>(
           builder: (context, state) {
             print("🟢 UI BUILDER CALLED");
-            print("🟢 STATE: $state");
+            print("🟢 STATE TYPE: ${state.runtimeType}");
             if (state is Loading) {
               return Center(child: CircularProgressIndicator());
             }
             if (state is Success) {
-              final transactions =
-                  state.data as List<TransactionHistoryResponseModel>;
+              final transactions = context
+                  .read<TransactionsHistoryCubit>()
+                  .allTransactions;
+              print("🟢 UI RECEIVED: ${transactions.length}");
               final groupedTransactions = groupByDate(
                 _filterTransactions(transactions),
               );
