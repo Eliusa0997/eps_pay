@@ -90,8 +90,24 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                         : ListView.builder(
                             controller: _scrollController,
                             padding: EdgeInsets.fromLTRB(24.w, 8.h, 24.w, 24.h),
-                            itemCount: groupedTransactions.length,
+                            itemCount:
+                                groupedTransactions.length +
+                                (context
+                                        .read<TransactionsHistoryCubit>()
+                                        .isLoadingMore
+                                    ? 1
+                                    : 0),
                             itemBuilder: (context, index) {
+                              // Loading indicator at the bottom
+                              if (index == groupedTransactions.length) {
+                                return Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 20.h),
+                                  child: const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                );
+                              }
+
                               final dateLabel = groupedTransactions.keys
                                   .elementAt(index);
                               final transactions =

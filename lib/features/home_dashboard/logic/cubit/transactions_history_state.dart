@@ -6,6 +6,7 @@ part 'transactions_history_state.freezed.dart';
 class TransactionsHistoryState<T> with _$TransactionsHistoryState {
   const factory TransactionsHistoryState.initial() = _Initial;
   const factory TransactionsHistoryState.loading() = Loading;
+  const factory TransactionsHistoryState.loadMoreLoading() = LoadMoreLoading;
   const factory TransactionsHistoryState.success(T data) = Success<T>;
   const factory TransactionsHistoryState.error(ApiErrorModel apiErrorModel) =
       Error;
