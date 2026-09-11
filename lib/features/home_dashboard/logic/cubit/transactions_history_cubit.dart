@@ -61,10 +61,10 @@ class TransactionsHistoryCubit extends Cubit<TransactionsHistoryState> {
     }
 
     isLoadingMore = true;
+    // Rebuild UI to show loading indicator
+    emit(TransactionsHistoryState.success(List.from(allTransactions)));
 
     final nextPage = currentPage + 1;
-
-    print("🔵 Loading page $nextPage...");
 
     final response = await _transactionsHistoryRepo.getTransactionsHistory(
       nextPage,
@@ -77,18 +77,14 @@ class TransactionsHistoryCubit extends Cubit<TransactionsHistoryState> {
         currentPage = nextPage;
 
         hasMore = transactionsHistoryResponse.next != null;
-
         print(
           "✅ Page $currentPage loaded. "
           "Total: ${allTransactions.length}",
         );
 
         print("➡️ Has more: $hasMore");
-
-        print('🚨 EMITTING ${allTransactions.length} TRANSACTIONS');
+        isLoadingMore = false;
         emit(TransactionsHistoryState.success(List.from(allTransactions)));
-        print("🚨 SUCCESS 40 EMITTED");
-        print("🚨 CUBIT CLOSED: $isClosed");
       },
       failure: (apiErrorModel) {
         print("❌ Load more error: $apiErrorModel");
