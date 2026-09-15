@@ -32,7 +32,7 @@ class DioFactory {
 
           if (token != null &&
               token.isNotEmpty &&
-              !options.path.contains(ApiConstant.login) &&
+              // !options.path.contains(ApiConstant.login) &&
               !options.path.contains(ApiConstant.signup)) {
             // Add token to headers
             options.headers['Authorization'] = 'Bearer $token';

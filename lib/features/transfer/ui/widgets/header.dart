@@ -1,5 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../core/helpers/extensions.dart';
+import '../../../../core/routing/routes.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Header extends StatelessWidget {
   const Header({super.key});
@@ -7,35 +12,36 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: AppColors.primaryGradient,
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(32),
-          bottomRight: Radius.circular(32),
+          bottomLeft: Radius.circular(32.r),
+          bottomRight: Radius.circular(32.r),
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 24, 24, 32),
+        padding: EdgeInsets.fromLTRB(12.w, 20.h, 12.w, 50.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () =>
+                  context.pushReplacementNamed(Routes.checkReciverScreen),
               icon: const Icon(Icons.arrow_back),
               color: Colors.white,
               style: IconButton.styleFrom(
                 backgroundColor: Colors.white.withOpacity(0.1),
               ),
             ),
-            const Text(
-              'Transfer Money',
+            Text(
+              'Transfer Money'.tr(),
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 25.sp,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
-            const SizedBox(width: 40),
+            SizedBox(width: 40.w),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -17,9 +18,9 @@ class PasswordValidations extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        buidValidationRow('At least 1 lowercase', hasLowerCase),
-        buidValidationRow('At least 1 number', hasNumber),
-        buidValidationRow('At least 8 letter length', hasMinLength),
+        buidValidationRow('At least 1 lowercase'.tr(), hasLowerCase),
+        buidValidationRow('At least 1 number'.tr(), hasNumber),
+        buidValidationRow('At least 8 letter length'.tr(), hasMinLength),
       ],
     );
   }

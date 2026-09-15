@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -7,6 +8,7 @@ class AppButton extends StatelessWidget {
   void Function() onPressed;
   final String buttonText;
   TextStyle? textStyle;
+  Color? backgroundColor;
 
   AppButton({
     super.key,
@@ -15,6 +17,7 @@ class AppButton extends StatelessWidget {
     required this.onPressed,
     required this.buttonText,
     this.textStyle,
+    this.backgroundColor,
   });
 
   @override
@@ -25,7 +28,7 @@ class AppButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
+          backgroundColor: backgroundColor ?? AppColors.primary,
           foregroundColor: Colors.white,
           elevation: 4,
           shadowColor: AppColors.primary.withOpacity(0.3),
@@ -34,7 +37,7 @@ class AppButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          buttonText,
+          buttonText.tr(),
           style:
               textStyle ?? TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),

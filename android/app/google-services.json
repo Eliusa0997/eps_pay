@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "738089318055",
+    "project_id": "epspay-bcd1f",
+    "storage_bucket": "epspay-bcd1f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:738089318055:android:39ffbf10fdc73371b30d82",
+        "android_client_info": {
+          "package_name": "com.example.eps_pay"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbpN_AOcPZUlQ0TLYiN-ujolYnxnMY4WA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

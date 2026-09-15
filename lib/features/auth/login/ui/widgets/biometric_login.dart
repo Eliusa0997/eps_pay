@@ -1,4 +1,3 @@
-import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +7,7 @@ class BiometricLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _handleBiometricLogin() {
-      Navigator.pushReplacementNamed(context, Routes.homeDashboard);
+      // Navigator.pushReplacementNamed(context, Routes.homeDashboardScreen);
     }
 
     return Column(

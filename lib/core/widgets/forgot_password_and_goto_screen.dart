@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/app_fonts.dart';
 import 'package:eps_pay/core/theming/colors.dart';
@@ -20,14 +21,17 @@ class ForgetPassordAndGoToSomeScreen extends StatelessWidget {
       children: [
         TextButton(
           onPressed: goToScreen,
-          child: Text(text, style: AppFonts.font13W600Primary),
+          child: Text(text.tr(), style: AppFonts.font13W600Primary),
         ),
 
         TextButton(
           onPressed: () {
             //  Navigator.pushNamed(context, Routes.signupScreen);
           },
-          child: Text('Forgot Password?', style: AppFonts.font13W600Primary),
+          child: Text(
+            'Forgot Password?'.tr(),
+            style: AppFonts.font13W600Primary,
+          ),
         ),
       ],
     );

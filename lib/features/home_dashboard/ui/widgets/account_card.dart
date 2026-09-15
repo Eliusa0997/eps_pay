@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/theming/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -47,8 +48,8 @@ class _AccountCardState extends State<AccountCard> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Total Balance',
+                        Text(
+                          'Total Balance'.tr(),
                           style: TextStyle(
                             fontSize: 14,
                             color: AppColors.textSecondary,
@@ -103,7 +104,7 @@ class _AccountCardState extends State<AccountCard> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Primary Account',
+                          'Primary Account'.tr(),
                           style: TextStyle(
                             fontSize: 12,
                             color: AppColors.textSecondary,
@@ -122,9 +123,9 @@ class _AccountCardState extends State<AccountCard> {
                     ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/accounts');
+                        // Navigator.pushNamed(context, '/accounts');
                       },
-                      child: const Text('View All'),
+                      child: const Text('View All').tr(),
                     ),
                   ],
                 ),

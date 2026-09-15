@@ -1,35 +1,35 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:eps_pay/core/helpers/extensions.dart';
 import 'package:eps_pay/core/routing/routes.dart';
 import 'package:eps_pay/core/theming/colors.dart';
-import 'package:eps_pay/features/home_dashboard/logic/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Header extends StatelessWidget {
-  final String userName;
-  const Header({super.key, required this.userName});
+  final String fullName;
+  const Header({super.key, required this.fullName});
 
   String _getGreeting() {
     final hour = DateTime.now().hour;
-    if (hour < 12) return 'Good Morning';
-    if (hour < 17) return 'Good Afternoon';
-    return 'Good Evening';
+    if (hour < 12) return 'Good Morning'.tr();
+    if (hour < 17) return 'Good Afternoon'.tr();
+    return 'Good Evening'.tr();
   }
 
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
-        height: 220,
-        decoration: const BoxDecoration(
+        height: 140,
+        decoration: BoxDecoration(
           gradient: AppColors.primaryGradient,
           borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(32),
-            bottomRight: Radius.circular(32),
+            bottomLeft: Radius.circular(22.r),
+            bottomRight: Radius.circular(22.r),
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(24, 24, 24, 96),
+          padding: EdgeInsets.fromLTRB(20.w, 20.h, 20.w, 70.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -39,15 +39,15 @@ class Header extends StatelessWidget {
                   Text(
                     _getGreeting(),
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 14.sp,
                       color: Colors.white.withOpacity(0.8),
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4.h),
                   Text(
-                    context.read<HomeCubit>().userName.toString(),
+                    fullName,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ),
